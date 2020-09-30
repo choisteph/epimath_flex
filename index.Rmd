@@ -8,32 +8,33 @@ output:
     navbar:
       - {title: explorables, align: right}
       - {title: reports, align: right}
+      - {title: publciations, align: right}
+      - {title: about us, align: right}
     
 ---
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+
 ```
 
-Column {data-width=650}
+Column {data-width=400}
 -----------------------------------------------------------------------
 
-### Chart A
+- Michigan Data
+- University of Michigan Data
+
+
+Column {data-width=600}
+-----------------------------------------------------------------------
+
+### One Week Forecast of COVID-19 Cases in Michigan
 
 ```{r}
 
 ```
 
-Column {data-width=350}
------------------------------------------------------------------------
-
-### Chart B
-
-```{r}
-
-```
-
-### Chart C
+### Three Week Forecast of COVID-19 Cases in Michigan
 
 ```{r}
 
