@@ -14,11 +14,22 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+
+library(ggplot2)
+library(plotly)
+library(plyr)
+library(readr)
+library(deSolve)
+
 library(flexdashboard)
+library (shiny)
+
+load('Workspace2020-04-25-1587832621.RData')
+
 
 ```
 
-Column {data-width=400}
+Column {data-width=300}
 -----------------------------------------------------------------------
 
 - Michigan Data
@@ -31,6 +42,7 @@ Column {data-width=300}
 ### One Week Forecast of COVID-19 Cases in Michigan
 
 ```{r}
+
 
 ```
 
