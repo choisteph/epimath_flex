@@ -25,7 +25,7 @@ Column {data-width=400}
 - University of Michigan Data
 
 
-Column {data-width=600}
+Column {data-width=300}
 -----------------------------------------------------------------------
 
 ### One Week Forecast of COVID-19 Cases in Michigan
@@ -34,6 +34,8 @@ Column {data-width=600}
 
 ```
 
+Column {data-width=300}
+-----------------------------------------------------------------------
 ### Three Week Forecast of COVID-19 Cases in Michigan
 
 ```{r}
