@@ -100,6 +100,19 @@ plotdata = data.frame(dates[1:end],dt(dates[1:end]),ybestfit[1:end],ymed[1:end],
 # create column names
 colnames(plotdata) = cbind("Date","NumericDate","BestFit","Median","Min","Max","CDates","NumericCDates","Cases")
 
+# make the ggplot
+forecastplot = ggplot(plotdata) +
+  geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1, 
+                linetype = "Best fit")) +
+  geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1, 
+                linetype = "Median")) +
+  geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate,
+                  text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1), 
+              alpha = 0.3) +
+  geom_point(aes(x=NumericCDates, y=Cases, text = paste("Date:",Date,"<br>Cases:",round(Cases))  )) +
+  guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) +
+  labs(x="Date", y="Cumulative Lab-Confirmed Cases")
+
 ```
 
 ### Three Week Forecast of COVID-19 Cases in Michigan
@@ -113,14 +126,7 @@ Row {data-height=500}
 -----------------------------------------------------------------------
 
 
-#### Summary
-
-*Updated `r format(Sys.time(), "%B %e, %Y at %H:%M %Z")`*
-
-
-<p style="font-size: 10pt">Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.</p>
-
-#### Forecast
+#### Current Summary
 
 Model forecast for cumulative lab-confirmed cases:
 
@@ -152,4 +158,11 @@ Additionally, the current best fit across model simulations projects (for uncert
 <p style="font-size: 10pt; font-style: oblique"> Note that the model is a work in progress and being updated as the epidemic progresses. Because we are still making improvements and including new data in the model, these results are highly preliminary and uncertain. The forecasts shown here also do not account for the ongoing changes in social distancing occurring over the coming weeks. For more on social distancing, see the 'Scenarios' tab.</p>
 
 <p style="font-size: 10pt"> For more information about the transmission model and methods, please see the 'About' tab.</p>
+
+
+<p style="font-size: 10pt">Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.</p>
+
+*Updated `r format(Sys.time(), "%B %e, %Y at %H:%M %Z")`*
+
+
 
