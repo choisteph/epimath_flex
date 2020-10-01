@@ -14,6 +14,9 @@ output:
     
 ---
 
+Home
+===================================== 
+    
 ```{r setup, include=FALSE}
 
 library(ggplot2)
@@ -130,8 +133,9 @@ Additionally, the current best fit across model simulations projects (for uncert
 *Updated `r format(Sys.time(), "%B %e, %Y at %H:%M %Z")`*
 
 
-Social Distancing Scenarios {data-orientation = rows}
-========================================================================================
+
+Social Distancing Scenarios
+===================================== 
 
 ### Social Distancing Scenarios
 
