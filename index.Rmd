@@ -26,14 +26,25 @@ library (shiny)
 
 load('Workspace2020-04-25-1587832621.RData')
 
+# Convert times to date format for convenience
+dates = startdate + ftimes
+casedates = startdate + times
+
+lastdate = tail(casedates, 1)
+
+# Turn off scientific notation on all axes (scipen = 0 turns it back on)
+options(scipen=99)
+
+# Convert dates from ggplot numeric to plotly numeric
+dt = function(dates){as.numeric(as.POSIXct(dates)*1000)}
 
 ```
 
 Column {data-width=300}
 -----------------------------------------------------------------------
 
-- Michigan Data
-- University of Michigan Data
+<a href="#"> Michigan Data </a>
+<a href="#"> University of Michigan Data </a>
 
 
 Column {data-width=300}
@@ -57,7 +68,8 @@ Column {data-width=300}
 Column {data-width=100}
 -----------------------------------------------------------------------
 
-```{r}
+Column {data-width=600}
+-----------------------------------------------------------------------
+### Summary
 
-```
-
+*Updated `r format(Sys.time(), "%B %e, %Y at %H:%M %Z")`*
