@@ -2591,12 +2591,13 @@ window.FlexDashboardComponents.push({
 
 <div id="dashboard-container">
 
-<div id="column" class="section level2" data-width="300">
-<h2>Column</h2>
-<p><a href="#"> Michigan Data </a> <a href="#"> University of Michigan Data </a></p>
+<div id="inputs" class="section level2 sidebar">
+<h2>Inputs</h2>
+<p><a href="#"> Michigan Data </a></p>
+<p><a href="#"> University of Michigan Data </a></p>
 </div>
-<div id="column-1" class="section level2" data-width="300">
-<h2>Column</h2>
+<div id="row" class="section level2" data-height="300">
+<h2>Row</h2>
 <div id="one-week-forecast-of-covid-19-cases-in-michigan" class="section level3">
 <h3>One Week Forecast of COVID-19 Cases in Michigan</h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
@@ -2604,8 +2605,8 @@ window.FlexDashboardComponents.push({
 </div>
 </div>
 </div>
-<div id="column-2" class="section level2" data-width="300">
-<h2>Column</h2>
+<div id="row-1" class="section level2" data-height="300">
+<h2>Row</h2>
 <div id="three-week-forecast-of-covid-19-cases-in-michigan" class="section level3">
 <h3>Three Week Forecast of COVID-19 Cases in Michigan</h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
@@ -2613,14 +2614,11 @@ window.FlexDashboardComponents.push({
 </div>
 </div>
 </div>
-<div id="column-3" class="section level2" data-width="100">
-<h2>Column</h2>
-</div>
-<div id="column-4" class="section level2" data-width="600">
-<h2>Column</h2>
+<div id="row-2" class="section level2" data-height="500">
+<h2>Row</h2>
 <div id="summary" class="section level3">
 <h3>Summary</h3>
-<p><em>Updated October 1, 2020 at 09:45 EDT</em></p>
+<p><em>Updated October 1, 2020 at 09:51 EDT</em></p>
 </div>
 </div>
 
@@ -2647,7 +2645,7 @@ $(document).ready(function () {
   FlexDashboard.init({
     theme: "yeti",
     fillPage: true,
-    orientation: "columns",
+    orientation: "rows",
     storyboard: false,
     defaultFigWidth: 576,
     defaultFigHeight: 460,

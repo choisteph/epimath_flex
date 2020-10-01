@@ -2,7 +2,7 @@
 title: "Michigan COVID-19 Mapping"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
+    orientation: rows
     vertical_layout: fill
     theme: yeti
     navbar:
@@ -10,6 +10,7 @@ output:
       - {title: reports, align: right}
       - {title: publciations, align: right}
       - {title: about us, align: right}
+    runtime: shiny
     
 ---
 
@@ -40,14 +41,15 @@ dt = function(dates){as.numeric(as.POSIXct(dates)*1000)}
 
 ```
 
-Column {data-width=300}
+Inputs {.sidebar}
 -----------------------------------------------------------------------
 
 <a href="#"> Michigan Data </a>
+
 <a href="#"> University of Michigan Data </a>
 
 
-Column {data-width=300}
+Row {data-height=300}
 -----------------------------------------------------------------------
 
 ### One Week Forecast of COVID-19 Cases in Michigan
@@ -57,7 +59,7 @@ Column {data-width=300}
 
 ```
 
-Column {data-width=300}
+Row {data-height=300}
 -----------------------------------------------------------------------
 ### Three Week Forecast of COVID-19 Cases in Michigan
 
@@ -65,11 +67,10 @@ Column {data-width=300}
 
 ```
 
-Column {data-width=100}
+Row {data-height=500}
 -----------------------------------------------------------------------
 
-Column {data-width=600}
------------------------------------------------------------------------
+
 ### Summary
 
 *Updated `r format(Sys.time(), "%B %e, %Y at %H:%M %Z")`*
