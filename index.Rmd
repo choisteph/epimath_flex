@@ -100,7 +100,8 @@ plotdata = data.frame(dates[1:end],dt(dates[1:end]),ybestfit[1:end],ymed[1:end],
 # create column names
 colnames(plotdata) = cbind("Date","NumericDate","BestFit","Median","Min","Max","CDates","NumericCDates","Cases")
 
-# make the ggplot
+# make the ggplot and tooltips
+## NOTE: tooltips (text = ...) throw the ignoring unknown aesthetic error
 forecastplot = ggplot(plotdata) +
   geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1, 
                 linetype = "Best fit")) +
@@ -114,13 +115,13 @@ forecastplot = ggplot(plotdata) +
   labs(x="Date", y="Cumulative Lab-Confirmed Cases")
 
 
-ggplotly(forecastplot,tooltip = c("text")) %>%
-  layout(legend = list(x = "5%", y = "90%",
-      orientation = "h"),
-      xaxis = list(
+ggplotly(forecastplot, tooltip = c("text")) %>%
+  layout(
+    legend = list(x = 0.05, y = 0.90),
+    xaxis = list(
         type = 'date',
         tickformat = "%b %d"
-        )
+    )
   )
 
 ```
