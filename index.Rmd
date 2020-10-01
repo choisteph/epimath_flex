@@ -95,7 +95,9 @@ plotdata = data.frame(dates[1:end],dt(dates[1:end]),ybestfit[1:end],ymed[1:end],
 
 colnames(plotdata) = cbind("Date","NumericDate","BestFit","Median","Min","Max","CDates","NumericCDates","Cases")
 
-forecastplot = ggplot(plotdata) +
+
+renderPlotly({
+  forecastplot = ggplot(plotdata) +
   geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1, 
                 linetype = "Best fit")) +
   geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1, 
@@ -107,7 +109,6 @@ forecastplot = ggplot(plotdata) +
   guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) +
   labs(x="Date", y="Cumulative Lab-Confirmed Cases")
 
-renderPlotly({
   ggplotly(forecastplot, tooltip = c("text")) %>%
   layout(legend = list(x = 0.05, y = 0.9,
       orientation = "h"),
