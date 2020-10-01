@@ -94,7 +94,6 @@ plotdata = data.frame(dates[1:end],dt(dates[1:end]),ybestfit[1:end],ymed[1:end],
                  c(cases, rep(NA, length(ftimes[1:end]) - length(casedates))) )
 colnames(plotdata) = cbind("Date","NumericDate","BestFit","Median","Min","Max","CDates","NumericCDates","Cases")
 
-# I think something here is causing there to be a CssUnit error
 forecastplot = ggplot(plotdata) +
   geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1,
                 linetype = "Best fit")) +
@@ -108,7 +107,7 @@ forecastplot = ggplot(plotdata) +
   labs(x="Date", y="Cumulative Lab-Confirmed Cases")
 
 
-ggplotly(forecastplot,tooltip = c("text")) %>%
+ggplotly(forecastplot, height= 500, width=1000, tooltip = c("text")) %>%
   layout(legend = list(x = 0.05, y = 0.9,
       orientation = "h"),
       xaxis = list(
