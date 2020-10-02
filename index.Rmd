@@ -24,6 +24,7 @@ library(plotly)
 library(plyr)
 library(readr)
 library(deSolve)
+library(knitr)
 
 library(flexdashboard)
 library (shiny)
@@ -81,9 +82,45 @@ xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
 
 ```
 
-### One Week Forecast of COVID-19 Cases in Michigan
+### One Week Forecast of COVID-19 Cases in Michigan {data-height=275}
 
-<iframe></iframe>
+<!-- <iframe></iframe> -->
+```{r forecastplot1wk, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,fig.height=3}
+
+# Detected/observed cumulative incidence
+
+end = (lastdate + 7) - startdate + 1
+
+ybestfit = yobscumcarefun(xestlh,paramestslh)
+
+plotdata = data.frame(dates[1:end],dt(dates[1:end]),ybestfit[1:end],ymed[1:end],ymin[1:end],ymax[1:end],
+                 c(casedates, rep(NA, length(ftimes[1:end]) - length(casedates))), 
+                 dt(c(casedates, rep(NA, length(ftimes[1:end]) - length(casedates)))), 
+                 c(cases, rep(NA, length(ftimes[1:end]) - length(casedates))) )
+colnames(plotdata) = cbind("Date","NumericDate","BestFit","Median","Min","Max","CDates","NumericCDates","Cases")
+
+forecastplot = ggplot(plotdata) +
+  geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1, 
+                linetype = "Best fit")) +
+  geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1, 
+                linetype = "Median")) +
+  geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate,
+                  text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1), 
+              alpha = 0.3) +
+  geom_point(aes(x=NumericCDates, y=Cases, text = paste("Date:",Date,"<br>Cases:",round(Cases))  )) +
+  guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) +
+  labs(x="Date", y="Cumulative Lab-Confirmed Cases")
+  
+gg <- ggplotly(forecastplot, tooltip = c("text")) %>%
+  layout(legend = list(x = 0.05, y = 0.9,
+      orientation = "h"),
+      xaxis = list(
+        type = 'date',
+        tickformat = "%b %d"
+        ), width = NULL, height = NULL
+  )
+  
+```
 
 ### Three Week Forecast of COVID-19 Cases in Michigan
 
