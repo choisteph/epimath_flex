@@ -6,7 +6,7 @@ output:
     vertical_layout: fill
     theme: yeti
     navbar:
-      - {title: explorables1, align: right}
+      - {title: explorables, align: right}
       - {title: reports, align: right}
       - {title: publciations, align: right}
       - {title: about us, align: right}
