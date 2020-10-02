@@ -1,0 +1,295 @@
+---
+title: "Michigan COVID-19 Modeling Dashboard"
+author: ""
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: scroll
+    theme: yeti
+---
+
+<!--  add?  social: menu
+    source_code: embed 
+    
+    Themes? bootstrap
+cerulean
+xx flatly
+xx readable
+xx spacelab
+lumen
+xx paper
+yeti
+    
+    
+    -->
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(plotly)
+library(plyr)
+library(flexdashboard)
+
+# Load the model runs and data
+source('SLIRmodelfunctions.R')
+load('Workspace2020-03-23-1584998987.Rdata') # (I know, it's really dumb to do this with a workspace, will update later... - M)
+
+dates = startdate+ftimes
+casedates = startdate + times
+
+```
+
+
+# Current Forecasts
+
+<!-- <span style="font-size:10pt;">Forecasts update daily. Data is shown as circles, dashed lines in all figures indicate the median across 1000 simulations, and grey shaded regions indicate uncertainty bounds. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.</span> -->
+
+## Info column {data-width=400}
+
+### Updated March 23, 2020 <!--`r format(Sys.Date(), "%B %e, %Y")`-->
+<span style="font-size:10pt;">Data is shown as circles, dashed lines in all figures indicate the median across 1000 simulations, and grey shaded regions indicate uncertainty bounds. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.</span>
+
+<hr>
+
+**Current Summary**
+
+<!-- - The model and data suggest we are still in the exponential growth phase of the epidemic, so cases will continue to grow rapidly.  -->
+
+- The model and data suggest we are still in the growth phase of the epidemic, with cases continuing to increase. 
+- The true number of cases is still very underestimated by testing data (although it is improving, resulting in the upswing in testing data shown in the cumulative case forecasts)
+- The current median across all model simulations for Michigan gives a forecast of almost 1800 cumulative laboratory-confirmed cases by March 30, 2020 (1 week), and almost 7200 cumulative laboratory-confirmed cases by April 13, 2020 (3 weeks).
+- The current median across model simulations projects:
+    - March 30, 2020 (1 week): almost 200 hospitalized patients (beds needed) with almost 40 in ICU 
+    - April 13, 2020 (3 weeks): roughly 730 hospitalized patients (beds needed) with roughly 145 in ICU 
+
+<hr>
+
+*Note that the model is a work in progress and being updated as the epidemic progresses. Because we are still making improvements and including new data in the model, these results are highly preliminary and uncertain. The forecasts shown here also do not account for the ongoing changes in social distancing occurring over the coming weeks. For more on social distancing, see the 'Scenarios' tab.*
+<br>
+
+For more information about the transmission model and methods, please see the 'About this model' tab.
+
+
+## Plot Column
+
+### **1-week** forecast of **cumulative COVID-19 cases** in Michigan {data-height=275}
+
+```{r forecastplot1wk, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,fig.height=3}
+
+#Calculate bounds
+ymin = apply(yobsincsample, 1, min)
+ymax = apply(yobsincsample, 1, max)
+ymed = apply(yobsincsample, 1, median)
+
+end = (Sys.Date() + 7) - startdate + 1
+
+# Detected/observed cumulative incidence
+forecastplot = ggplot() +
+  geom_line(aes(x=dates[1:end],y=ymed[1:end]),linetype = "longdash") + 
+  geom_ribbon(aes(ymin=ymin[1:end], ymax=ymax[1:end], x=dates[1:end]), alpha = 0.3) +
+  geom_point(aes(x=casedates,y=cases)) +
+  # scale_color_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+  # scale_fill_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+  # guides(fill = guide_legend(''), colour = guide_legend('')) +
+  # xlim(startdate,startdate+32) + ylim(0,75000) +
+  # geom_text(x=as.Date("2020-03-12"), y=3000, label="Test label") + 
+  labs(x="Date", y="Detected Cumulative Incidence") #+ theme_bw() #+ theme_classic()
+
+# forecastplot = ggplot() +
+#   geom_line(aes(x=startdate+times,y=ymed[1:length(times)], colour='Fit'), size=1,linetype = "longdash") + 
+#   geom_line(aes(x=startdate+((length(times)-1):(length(ftimes)-1)),y=ymed[length(times):length(ftimes)], colour='Forecast'), size=1,linetype = "longdash") + #, colour='Median across LH'
+#   geom_ribbon(aes(ymin=ymin[1:length(times)], ymax=ymax[1:length(times)], x=startdate+times, fill='Fit'), alpha = 0.3) +
+#   geom_ribbon(aes(ymin=ymin[length(times):length(ftimes)], ymax=ymax[length(times):length(ftimes)], x=startdate+((length(times)-1):(length(ftimes)-1)), fill='Forecast'), alpha = 0.3) +
+#   geom_point(aes(x=startdate+times,y=cases),size=1.5) +
+#   scale_color_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+#   scale_fill_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+#   guides(fill = guide_legend(''), colour = guide_legend('')) +
+#   xlim(startdate,startdate+32) + ylim(0,75000) + 
+#   labs(x="Date", y="Detected Cumulative Incidence") #+ theme_classic(base_size = 15)
+
+ggplotly(forecastplot)
+
+```
+
+
+### **3-week** forecast of **cumulative COVID-19 deaths** in Michigan {data-height=275}
+
+```{r deathplot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+deathmin = apply(yobsdeathsample, 1, min)
+deathmax = apply(yobsdeathsample, 1, max)
+deathmed = apply(yobsdeathsample, 1, median)
+
+end = (Sys.Date() + 21) - startdate + 1
+
+# Detected/observed deaths
+deathplot = ggplot() +
+  # geom_line(aes(x=startdate+ftimes,y=yobscumdeathfun(xest,paramests)), size=1,linetype = "longdash") +
+  # geom_line(aes(x=startdate+ftimes,y=yobscumdeathfun(xestlh,paramestslh)), size=1) +
+  geom_line(aes(x=dates[1:end],y=deathmed[1:end]),linetype = "longdash") +
+  geom_ribbon(aes(ymin=deathmin[1:end], ymax=deathmax[1:end], x=dates[1:end]), alpha = 0.3) +
+  geom_point(aes(x=(as.Date("2020-03-19")+0:3), y=c(1,3,5,8) )) + 
+  # scale_fill_brewer(palette="Dark2") + #scale_color_brewer(palette="Dark2") +
+  # scale_color_manual(values=c('#000000',"#962fbf",'#4f5bd5',"#d62976", "#fa7e1e")) +
+  guides(fill = guide_legend(''), colour = guide_legend('')) +
+  # xlim(startdate,startdate+32) + ylim(0,deathmax[33]) +
+  labs(x="Date", y="Detected Cumulative Deaths") #+ theme_bw() #+ theme_classic()
+
+ggplotly(deathplot)
+
+```
+
+### **3-week** forecast of COVID-19 **ICU occupancy** (i.e. beds needed) {data-height=275}
+
+```{r ICUplot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+
+ICUmin = apply(ycurrICUsample, 1, min)
+ICUmax = apply(ycurrICUsample, 1, max)
+ICUmed = apply(ycurrICUsample, 1, median)
+
+ICUburden = ggplot() + 
+  geom_ribbon(aes(ymin=ICUmin[1:end], ymax=ICUmax[1:end], x=dates[1:end]), alpha = 0.3) +
+  geom_line(aes(x=dates[1:end],y=ICUmed[1:end]),linetype = "longdash") +
+  labs(x="Date", y="Current ICU patients") +
+  # scale_fill_brewer(palette="Dark2") + 
+  # scale_color_brewer(palette="Dark2") + 
+  # scale_y_continuous(breaks = round(seq(0, 2000, by = 25),1)) + 
+  # xlim(startdate,startdate+32) + ylim(0,ICUmax[33]) +
+  guides(fill = guide_legend(''),colour = guide_legend('')) #+ theme_bw() #+ theme_classic()
+
+ggplotly(ICUburden)
+
+```
+
+
+### **3-week** forecast of current COVID-19 **patients needing O$_2$ support** {data-height=275}
+
+```{r O2plot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,fig.height=3}
+
+O2min = apply(ycurrO2sample, 1, min)
+O2max = apply(ycurrO2sample, 1, max)
+O2med = apply(ycurrO2sample, 1, median)
+
+O2burden = ggplot() + 
+  geom_ribbon(aes(ymin=O2min[1:end], ymax=O2max[1:end], x=dates[1:end]), alpha = 0.3) +
+  geom_line(aes(x=dates[1:end],y=O2med[1:end]),linetype = "longdash") +
+  labs(x="Date", y="Patients needing O2 support") +
+  # scale_fill_brewer(palette="Dark2") + 
+  # scale_color_brewer(palette="Dark2") + 
+  # scale_y_continuous(breaks = round(seq(0, 2000, by = 25),1)) + 
+  # xlim(startdate,startdate+32) + ylim(0,O2max[33]) +
+  guides(fill = guide_legend(''),colour = guide_legend('')) #+ theme_bw() #+ theme_classic()
+
+ggplotly(O2burden)
+
+```
+
+
+
+
+
+## Plot Column
+
+### **3-week** forecast of **cumulative COVID-19 cases** in Michigan {data-height=275}
+
+```{r forecastplot3wk, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+
+# Detected/observed cumulative incidence
+forecast2plot = ggplot() +
+  geom_line(aes(x=dates[1:end],y=ymed[1:end]),linetype = "longdash") + 
+  geom_ribbon(aes(ymin=ymin[1:end], ymax=ymax[1:end], x=dates[1:end]), alpha = 0.3) +
+  geom_point(aes(x=casedates,y=cases)) +
+  # scale_color_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+  # scale_fill_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+  # guides(fill = guide_legend(''), colour = guide_legend('')) +
+  # xlim(startdate,startdate+32) + ylim(0,75000) +
+  labs(x="Date", y="Detected Cumulative Incidence") #+ theme_bw() #+ theme_classic()
+
+ggplotly(forecast2plot)
+
+# fitplot = ggplot() + 
+#   geom_line(aes(x=casedates,y=ymed[1:length(times)] ), size=1, linetype = "longdash") +
+#   geom_ribbon(aes(ymin=ymin[1:length(times)], ymax=ymax[1:length(times)], 
+#                   x=casedates), alpha = 0.3) +
+#   geom_point(aes(x=casedates,y=cases)) + 
+#   labs(x="Date", y="Cumulative Incidence") + theme_classic()
+# 
+# ggplotly(fitplot)
+
+```
+
+### **3-week** forecast of COVID-19 **hospitalized patients** (i.e. beds needed) {data-height=275}
+
+```{r hospplot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+
+patmin = apply(ycurrpatsample, 1, min)
+patmax = apply(ycurrpatsample, 1, max)
+patmed = apply(ycurrpatsample, 1, median)
+
+hospburden = ggplot() + 
+  geom_ribbon(aes(ymin=patmin[1:end], ymax=patmax[1:end], x=dates[1:end]), alpha = 0.3) +
+  geom_line(aes(x=dates[1:end],y=patmed[1:end]),linetype = "longdash") +
+  # geom_point(aes(x=c(as.Date("2020-03-17"),as.Date("2020-03-18")),y=c(25,34)), size=2) + 
+  labs(x="Date", y="Current hospitalized patients") +
+  # scale_fill_brewer(palette="Dark2") + 
+  # scale_color_brewer(palette="Dark2") + 
+  # scale_y_continuous(breaks = round(seq(0, 2000, by = 200),1)) + 
+  guides(fill = guide_legend(''),colour = guide_legend('')) #+ theme_bw() #+ theme_classic()
+
+ggplotly(hospburden)
+
+```
+
+### **3-week** forecast of current COVID-19 **patients needing ventilators** {data-height=275}
+
+```{r ventplot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+
+ventmin = apply(ycurrventsample, 1, min)
+ventmax = apply(ycurrventsample, 1, max)
+ventmed = apply(ycurrventsample, 1, median)
+
+ventburden = ggplot() + 
+  geom_ribbon(aes(ymin=ventmin[1:end], ymax=ventmax[1:end], x=dates[1:end]), alpha = 0.3) +
+  geom_line(aes(x=dates[1:end],y=ventmed[1:end]),linetype = "longdash") +
+  labs(x="Date", y="Patients needing ventilators") +
+  guides(fill = guide_legend(''),colour = guide_legend('')) #+ theme_bw() #+ theme_classic()
+
+ggplotly(ventburden)
+
+```
+
+### __ {data-height=275}
+
+```{r blank, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+```
+
+# Scenarios
+In-progress, will be updated soon!
+
+# About this model <a id="about"></a>
+In-progress, will be updated soon. Outline below.
+
+**Overview** This transmission model has been developed to assist in understanding and forecasting epidemic spread and hospital resource needs, and to explore and examine alternative scenarios (see scenarios tab). The model is calibrated based on Michigan data on COVID-19 testing and demographics, as well as Michigan and other literature data on disease progression, severity, mortality, etc. 
+<br>
+
+- Model description
+- Main assumptions and limitations
+    - Current limitations that will be addressed by coming changes to the model (e.g. adding time varying reporting, fitting to daily incidence rather than cumulative, etc.)
+    - Limitations that will improve with more data (e.g. the difficulty of predicting the peak or total cases while early in the epidemic)
+    - General limitations that (at least for now...) are sort of built in
+- Data sources
+- Model validation - figures for testing our forecasts against previous data here
+- Parameter estimation description
+- Parameter values and ranges
+
+# Team
+
+The University of Michigan Epimath COVID-19 Modeling group is comprised of:
+
+- Andrew Brouwer, PhD - Department of Epidemiology, University of Michigan
+- Sandro Cinti, MD - Department of Internal Medicine, University of Michigan Medical School
+- Jeremy D'Silva, Department of Mathematics, University of Michigan
+- Marisa Eisenberg, PhD - Departments of Epidemiology and Complex Systems, University of Michigan
+- Emily Martin, PhD, MPH - Department of Epidemiology, University of Michigan
+- Josh Petrie, PhD, MPH - Department of Epidemiology, University of Michigan
+
+Questions? Please contact Marisa Eisenberg (marisae@umich.edu), Andrew Brouwer (brouweaf@umich.edu), and Josh Petrie (jpetrie@umich.edu) for more information.
+

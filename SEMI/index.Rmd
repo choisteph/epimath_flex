@@ -1,0 +1,495 @@
+---
+title: "SE Michigan COVID-19 Dashboard"
+author: ""
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: scroll
+    theme: yeti
+    navbar:
+      - { title: "Michigan Dashboard", href: "https://epimath.github.io/covid-19-modeling/", align: right }
+---
+
+<!--  add?  social: menu
+    source_code: embed 
+    
+    Themes? bootstrap
+cerulean
+xx flatly
+xx readable
+xx spacelab
+lumen
+xx paper
+yeti
+    
+    
+    -->
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(plotly)
+library(plyr)
+library(flexdashboard)
+library(readr)
+library(deSolve)
+
+# Load the model runs and data
+# source('SLIRmodelfunctions.R')
+load('Workspace2020-04-25-1587825494.RData') # (I know, it's silly to do this with a workspace, will update later... - M)
+
+# MI web data - cumulative deaths
+# deathdata = read_csv("~/Box Sync/COVID Response Modeling/Data - Web/MI-3-26-20/MIcumdeath.csv")
+# deathtimes = deathdata$Date # as.numeric(deathdata$Date - startdate)
+# deathdata = read_csv("~/Box Sync/COVID Response Modeling/Data - Web/MIcumdeath_by_hand_jp.csv")
+# deathtimes = as.Date(deathdata$Date,format = "%m/%d/%y")
+# deaths = deathdata$`Detroit City`+deathdata$Livingston + deathdata$Macomb + deathdata$Oakland + deathdata$Washtenaw + deathdata$Wayne
+
+# Turn off scientific notation on all axes
+options(scipen=999)
+
+# Convert dates from ggplot numeric to plotly numeric
+dt = function(dates){as.numeric(as.POSIXct(dates))*1000}
+
+# Convert times to date format for convenience
+dates = startdate+ftimes
+casedates = startdate + times
+
+lastdate = tail(casedates,1)
+
+#Calculate bounds
+index= likesample<quantile(likesample,0.95)
+ymin = apply(yobsincsample[,index], 1, min)
+ymax = apply(yobsincsample[,index], 1, max)
+ymed = apply(yobsincsample[,index], 1, median)
+deathmin = apply(yobsdeathsample[,index], 1, min)
+deathmax = apply(yobsdeathsample[,index], 1, max)
+deathmed = apply(yobsdeathsample[,index], 1, median)
+ICUmin = apply(ycurrICUsample[,index], 1, min)
+ICUmax = apply(ycurrICUsample[,index], 1, max)
+ICUmed = apply(ycurrICUsample[,index], 1, median)
+O2min = apply(ycurrO2sample[,index], 1, min)
+O2max = apply(ycurrO2sample[,index], 1, max)
+O2med = apply(ycurrO2sample[,index], 1, median)
+patmin = apply(ycurrpatsample[,index], 1, min)
+patmax = apply(ycurrpatsample[,index], 1, max)
+patmed = apply(ycurrpatsample[,index], 1, median)
+ventmin = apply(ycurrventsample[,index], 1, min)
+ventmax = apply(ycurrventsample[,index], 1, max)
+ventmed = apply(ycurrventsample[,index], 1, median)
+
+xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
+
+```
+
+
+# Current Forecasts for SE Michigan
+
+For more information, please see the [main Michigan Dashboard](https://epimath.github.io/covid-19-modeling/)
+
+<!-- <span style="font-size:10pt;">Forecasts update daily. Data is shown as circles, dashed lines in all figures indicate the median across 1000 simulations, and grey shaded regions indicate uncertainty bounds. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.</span> -->
+
+## Info column {data-width=400}
+
+### **Updated `r format(Sys.time(), "%B %e, %Y at %H:%M %Z")`**
+<span style="font-size:10pt;">Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots. Counties included: Wayne (including Detroit), Oakland, Macomb, Washtenaw, and Livingston.</span>
+
+<hr>
+
+**Current Summary for SE MI**
+
+- The current best fit across all model simulations for Southeast Michigan gives a forecast of:
+    - `r format(lastdate+7, "%B %e, %Y")` (1 week): roughly `r format(round_any(yobscumcarefun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],10), scientific=F)` cumulative laboratory-confirmed cases
+    - `r format(lastdate+21, "%B %e, %Y")` (3 weeks): roughly `r format(round_any(yobscumcarefun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],100),scientific=F)` cumulative laboratory-confirmed cases
+- The current best fit across model simulations projects:
+    - `r format(lastdate+7, "%B %e, %Y")` (1 week): roughly `r round_any(ycurrpatfun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],100)` hospitalized patients (beds needed) with roughly `r round_any(ycurrICUfun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],10)` in ICU 
+    - `r format(lastdate+21, "%B %e, %Y")` (3 weeks): roughly `r round_any(ycurrpatfun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],100)` hospitalized patients (beds needed) with roughly `r round_any(ycurrICUfun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],10)` in ICU 
+
+<!-- - The current median across all model simulations for SE MI gives a forecast of: -->
+<!--     - Roughly 2900 cumulative laboratory-confirmed cases by April 1, 2020 (1 week) -->
+<!--     - Roughly 8000 cumulative laboratory-confirmed cases by April 15, 2020 (3 weeks). -->
+<!-- - The current median across model simulations projects: -->
+<!--     - April 1, 2020 (1 week): roughly 300 hospitalized patients (beds needed) with roughly 60 in ICU  -->
+<!--     - April 15, 2020 (3 weeks): almost 700 hospitalized patients (beds needed) with almost 140 in ICU  -->
+
+<hr>
+
+*Note that the model is a work in progress and being updated as the epidemic progresses. Because we are still making improvements and including new data in the model, these results are highly preliminary and uncertain. The forecasts shown here also do not account for the ongoing changes in social distancing.*
+<br>
+
+For more information about the transmission model and methods, please see the 'About this model' tab.
+
+
+## Plot Column
+
+### **1-week** forecast of **cumulative COVID-19 cases** in SE MI {data-height=275}
+
+```{r forecastplot1wk, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,fig.height=3}
+
+end = (lastdate + 7) - startdate + 1
+
+# Detected/observed cumulative incidence
+ybestfit = yobscumcarefun(xestlh,paramestslh)
+
+plotdata = data.frame(dates[1:end],dt(dates[1:end]),ybestfit[1:end],ymed[1:end],ymin[1:end],ymax[1:end],
+                 c(casedates, rep(NA, length(ftimes[1:end]) - length(casedates))), 
+                 dt(c(casedates, rep(NA, length(ftimes[1:end]) - length(casedates)))), 
+                 c(cases, rep(NA, length(ftimes[1:end]) - length(casedates))) )
+colnames(plotdata) = cbind("Date","NumericDate","BestFit","Median","Min","Max","CDates","NumericCDates","Cases")
+
+forecastplot = ggplot(plotdata) +
+  geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1, 
+                linetype = "Best fit")) +
+  geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1, 
+                linetype = "Median")) +
+  geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate,
+                  text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1, ), 
+              alpha = 0.3) +
+  geom_point(aes(x=NumericCDates, y=Cases, text = paste("Date:",Date,"<br>Cases:",round(Cases))  )) +
+  guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) +
+  labs(x="Date", y="Cumulative Lab-Confirmed Cases") #+ theme_bw() #+ theme_classic()
+  
+ggplotly(forecastplot,tooltip = c("text")) %>%
+  layout(legend = list(x = 0.05, y = 0.9,
+      orientation = "h"),
+      xaxis = list(
+        type = 'date',
+        tickformat = "%b %d"
+        )
+  )
+
+# forecastplot = ggplot() +
+#   geom_line(aes(x=dates[1:end],y=ybestfit[1:end],linetype = "Best fit" )) +
+#   geom_line(aes(x=dates[1:end],y=ymed[1:end], linetype = "Median")) + 
+#   geom_ribbon(aes(ymin=ymin[1:end], ymax=ymax[1:end], x=dates[1:end]), alpha = 0.3) +
+#   geom_point(aes(x=casedates,y=cases)) +
+#   # scale_color_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+#   # scale_fill_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+#   # guides(fill = guide_legend(''), colour = guide_legend('')) +
+#   # xlim(startdate,startdate+32) + ylim(0,75000) +
+#   # geom_text(x=as.Date("2020-03-12"), y=3000, label="Test label") +
+#   # theme(legend.position="bottom") + 
+#   labs(x="Date", y="Cumulative Lab-Confirmed Cases") #+ theme_bw() #+ theme_classic()
+# 
+# 
+# ggplotly(forecastplot) %>%
+#   layout(legend = list(x = 0.05, y = 0.9,
+#       orientation = "h"
+#     )
+#   )
+
+```
+
+
+### **3-week** forecast of **cumulative COVID-19 deaths** in SE MI {data-height=275}
+
+```{r deathplot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+
+end = (lastdate + 21) - startdate + 1
+
+deathsbestfit = yobscumdeathfun(xestlh,paramestslh)
+
+# Detected/observed deaths
+
+plotdata = data.frame(dates[1:end],dt(dates[1:end]),deathsbestfit[1:end],deathmed[1:end],deathmin[1:end],deathmax[1:end],
+                 c(deathtimes, rep(NA, length(ftimes[1:end]) - length(deathtimes))), 
+                 dt(c(deathtimes, rep(NA, length(ftimes[1:end]) - length(deathtimes)))), 
+                 c(deaths, rep(NA, length(ftimes[1:end]) - length(deathtimes))) )
+colnames(plotdata) = cbind("Date","NumericDate","BestFit","Median","Min","Max","DDates","NumericDDates","Deaths")
+
+deathplot = ggplot(plotdata) +
+  geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1, 
+                linetype = "Best fit")) +
+  geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1, 
+                linetype = "Median")) +
+  geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate,
+                  text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1), 
+              alpha = 0.3) +
+  geom_point(aes(x=NumericDDates, y=Deaths, text = paste("Date:",Date,"<br>Deaths:",round(Deaths))  )) +
+  guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) +
+  labs(x="Date", y="Cumulative Lab-Confirmed Deaths") #+ theme_bw() #+ theme_classic()
+
+ggplotly(deathplot,tooltip = c("text")) %>%
+  layout(legend = list(x = 0.05, y = 0.9,
+      orientation = "h"),
+      xaxis = list(
+        type = 'date',
+        tickformat = "%b %d"
+        )
+  )
+
+# deathplot = ggplot() +
+#   geom_line(aes(x=dates[1:end],y=deathsbestfit[1:end], linetype = "Best fit")) +
+#   geom_line(aes(x=dates[1:end],y=deathmed[1:end], linetype = "Median")) +
+#   geom_ribbon(aes(ymin=deathmin[1:end], ymax=deathmax[1:end], x=dates[1:end]), alpha = 0.3) +
+#   # geom_point(aes(x=(as.Date("2020-03-19")+0:3), y=c(1,3,5,8) )) + 
+#   geom_point(aes(x=deathtimes, y=deaths )) + 
+#   # scale_fill_brewer(palette="Dark2") + #scale_color_brewer(palette="Dark2") +
+#   # scale_color_manual(values=c('#000000',"#962fbf",'#4f5bd5',"#d62976", "#fa7e1e")) +
+#   guides(fill = guide_legend(''), colour = guide_legend('')) +
+#   # xlim(startdate,startdate+32) + ylim(0,deathmax[33]) +
+#   labs(x="Date", y="Cumulative Lab-Confirmed Deaths") #+ theme_bw() #+ theme_classic()
+# 
+# ggplotly(deathplot) %>%
+#   layout(legend = list(x = 0.05, y = 0.9,
+#       orientation = "h"
+#     )
+#   )
+
+```
+
+### **3-week** forecast of COVID-19 **ICU occupancy** (i.e. beds needed) {data-height=275}
+
+```{r ICUplot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+
+ICUbestfit = ycurrICUfun(xestlh,paramestslh)
+
+plotdata = data.frame(dates[1:end],dt(dates[1:end]),ICUbestfit[1:end],ICUmed[1:end],ICUmin[1:end],ICUmax[1:end])
+colnames(plotdata) = cbind("Date","NumericDate","BestFit","Median","Min","Max")
+
+ICUburden = ggplot(plotdata) +
+  geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1, 
+                linetype = "Best fit")) +
+  geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1, 
+                linetype = "Median")) +
+  geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate,
+                  text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1, ), 
+              alpha = 0.3) +
+  guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) +
+  labs(x="Date", y="Current ICU patients") #+ theme_bw() #+ theme_classic()
+  
+ggplotly(ICUburden,tooltip = c("text")) %>%
+  layout(legend = list(x = 0.05, y = 0.9,
+      orientation = "h"),
+      xaxis = list(
+        type = 'date',
+        tickformat = "%b %d"
+        )
+  )
+
+# ICUburden = ggplot() + 
+#   geom_ribbon(aes(ymin=ICUmin[1:end], ymax=ICUmax[1:end], x=dates[1:end]), alpha = 0.3) +
+#   geom_line(aes(x=dates[1:end],y=ICUbestfit[1:end], linetype = "Best fit")) +
+#   geom_line(aes(x=dates[1:end],y=ICUmed[1:end],linetype = "Median")) +
+#   labs(x="Date", y="Current ICU patients") +
+#   # scale_fill_brewer(palette="Dark2") + 
+#   # scale_color_brewer(palette="Dark2") + 
+#   # scale_y_continuous(breaks = round(seq(0, 2000, by = 25),1)) + 
+#   # xlim(startdate,startdate+32) + ylim(0,ICUmax[33]) +
+#   guides(fill = guide_legend(''),colour = guide_legend('')) #+ theme_bw() #+ theme_classic()
+# 
+# ggplotly(ICUburden) %>%
+#   layout(legend = list(x = 0.05, y = 0.9,
+#       orientation = "h"
+#     )
+#   )
+
+```
+
+
+### **3-week** forecast of current COVID-19 **patients needing O$_2$ support** {data-height=275}
+
+```{r O2plot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,fig.height=3}
+
+O2bestfit = ycurrO2fun(xestlh,paramestslh)
+
+plotdata = data.frame(dates[1:end],dt(dates[1:end]),O2bestfit[1:end],O2med[1:end],O2min[1:end],O2max[1:end])
+colnames(plotdata) = cbind("Date","NumericDate","BestFit","Median","Min","Max")
+
+O2burden = ggplot(plotdata) +
+  geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1, 
+                linetype = "Best fit")) +
+  geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1, 
+                linetype = "Median")) +
+  geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate,
+                  text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1, ), 
+              alpha = 0.3) +
+  guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) +
+  labs(x="Date", y="Patients needing O2 support") #+ theme_bw() #+ theme_classic()
+  
+ggplotly(O2burden,tooltip = c("text")) %>%
+  layout(legend = list(x = 0.05, y = 0.9,
+      orientation = "h"),
+      xaxis = list(
+        type = 'date',
+        tickformat = "%b %d"
+        )
+  )
+
+# O2burden = ggplot() + 
+#   geom_ribbon(aes(ymin=O2min[1:end], ymax=O2max[1:end], x=dates[1:end]), alpha = 0.3) +
+#   geom_line(aes(x=dates[1:end],y=O2bestfit[1:end],linetype = "Best fit")) +
+#   geom_line(aes(x=dates[1:end],y=O2med[1:end],linetype = "Median")) +
+#   labs(x="Date", y="Patients needing O2 support") +
+#   # scale_fill_brewer(palette="Dark2") + 
+#   # scale_color_brewer(palette="Dark2") + 
+#   # scale_y_continuous(breaks = round(seq(0, 2000, by = 25),1)) + 
+#   # xlim(startdate,startdate+32) + ylim(0,O2max[33]) +
+#   guides(fill = guide_legend(''),colour = guide_legend('')) #+ theme_bw() #+ theme_classic()
+# 
+# ggplotly(O2burden) %>%
+#   layout(legend = list(x = 0.05, y = 0.9,
+#       orientation = "h"
+#     )
+#   )
+
+```
+
+
+
+
+
+## Plot Column
+
+### **3-week** forecast of **cumulative COVID-19 cases** in SE MI {data-height=275}
+
+```{r forecastplot3wk, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+
+ybestfit = yobscumcarefun(xestlh,paramestslh)
+
+# Detected/observed cumulative incidence
+
+plotdata = data.frame(dates[1:end],dt(dates[1:end]),ybestfit[1:end],ymed[1:end],ymin[1:end],ymax[1:end],
+                 c(casedates, rep(NA, length(ftimes[1:end]) - length(casedates))), 
+                 dt(c(casedates, rep(NA, length(ftimes[1:end]) - length(casedates)))), 
+                 c(cases, rep(NA, length(ftimes[1:end]) - length(casedates))) )
+colnames(plotdata) = cbind("Date","NumericDate","BestFit","Median","Min","Max","CDates","NumericCDates","Cases")
+
+forecast2plot = ggplot(plotdata) +
+  geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1, 
+                linetype = "Best fit")) +
+  geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1, 
+                linetype = "Median")) +
+  geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate,
+                  text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1, ), 
+              alpha = 0.3) +
+  geom_point(aes(x=NumericCDates, y=Cases, text = paste("Date:",Date,"<br>Cases:",round(Cases))  )) +
+  guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) +
+  labs(x="Date", y="Cumulative Lab-Confirmed Cases") #+ theme_bw() #+ theme_classic()
+  
+ggplotly(forecast2plot,tooltip = c("text")) %>%
+  layout(legend = list(x = 0.05, y = 0.9,
+      orientation = "h"),
+      xaxis = list(
+        type = 'date',
+        tickformat = "%b %d"
+        )
+  )
+
+# forecast2plot = ggplot() +
+#   geom_line(aes(x=dates[1:end],y=ybestfit[1:end],linetype = "Best Fit")) +
+#   geom_line(aes(x=dates[1:end],y=ymed[1:end],linetype = "Median")) + 
+#   geom_ribbon(aes(ymin=ymin[1:end], ymax=ymax[1:end], x=dates[1:end]), alpha = 0.3) +
+#   geom_point(aes(x=casedates,y=cases)) +
+#   # scale_color_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+#   # scale_fill_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+#   # guides(fill = guide_legend(''), colour = guide_legend('')) +
+#   # xlim(startdate,startdate+32) + ylim(0,75000) +
+#   labs(x="Date", y="Cumulative Lab-Confirmed Cases") #+ theme_bw() #+ theme_classic()
+# 
+# ggplotly(forecast2plot)  %>%
+#   layout(legend = list(x = 0.05, y = 0.9,
+#       orientation = "h"
+#     )
+#   )
+
+```
+
+### **3-week** forecast of COVID-19 **hospitalized patients** (i.e. beds needed) {data-height=275}
+
+```{r hospplot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+
+patbestfit = ycurrpatfun(xestlh,paramestslh)
+
+plotdata = data.frame(dates[1:end],dt(dates[1:end]),patbestfit[1:end],patmed[1:end],patmin[1:end],patmax[1:end])
+colnames(plotdata) = cbind("Date","NumericDate","BestFit","Median","Min","Max")
+
+hospburden = ggplot(plotdata) +
+  geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1, 
+                linetype = "Best fit")) +
+  geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1, 
+                linetype = "Median")) +
+  geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate,
+                  text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1, ), 
+              alpha = 0.3) +
+  guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) +
+  labs(x="Date", y="Current hospitalized patients") #+ theme_bw() #+ theme_classic()
+  
+ggplotly(hospburden,tooltip = c("text")) %>%
+  layout(legend = list(x = 0.05, y = 0.9,
+      orientation = "h"),
+      xaxis = list(
+        type = 'date',
+        tickformat = "%b %d"
+        )
+  )
+
+# hospburden = ggplot() + 
+#   geom_ribbon(aes(ymin=patmin[1:end], ymax=patmax[1:end], x=dates[1:end]), alpha = 0.3) +
+#   geom_line(aes(x=dates[1:end],y=patbestfit[1:end],linetype = "Best Fit")) +
+#   geom_line(aes(x=dates[1:end],y=patmed[1:end],linetype = "Median")) +
+#   # geom_point(aes(x=c(as.Date("2020-03-17"),as.Date("2020-03-18")),y=c(25,34)), size=2) + 
+#   labs(x="Date", y="Current hospitalized patients") +
+#   # scale_fill_brewer(palette="Dark2") + 
+#   # scale_color_brewer(palette="Dark2") + 
+#   # scale_y_continuous(breaks = round(seq(0, 2000, by = 200),1)) + 
+#   guides(fill = guide_legend(''),colour = guide_legend('')) #+ theme_bw() #+ theme_classic()
+# 
+# ggplotly(hospburden)  %>%
+#   layout(legend = list(x = 0.05, y = 0.9,
+#       orientation = "h"
+#     )
+#   )
+
+```
+
+### **3-week** forecast of current COVID-19 **patients needing ventilators** {data-height=275}
+
+```{r ventplot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+
+ventbestfit = ycurrventfun(xestlh,paramestslh)
+
+plotdata = data.frame(dates[1:end],dt(dates[1:end]), ventbestfit[1:end],ventmed[1:end],ventmin[1:end],ventmax[1:end])
+colnames(plotdata) = cbind("Date","NumericDate","BestFit","Median","Min","Max")
+
+ventburden = ggplot(plotdata) +
+  geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1, 
+                linetype = "Best fit")) +
+  geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1, 
+                linetype = "Median")) +
+  geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate,
+                  text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1, ), 
+              alpha = 0.3) +
+  guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) +
+  labs(x="Date", y="Patients needing ventilators") #+ theme_bw() #+ theme_classic()
+  
+ggplotly(ventburden,tooltip = c("text")) %>%
+  layout(legend = list(x = 0.05, y = 0.9,
+      orientation = "h"),
+      xaxis = list(
+        type = 'date',
+        tickformat = "%b %d"
+        )
+  )
+
+# ventburden = ggplot() + 
+#   geom_ribbon(aes(ymin=ventmin[1:end], ymax=ventmax[1:end], x=dates[1:end]), alpha = 0.3) +
+#   geom_line(aes(x=dates[1:end],y=ventbestfit[1:end],linetype = "Best Fit")) +
+#   geom_line(aes(x=dates[1:end],y=ventmed[1:end],linetype = "Median")) +
+#   labs(x="Date", y="Patients needing ventilators") +
+#   guides(fill = guide_legend(''),colour = guide_legend('')) #+ theme_bw() #+ theme_classic()
+# 
+# ggplotly(ventburden)  %>%
+#   layout(legend = list(x = 0.05, y = 0.9,
+#       orientation = "h"
+#     )
+#   )
+
+```
+
+### __ {data-height=275}
+
+```{r blank, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+```
+
+
+

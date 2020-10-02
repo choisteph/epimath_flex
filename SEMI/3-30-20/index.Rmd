@@ -1,0 +1,280 @@
+---
+title: "SE Michigan COVID-19 Dashboard"
+author: ""
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: scroll
+    theme: yeti
+    navbar:
+      - { title: "Michigan Dashboard", href: "https://epimath.github.io/covid-19-modeling/", align: right }
+---
+
+<!--  add?  social: menu
+    source_code: embed 
+    
+    Themes? bootstrap
+cerulean
+xx flatly
+xx readable
+xx spacelab
+lumen
+xx paper
+yeti
+    
+    
+    -->
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(plotly)
+library(plyr)
+library(flexdashboard)
+library(readr)
+
+# Load the model runs and data
+# source('SLIRmodelfunctions.R')
+load('Workspace2020-03-30-1585618303.Rdata') # (I know, it's really dumb to do this with a workspace, will update later... - M)
+
+# MI web data - cumulative deaths
+deathdata = read_csv("~/Box Sync/COVID Response Modeling/Data - Web/MI-3-26-20/MIcumdeath.csv")
+deathtimes = deathdata$Date # as.numeric(deathdata$Date - startdate)
+deaths = deathdata$`Detroit City`+deathdata$Livingston + deathdata$Macomb + deathdata$Oakland + deathdata$Washtenaw + deathdata$Wayne
+
+options(scipen=999)
+
+dates = startdate+ftimes
+casedates = startdate + times
+
+#Calculate bounds
+ymin = apply(yobsincsample, 1, min)
+ymax = apply(yobsincsample, 1, max)
+ymed = apply(yobsincsample, 1, median)
+deathmin = apply(yobsdeathsample, 1, min)
+deathmax = apply(yobsdeathsample, 1, max)
+deathmed = apply(yobsdeathsample, 1, median)
+ICUmin = apply(ycurrICUsample, 1, min)
+ICUmax = apply(ycurrICUsample, 1, max)
+ICUmed = apply(ycurrICUsample, 1, median)
+O2min = apply(ycurrO2sample, 1, min)
+O2max = apply(ycurrO2sample, 1, max)
+O2med = apply(ycurrO2sample, 1, median)
+patmin = apply(ycurrpatsample, 1, min)
+patmax = apply(ycurrpatsample, 1, max)
+patmed = apply(ycurrpatsample, 1, median)
+ventmin = apply(ycurrventsample, 1, min)
+ventmax = apply(ycurrventsample, 1, max)
+ventmed = apply(ycurrventsample, 1, median)
+
+
+```
+
+
+# Current Forecasts
+
+For more information, please see the [main Michigan Dashboard](https://epimath.github.io/covid-19-modeling/)
+
+<!-- <span style="font-size:10pt;">Forecasts update daily. Data is shown as circles, dashed lines in all figures indicate the median across 1000 simulations, and grey shaded regions indicate uncertainty bounds. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.</span> -->
+
+## Info column {data-width=400}
+
+### **Updated `r format(Sys.time(), "%B %e, %Y at %H:%M %Z")`**
+<span style="font-size:10pt;">Data is shown as circles, dashed lines in all figures indicate the median across 1000 simulations, and grey shaded regions indicate uncertainty bounds. Hover over plots to see data values and interactive menu, and scroll down to see additional plots. Counties included: Wayne (including Detroit), Oakland, Macomb, Washtenaw, and Livingston.</span>
+
+<hr>
+
+**Current Summary for SE MI**
+
+- The current median across all model simulations for Southeast Michigan gives a forecast of:
+    - `r format(Sys.Date()+7, "%B %e, %Y")` (1 week): roughly `r format(round_any(ymed[(Sys.Date() + 7) - startdate + 1],10), scientific=F)` cumulative laboratory-confirmed cases
+    - `r format(Sys.Date()+21, "%B %e, %Y")` (3 weeks): roughly `r format(round_any(ymed[(Sys.Date() + 21) - startdate + 1],100),scientific=F)` cumulative laboratory-confirmed cases
+- The current median across model simulations projects:
+    - `r format(Sys.Date()+7, "%B %e, %Y")` (1 week): roughly `r round_any(patmed[(Sys.Date() + 7) - startdate + 1],100)` hospitalized patients (beds needed) with roughly `r round_any(ICUmed[(Sys.Date() + 7) - startdate + 1],10)` in ICU 
+    - `r format(Sys.Date()+21, "%B %e, %Y")` (3 weeks): roughly `r round_any(patmed[(Sys.Date() + 21) - startdate + 1],100)` hospitalized patients (beds needed) with roughly `r round_any(ICUmed[(Sys.Date() + 21) - startdate + 1],10)` in ICU 
+
+<!-- - The current median across all model simulations for SE MI gives a forecast of: -->
+<!--     - Roughly 2900 cumulative laboratory-confirmed cases by April 1, 2020 (1 week) -->
+<!--     - Roughly 8000 cumulative laboratory-confirmed cases by April 15, 2020 (3 weeks). -->
+<!-- - The current median across model simulations projects: -->
+<!--     - April 1, 2020 (1 week): roughly 300 hospitalized patients (beds needed) with roughly 60 in ICU  -->
+<!--     - April 15, 2020 (3 weeks): almost 700 hospitalized patients (beds needed) with almost 140 in ICU  -->
+
+<hr>
+
+*Note that the model is a work in progress and being updated as the epidemic progresses. Because we are still making improvements and including new data in the model, these results are highly preliminary and uncertain. The forecasts shown here also do not account for the ongoing changes in social distancing.*
+<br>
+
+For more information about the transmission model and methods, please see the 'About this model' tab.
+
+
+## Plot Column
+
+### **1-week** forecast of **cumulative COVID-19 cases** in SE MI {data-height=275}
+
+```{r forecastplot1wk, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,fig.height=3}
+
+end = (Sys.Date() + 7) - startdate + 1
+
+# Detected/observed cumulative incidence
+forecastplot = ggplot() +
+  geom_line(aes(x=dates[1:end],y=ymed[1:end]),linetype = "longdash") + 
+  geom_ribbon(aes(ymin=ymin[1:end], ymax=ymax[1:end], x=dates[1:end]), alpha = 0.3) +
+  geom_point(aes(x=casedates,y=cases)) +
+  # scale_color_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+  # scale_fill_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+  # guides(fill = guide_legend(''), colour = guide_legend('')) +
+  # xlim(startdate,startdate+32) + ylim(0,75000) +
+  # geom_text(x=as.Date("2020-03-12"), y=3000, label="Test label") + 
+  labs(x="Date", y="Detected Cumulative Incidence") #+ theme_bw() #+ theme_classic()
+
+# forecastplot = ggplot() +
+#   geom_line(aes(x=startdate+times,y=ymed[1:length(times)], colour='Fit'), size=1,linetype = "longdash") + 
+#   geom_line(aes(x=startdate+((length(times)-1):(length(ftimes)-1)),y=ymed[length(times):length(ftimes)], colour='Forecast'), size=1,linetype = "longdash") + #, colour='Median across LH'
+#   geom_ribbon(aes(ymin=ymin[1:length(times)], ymax=ymax[1:length(times)], x=startdate+times, fill='Fit'), alpha = 0.3) +
+#   geom_ribbon(aes(ymin=ymin[length(times):length(ftimes)], ymax=ymax[length(times):length(ftimes)], x=startdate+((length(times)-1):(length(ftimes)-1)), fill='Forecast'), alpha = 0.3) +
+#   geom_point(aes(x=startdate+times,y=cases),size=1.5) +
+#   scale_color_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+#   scale_fill_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+#   guides(fill = guide_legend(''), colour = guide_legend('')) +
+#   xlim(startdate,startdate+32) + ylim(0,75000) + 
+#   labs(x="Date", y="Detected Cumulative Incidence") #+ theme_classic(base_size = 15)
+
+ggplotly(forecastplot)
+
+```
+
+
+### **3-week** forecast of **cumulative COVID-19 deaths** in SE MI {data-height=275}
+
+```{r deathplot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+
+end = (Sys.Date() + 21) - startdate + 1
+
+# Detected/observed deaths
+deathplot = ggplot() +
+  # geom_line(aes(x=startdate+ftimes,y=yobscumdeathfun(xest,paramests)), size=1,linetype = "longdash") +
+  # geom_line(aes(x=startdate+ftimes,y=yobscumdeathfun(xestlh,paramestslh)), size=1) +
+  geom_line(aes(x=dates[1:end],y=deathmed[1:end]),linetype = "longdash") +
+  geom_ribbon(aes(ymin=deathmin[1:end], ymax=deathmax[1:end], x=dates[1:end]), alpha = 0.3) +
+  # geom_point(aes(x=(as.Date("2020-03-19")+0:3), y=c(1,3,5,8) )) + 
+  geom_point(aes(x=deathtimes, y=deaths )) + 
+  # scale_fill_brewer(palette="Dark2") + #scale_color_brewer(palette="Dark2") +
+  # scale_color_manual(values=c('#000000',"#962fbf",'#4f5bd5',"#d62976", "#fa7e1e")) +
+  guides(fill = guide_legend(''), colour = guide_legend('')) +
+  # xlim(startdate,startdate+32) + ylim(0,deathmax[33]) +
+  labs(x="Date", y="Detected Cumulative Deaths") #+ theme_bw() #+ theme_classic()
+
+ggplotly(deathplot)
+
+```
+
+### **3-week** forecast of COVID-19 **ICU occupancy** (i.e. beds needed) {data-height=275}
+
+```{r ICUplot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+
+ICUburden = ggplot() + 
+  geom_ribbon(aes(ymin=ICUmin[1:end], ymax=ICUmax[1:end], x=dates[1:end]), alpha = 0.3) +
+  geom_line(aes(x=dates[1:end],y=ICUmed[1:end]),linetype = "longdash") +
+  labs(x="Date", y="Current ICU patients") +
+  # scale_fill_brewer(palette="Dark2") + 
+  # scale_color_brewer(palette="Dark2") + 
+  # scale_y_continuous(breaks = round(seq(0, 2000, by = 25),1)) + 
+  # xlim(startdate,startdate+32) + ylim(0,ICUmax[33]) +
+  guides(fill = guide_legend(''),colour = guide_legend('')) #+ theme_bw() #+ theme_classic()
+
+ggplotly(ICUburden)
+
+```
+
+
+### **3-week** forecast of current COVID-19 **patients needing O$_2$ support** {data-height=275}
+
+```{r O2plot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE,fig.height=3}
+
+O2burden = ggplot() + 
+  geom_ribbon(aes(ymin=O2min[1:end], ymax=O2max[1:end], x=dates[1:end]), alpha = 0.3) +
+  geom_line(aes(x=dates[1:end],y=O2med[1:end]),linetype = "longdash") +
+  labs(x="Date", y="Patients needing O2 support") +
+  # scale_fill_brewer(palette="Dark2") + 
+  # scale_color_brewer(palette="Dark2") + 
+  # scale_y_continuous(breaks = round(seq(0, 2000, by = 25),1)) + 
+  # xlim(startdate,startdate+32) + ylim(0,O2max[33]) +
+  guides(fill = guide_legend(''),colour = guide_legend('')) #+ theme_bw() #+ theme_classic()
+
+ggplotly(O2burden)
+
+```
+
+
+
+
+
+## Plot Column
+
+### **3-week** forecast of **cumulative COVID-19 cases** in SE MI {data-height=275}
+
+```{r forecastplot3wk, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+
+# Detected/observed cumulative incidence
+forecast2plot = ggplot() +
+  geom_line(aes(x=dates[1:end],y=ymed[1:end]),linetype = "longdash") + 
+  geom_ribbon(aes(ymin=ymin[1:end], ymax=ymax[1:end], x=dates[1:end]), alpha = 0.3) +
+  geom_point(aes(x=casedates,y=cases)) +
+  # scale_color_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+  # scale_fill_manual(values=c('#000000','#4f5bd5',"#962fbf","#d62976", "#fa7e1e")) +
+  # guides(fill = guide_legend(''), colour = guide_legend('')) +
+  # xlim(startdate,startdate+32) + ylim(0,75000) +
+  labs(x="Date", y="Detected Cumulative Incidence") #+ theme_bw() #+ theme_classic()
+
+ggplotly(forecast2plot)
+
+# fitplot = ggplot() + 
+#   geom_line(aes(x=casedates,y=ymed[1:length(times)] ), size=1, linetype = "longdash") +
+#   geom_ribbon(aes(ymin=ymin[1:length(times)], ymax=ymax[1:length(times)], 
+#                   x=casedates), alpha = 0.3) +
+#   geom_point(aes(x=casedates,y=cases)) + 
+#   labs(x="Date", y="Cumulative Incidence") + theme_classic()
+# 
+# ggplotly(fitplot)
+
+```
+
+### **3-week** forecast of COVID-19 **hospitalized patients** (i.e. beds needed) {data-height=275}
+
+```{r hospplot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+
+hospburden = ggplot() + 
+  geom_ribbon(aes(ymin=patmin[1:end], ymax=patmax[1:end], x=dates[1:end]), alpha = 0.3) +
+  geom_line(aes(x=dates[1:end],y=patmed[1:end]),linetype = "longdash") +
+  # geom_point(aes(x=c(as.Date("2020-03-17"),as.Date("2020-03-18")),y=c(25,34)), size=2) + 
+  labs(x="Date", y="Current hospitalized patients") +
+  # scale_fill_brewer(palette="Dark2") + 
+  # scale_color_brewer(palette="Dark2") + 
+  # scale_y_continuous(breaks = round(seq(0, 2000, by = 200),1)) + 
+  guides(fill = guide_legend(''),colour = guide_legend('')) #+ theme_bw() #+ theme_classic()
+
+ggplotly(hospburden)
+
+```
+
+### **3-week** forecast of current COVID-19 **patients needing ventilators** {data-height=275}
+
+```{r ventplot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+
+ventburden = ggplot() + 
+  geom_ribbon(aes(ymin=ventmin[1:end], ymax=ventmax[1:end], x=dates[1:end]), alpha = 0.3) +
+  geom_line(aes(x=dates[1:end],y=ventmed[1:end]),linetype = "longdash") +
+  labs(x="Date", y="Patients needing ventilators") +
+  guides(fill = guide_legend(''),colour = guide_legend('')) #+ theme_bw() #+ theme_classic()
+
+ggplotly(ventburden)
+
+```
+
+### __ {data-height=275}
+
+```{r blank, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE, fig.height=3}
+```
+
+
+
