@@ -114,7 +114,7 @@ forecastplot = ggplot(plotdata) +
   
 # I want to use responsive widths and heights for this ggplotly, but that throws an error.
 # in fact, NOT specifying a width and height here throws an error
-ggplotly(forecastplot, width=400, height=300, tooltip = c("text")) %>%
+ggplotly(forecastplot, width=300, height=245, tooltip = c("text")) %>%
   layout(legend = list(x = 0.05, y = 0.9,
       orientation = "h"),
       xaxis = list(
@@ -174,6 +174,45 @@ Additionally, the current best fit across model simulations projects (for uncert
 
 Cumulative Deaths {data-navmenu="Explorables"}
 ===================================== 
+
+Inputs {.sidebar}
+-----------------------------------------------------------------------
+
+<a href="#"> Michigan Data </a>
+
+<a href="#"> University of Michigan Data </a>
+
+
+Row {data-height=300}
+-----------------------------------------------------------------------
+
+```{r calcs2, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+
+#Calculate bounds
+index= likesample<quantile(likesample,0.95)
+ymin = apply(yobsincsample[,index], 1, min)
+ymax = apply(yobsincsample[,index], 1, max)
+ymed = apply(yobsincsample[,index], 1, median)
+deathmin = apply(yobsdeathsample[,index], 1, min)
+deathmax = apply(yobsdeathsample[,index], 1, max)
+deathmed = apply(yobsdeathsample[,index], 1, median)
+ICUmin = apply(ycurrICUsample[,index], 1, min)
+ICUmax = apply(ycurrICUsample[,index], 1, max)
+ICUmed = apply(ycurrICUsample[,index], 1, median)
+O2min = apply(ycurrO2sample[,index], 1, min)
+O2max = apply(ycurrO2sample[,index], 1, max)
+O2med = apply(ycurrO2sample[,index], 1, median)
+patmin = apply(ycurrpatsample[,index], 1, min)
+patmax = apply(ycurrpatsample[,index], 1, max)
+patmed = apply(ycurrpatsample[,index], 1, median)
+ventmin = apply(ycurrventsample[,index], 1, min)
+ventmax = apply(ycurrventsample[,index], 1, max)
+ventmed = apply(ycurrventsample[,index], 1, median)
+
+#Something seems off about this line, at least when I check it, the browser says there's an issue at tx0
+xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
+
+```
 
 ### One Week Forecast of COVID-19 Deaths in Michigan
 
@@ -239,6 +278,44 @@ Additionally, the current best fit across model simulations projects (for uncert
 Hospital and ICU Occupancy {data-navmenu="Explorables"}
 ===================================== 
 
+Inputs {.sidebar}
+-----------------------------------------------------------------------
+
+<a href="#"> Michigan Data </a>
+
+<a href="#"> University of Michigan Data </a>
+
+
+Row {data-height=300}
+-----------------------------------------------------------------------
+
+```{r calcs3, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+
+#Calculate bounds
+index= likesample<quantile(likesample,0.95)
+ymin = apply(yobsincsample[,index], 1, min)
+ymax = apply(yobsincsample[,index], 1, max)
+ymed = apply(yobsincsample[,index], 1, median)
+deathmin = apply(yobsdeathsample[,index], 1, min)
+deathmax = apply(yobsdeathsample[,index], 1, max)
+deathmed = apply(yobsdeathsample[,index], 1, median)
+ICUmin = apply(ycurrICUsample[,index], 1, min)
+ICUmax = apply(ycurrICUsample[,index], 1, max)
+ICUmed = apply(ycurrICUsample[,index], 1, median)
+O2min = apply(ycurrO2sample[,index], 1, min)
+O2max = apply(ycurrO2sample[,index], 1, max)
+O2med = apply(ycurrO2sample[,index], 1, median)
+patmin = apply(ycurrpatsample[,index], 1, min)
+patmax = apply(ycurrpatsample[,index], 1, max)
+patmed = apply(ycurrpatsample[,index], 1, median)
+ventmin = apply(ycurrventsample[,index], 1, min)
+ventmax = apply(ycurrventsample[,index], 1, max)
+ventmed = apply(ycurrventsample[,index], 1, median)
+
+#Something seems off about this line, at least when I check it, the browser says there's an issue at tx0
+xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
+
+```
 
 ### Three Week Forecast of COVID-19 Hospital Occupancy in Michigan
 
@@ -302,7 +379,45 @@ Additionally, the current best fit across model simulations projects (for uncert
     
 Ventilator and Oxygen Support {data-navmenu="Explorables"}
 ===================================== 
-    
+
+Inputs {.sidebar}
+-----------------------------------------------------------------------
+
+<a href="#"> Michigan Data </a>
+
+<a href="#"> University of Michigan Data </a>
+
+
+Row {data-height=300}
+-----------------------------------------------------------------------
+
+```{r calcs4, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+
+#Calculate bounds
+index= likesample<quantile(likesample,0.95)
+ymin = apply(yobsincsample[,index], 1, min)
+ymax = apply(yobsincsample[,index], 1, max)
+ymed = apply(yobsincsample[,index], 1, median)
+deathmin = apply(yobsdeathsample[,index], 1, min)
+deathmax = apply(yobsdeathsample[,index], 1, max)
+deathmed = apply(yobsdeathsample[,index], 1, median)
+ICUmin = apply(ycurrICUsample[,index], 1, min)
+ICUmax = apply(ycurrICUsample[,index], 1, max)
+ICUmed = apply(ycurrICUsample[,index], 1, median)
+O2min = apply(ycurrO2sample[,index], 1, min)
+O2max = apply(ycurrO2sample[,index], 1, max)
+O2med = apply(ycurrO2sample[,index], 1, median)
+patmin = apply(ycurrpatsample[,index], 1, min)
+patmax = apply(ycurrpatsample[,index], 1, max)
+patmed = apply(ycurrpatsample[,index], 1, median)
+ventmin = apply(ycurrventsample[,index], 1, min)
+ventmax = apply(ycurrventsample[,index], 1, max)
+ventmed = apply(ycurrventsample[,index], 1, median)
+
+#Something seems off about this line, at least when I check it, the browser says there's an issue at tx0
+xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
+
+```    
 
 ### One Week Forecast of COVID-19 Ventilator Support in Michigan
 
@@ -367,6 +482,44 @@ Additionally, the current best fit across model simulations projects (for uncert
 Social Distancing Scenarios {data-navmenu="Explorables"}
 ===================================== 
 
+Inputs {.sidebar}
+-----------------------------------------------------------------------
+
+<a href="#"> Michigan Data </a>
+
+<a href="#"> University of Michigan Data </a>
+
+
+Row {data-height=300}
+-----------------------------------------------------------------------
+
+```{r calcs5, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+
+#Calculate bounds
+index= likesample<quantile(likesample,0.95)
+ymin = apply(yobsincsample[,index], 1, min)
+ymax = apply(yobsincsample[,index], 1, max)
+ymed = apply(yobsincsample[,index], 1, median)
+deathmin = apply(yobsdeathsample[,index], 1, min)
+deathmax = apply(yobsdeathsample[,index], 1, max)
+deathmed = apply(yobsdeathsample[,index], 1, median)
+ICUmin = apply(ycurrICUsample[,index], 1, min)
+ICUmax = apply(ycurrICUsample[,index], 1, max)
+ICUmed = apply(ycurrICUsample[,index], 1, median)
+O2min = apply(ycurrO2sample[,index], 1, min)
+O2max = apply(ycurrO2sample[,index], 1, max)
+O2med = apply(ycurrO2sample[,index], 1, median)
+patmin = apply(ycurrpatsample[,index], 1, min)
+patmax = apply(ycurrpatsample[,index], 1, max)
+patmed = apply(ycurrpatsample[,index], 1, median)
+ventmin = apply(ycurrventsample[,index], 1, min)
+ventmax = apply(ycurrventsample[,index], 1, max)
+ventmed = apply(ycurrventsample[,index], 1, median)
+
+#Something seems off about this line, at least when I check it, the browser says there's an issue at tx0
+xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
+
+```
 ### Social Distancing Scenarios
 
 ```{r}
