@@ -7,7 +7,6 @@ output:
     theme: yeti
     navbar:
       - {title: explorables1, align: right}
-      - {title: explorables2, align: right}
       - {title: reports, align: right}
       - {title: publciations, align: right}
       - {title: about us, align: right}
@@ -180,7 +179,7 @@ Additionally, the current best fit across model simulations projects (for uncert
 
 
 
-Social Distancing Scenarios {data-navmenu= "explorables2}
+Social Distancing Scenarios {data-navmenu= "explorables"}
 ===================================== 
 
 ### Social Distancing Scenarios
