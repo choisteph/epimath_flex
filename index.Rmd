@@ -111,13 +111,13 @@ forecastplot = ggplot(plotdata) +
   guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) +
   labs(x="Date", y="Cumulative Lab-Confirmed Cases")
   
-gg <- ggplotly(forecastplot, tooltip = c("text")) %>%
+ggplotly(forecastplot, tooltip = c("text")) %>%
   layout(legend = list(x = 0.05, y = 0.9,
       orientation = "h"),
       xaxis = list(
         type = 'date',
         tickformat = "%b %d"
-        ), width = NULL, height = NULL
+        )
   )
   
 ```
