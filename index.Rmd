@@ -79,7 +79,7 @@ xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
 
 ```
 
-### One Week Forecast of COVID-19 Cases in Michigan
+### One Week Forecast of COVID-19 Cases in Michigan {data-height = 500}
 
 <!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
 <!-- <iframe></iframe> -->
@@ -127,7 +127,7 @@ ggplotly(forecastplot, width=300, height=245,
   
 ```
 
-### Three Week Forecast of COVID-19 Cases in Michigan
+### Three Week Forecast of COVID-19 Cases in Michigan {data-height = 500}
 
 <!-- <iframe></iframe> -->
 ```{r deathplot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE}
