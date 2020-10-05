@@ -48,7 +48,7 @@ Inputs {.sidebar}
 <a href="#"> University of Michigan Data </a>
 
 
-Row {data-height=300}
+Row {data-height=600}
 -----------------------------------------------------------------------
 
 ```{r calcs, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
@@ -79,7 +79,7 @@ xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
 
 ```
 
-### One Week Forecast of COVID-19 Cases in Michigan {data-height = 600}
+### One Week Forecast of COVID-19 Cases in Michigan 
 
 <!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
 <!-- <iframe></iframe> -->
@@ -127,8 +127,7 @@ ggplotly(forecastplot, width=350, height=300,
   
 ```
 
-### Three Week Forecast of COVID-19 Cases in Michigan {data-height = 600}
-
+### Three Week Forecast of COVID-19 Cases in Michigan 
 <!-- <iframe></iframe> -->
 ```{r deathplot, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE}
 
