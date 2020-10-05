@@ -87,8 +87,8 @@ xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
 <!-- <iframe></iframe> -->
 ```{r forecastplot1wk, fig.width = 4, fig.height = 3}
   # Detected/observed cumulative incidence
-renderPlotly({
-  end = (lastdate + 7) - startdate + 1
+
+end = (lastdate + 7) - startdate + 1
 
 ybestfit = yobscumcarefun(xestlh,paramestslh)
 
@@ -116,7 +116,7 @@ forecastplot = ggplot(plotdata) +
   
 # I want to use responsive widths and heights for this ggplotly, but that throws an error.
 # in fact, NOT specifying a width and height here throws an error
-ggplotly(forecastplot,
+ggplotly(forecastplot, width = 800,height = 600,
          tooltip = c("text")) %>%
   layout(legend = list(x = 0.05, y = 0.9,
       orientation = "h"),
@@ -126,15 +126,14 @@ ggplotly(forecastplot,
         )
   )
 
-})
+  
 
 ```
 
 ### Three Week Forecast of COVID-19 Cases in Michigan 
 <!-- <iframe></iframe> -->
 ```{r forecastplot3wk, fig.width = 4, fig.height = 3}
-renderPlotly({
-    ybestfit = yobscumcarefun(xestlh,paramestslh)
+  ybestfit = yobscumcarefun(xestlh,paramestslh)
 
 # Detected/observed cumulative incidence
 plotdata = data.frame(dates[1:end],dt(dates[1:end]),ybestfit[1:end],ymed[1:end],ymin[1:end],ymax[1:end],
@@ -155,7 +154,7 @@ forecast2plot = ggplot(plotdata) +
   guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) +
   labs(x="Date", y="Cumulative Lab-Confirmed Cases")
   
-ggplotly(forecast2plot,tooltip = c("text")) %>%
+ggplotly(forecast2plot, width = 800, height = 600, tooltip = c("text")) %>%
   layout(legend = list(x = 0.05, y = 0.9,
       orientation = "h"),
       xaxis = list(
@@ -165,8 +164,6 @@ ggplotly(forecast2plot,tooltip = c("text")) %>%
   )
 
 
-
-})
 ```
 
 
