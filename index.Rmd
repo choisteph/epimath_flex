@@ -261,7 +261,7 @@ xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
 <!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
 <!-- <iframe></iframe> -->
 ```{r}
-  
+
 ```
 
 
