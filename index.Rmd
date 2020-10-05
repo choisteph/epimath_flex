@@ -7,6 +7,7 @@ output:
     theme: yeti
     runtime: shiny
     css: styles.css
+    output: html_document
     
 ---
 
@@ -26,6 +27,7 @@ library(flexdashboard)
 library (shiny)
 
 load('Workspace2020-04-25-1587832621.RData')
+
 
 # Convert times to date format for convenience
 dates = startdate + ftimes
@@ -83,11 +85,10 @@ xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
 
 <!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
 <!-- <iframe></iframe> -->
-```{r forecastplot1wk}
-renderPlot({
+```{r forecastplot1wk, fig.width = 4, fig.height = 3}
   # Detected/observed cumulative incidence
-
-end = (lastdate + 7) - startdate + 1
+renderPlotly({
+  end = (lastdate + 7) - startdate + 1
 
 ybestfit = yobscumcarefun(xestlh,paramestslh)
 
@@ -124,16 +125,16 @@ ggplotly(forecastplot,
         tickformat = "%b %d"
         )
   )
-  
+
 })
 
 ```
 
 ### Three Week Forecast of COVID-19 Cases in Michigan 
 <!-- <iframe></iframe> -->
-```{r forecastplot3wk}
-renderPlot({
-  ybestfit = yobscumcarefun(xestlh,paramestslh)
+```{r forecastplot3wk, fig.width = 4, fig.height = 3}
+renderPlotly({
+    ybestfit = yobscumcarefun(xestlh,paramestslh)
 
 # Detected/observed cumulative incidence
 plotdata = data.frame(dates[1:end],dt(dates[1:end]),ybestfit[1:end],ymed[1:end],ymin[1:end],ymax[1:end],
@@ -162,9 +163,10 @@ ggplotly(forecast2plot,tooltip = c("text")) %>%
         tickformat = "%b %d"
         )
   )
+
+
+
 })
-
-
 ```
 
 
