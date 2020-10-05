@@ -6,6 +6,7 @@ output:
     vertical_layout: fill
     theme: yeti
     runtime: shiny
+    css: widgetstyle.css
     
 ---
 
