@@ -50,7 +50,7 @@ Inputs {.sidebar}
 <a href="#"> University of Michigan Data </a>
 
 
-Row {data-height=600}
+Row {data-height=588px}
 -----------------------------------------------------------------------
 
 ```{r calcs, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
