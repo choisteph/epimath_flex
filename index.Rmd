@@ -5,11 +5,18 @@ output:
     orientation: rows
     vertical_layout: fill
     theme: yeti
-    runtime: shiny
+    # runtime: shiny
     css: styles.css
     output: html_document
     
 ---
+Sidebar {.sidebar}
+=====================================
+
+<a href="#"> Michigan Data </a>
+
+<a href="#"> University of Michigan Data </a>
+
 
 Cumulative Cases {data-navmenu="Explorables"}
 ===================================== 
@@ -42,18 +49,11 @@ options(scipen=999)
 dt = function(dates){as.numeric(as.POSIXct(dates))*1000}
 ```
 
-Inputs {.sidebar}
------------------------------------------------------------------------
-
-<a href="#"> Michigan Data </a>
-
-<a href="#"> University of Michigan Data </a>
-
 
 Row {data-height=588px}
 -----------------------------------------------------------------------
 
-```{r calcs, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
+```{r calcs, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE }
 
 #Calculate bounds
 index= likesample<quantile(likesample,0.95)
@@ -85,7 +85,7 @@ xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
 
 <!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
 <!-- <iframe></iframe> -->
-```{r forecastplot1wk}
+```{r forecastplot1wk, fig.height = 4 }
   # Detected/observed cumulative incidence
 
 end = (lastdate + 7) - startdate + 1
@@ -116,7 +116,7 @@ forecastplot = ggplot(plotdata) +
   
 # I want to use responsive widths and heights for this ggplotly, but that throws an error.
 # in fact, NOT specifying a width and height here throws an error
-ggplotly(forecastplot, width = 400,height = 300,
+ggplotly(forecastplot,
          tooltip = c("text")) %>%
   layout(legend = list(x = 0.05, y = 0.9,
       orientation = "h"),
@@ -126,43 +126,11 @@ ggplotly(forecastplot, width = 400,height = 300,
         )
   )
 
-  
-
 ```
 
 ### Three Week Forecast of COVID-19 Cases in Michigan 
 <!-- <iframe></iframe> -->
 ```{r forecastplot3wk}
-  ybestfit = yobscumcarefun(xestlh,paramestslh)
-
-# Detected/observed cumulative incidence
-plotdata = data.frame(dates[1:end],dt(dates[1:end]),ybestfit[1:end],ymed[1:end],ymin[1:end],ymax[1:end],
-                 c(casedates, rep(NA, length(ftimes[1:end]) - length(casedates))), 
-                 dt(c(casedates, rep(NA, length(ftimes[1:end]) - length(casedates)))), 
-                 c(cases, rep(NA, length(ftimes[1:end]) - length(casedates))) )
-colnames(plotdata) = cbind("Date","NumericDate","BestFit","Median","Min","Max","CDates","NumericCDates","Cases")
-
-forecast2plot = ggplot(plotdata) +
-  geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1, 
-                linetype = "Best fit")) +
-  geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1, 
-                linetype = "Median")) +
-  geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate,
-                  text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1, ), 
-              alpha = 0.3) +
-  geom_point(aes(x=NumericCDates, y=Cases, text = paste("Date:",Date,"<br>Cases:",round(Cases))  )) +
-  guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) +
-  labs(x="Date", y="Cumulative Lab-Confirmed Cases")
-  
-ggplotly(forecast2plot, width = 400, height = 300, tooltip = c("text")) %>%
-  layout(legend = list(x = 0.05, y = 0.9,
-      orientation = "h"),
-      xaxis = list(
-        type = 'date',
-        tickformat = "%b %d"
-        )
-  )
-
 
 ```
 
@@ -211,13 +179,6 @@ Additionally, the current best fit across model simulations projects (for uncert
 
 Cumulative Deaths {data-navmenu="Explorables"}
 ===================================== 
-
-Inputs {.sidebar}
------------------------------------------------------------------------
-
-<a href="#"> Michigan Data </a>
-
-<a href="#"> University of Michigan Data </a>
 
 
 Row {data-height=300}
@@ -315,13 +276,6 @@ Additionally, the current best fit across model simulations projects (for uncert
 Hospital and ICU Occupancy {data-navmenu="Explorables"}
 ===================================== 
 
-Inputs {.sidebar}
------------------------------------------------------------------------
-
-<a href="#"> Michigan Data </a>
-
-<a href="#"> University of Michigan Data </a>
-
 
 Row {data-height=300}
 -----------------------------------------------------------------------
@@ -417,13 +371,6 @@ Additionally, the current best fit across model simulations projects (for uncert
 Ventilator and Oxygen Support {data-navmenu="Explorables"}
 ===================================== 
 
-Inputs {.sidebar}
------------------------------------------------------------------------
-
-<a href="#"> Michigan Data </a>
-
-<a href="#"> University of Michigan Data </a>
-
 
 Row {data-height=300}
 -----------------------------------------------------------------------
@@ -518,13 +465,6 @@ Additionally, the current best fit across model simulations projects (for uncert
 
 Social Distancing Scenarios {data-navmenu="Explorables"}
 ===================================== 
-
-Inputs {.sidebar}
------------------------------------------------------------------------
-
-<a href="#"> Michigan Data </a>
-
-<a href="#"> University of Michigan Data </a>
 
 
 Row {data-height=300}
