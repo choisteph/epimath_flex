@@ -85,7 +85,7 @@ xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
 
 <!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
 <!-- <iframe></iframe> -->
-```{r forecastplot1wk, fig.width = 4, fig.height = 3}
+```{r forecastplot1wk}
   # Detected/observed cumulative incidence
 
 end = (lastdate + 7) - startdate + 1
@@ -132,7 +132,7 @@ ggplotly(forecastplot, width = 400,height = 300,
 
 ### Three Week Forecast of COVID-19 Cases in Michigan 
 <!-- <iframe></iframe> -->
-```{r forecastplot3wk, fig.width = 4, fig.height = 3}
+```{r forecastplot3wk}
   ybestfit = yobscumcarefun(xestlh,paramestslh)
 
 # Detected/observed cumulative incidence
