@@ -116,7 +116,7 @@ forecastplot = ggplot(plotdata) +
   
 # I want to use responsive widths and heights for this ggplotly, but that throws an error.
 # in fact, NOT specifying a width and height here throws an error
-ggplotly(forecastplot, width = 800,height = 600,
+ggplotly(forecastplot, width = 400,height = 300,
          tooltip = c("text")) %>%
   layout(legend = list(x = 0.05, y = 0.9,
       orientation = "h"),
@@ -154,7 +154,7 @@ forecast2plot = ggplot(plotdata) +
   guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) +
   labs(x="Date", y="Cumulative Lab-Confirmed Cases")
   
-ggplotly(forecast2plot, width = 800, height = 600, tooltip = c("text")) %>%
+ggplotly(forecast2plot, width = 400, height = 300, tooltip = c("text")) %>%
   layout(legend = list(x = 0.05, y = 0.9,
       orientation = "h"),
       xaxis = list(
