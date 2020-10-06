@@ -1,9 +1,4 @@
-.plotly .html-widget .html-widget-static-bound .js-plotly-plot{
-    width: 576px !important;
-    height: 288px !important;
-}
-
-.svg-container{
-  width: inherit !important;
-  height: inherit !important;
+svg[style]{
+  width: 100% !important;
+  height: 100% !important;
 }
