@@ -10,17 +10,6 @@ output:
     # output: html_document
     
 ---
-Sidebar {.sidebar}
-=====================================
-
-<a href="#"> Michigan Data </a>
-
-<a href="#"> University of Michigan Data </a>
-
-
-Cumulative Cases {data-navmenu="Explorables"}
-===================================== 
-    
 ```{r setup, include=FALSE}
 
 library(ggplot2)
@@ -47,9 +36,6 @@ options(scipen=999)
 dt = function(dates){as.numeric(as.POSIXct(dates))*1000}
 ```
 
-
-Row {data-height=500}
------------------------------------------------------------------------
 
 ```{r calcs, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE }
 
@@ -78,6 +64,23 @@ ventmed = apply(ycurrventsample[,index], 1, median)
 xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
 
 ```
+
+
+
+Sidebar {.sidebar}
+=====================================
+
+<a href="#"> Michigan Data </a>
+
+<a href="#"> University of Michigan Data </a>
+
+
+Cumulative Cases {data-navmenu="Explorables"}
+===================================== 
+    
+
+Row {data-height=500}
+-----------------------------------------------------------------------
 
 ### One Week Forecast of COVID-19 Cases in Michigan
 
@@ -143,33 +146,6 @@ Cumulative Deaths {data-navmenu="Explorables"}
 Row {data-height=300}
 -----------------------------------------------------------------------
 
-```{r calcs2, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
-
-#Calculate bounds
-index= likesample<quantile(likesample,0.95)
-ymin = apply(yobsincsample[,index], 1, min)
-ymax = apply(yobsincsample[,index], 1, max)
-ymed = apply(yobsincsample[,index], 1, median)
-deathmin = apply(yobsdeathsample[,index], 1, min)
-deathmax = apply(yobsdeathsample[,index], 1, max)
-deathmed = apply(yobsdeathsample[,index], 1, median)
-ICUmin = apply(ycurrICUsample[,index], 1, min)
-ICUmax = apply(ycurrICUsample[,index], 1, max)
-ICUmed = apply(ycurrICUsample[,index], 1, median)
-O2min = apply(ycurrO2sample[,index], 1, min)
-O2max = apply(ycurrO2sample[,index], 1, max)
-O2med = apply(ycurrO2sample[,index], 1, median)
-patmin = apply(ycurrpatsample[,index], 1, min)
-patmax = apply(ycurrpatsample[,index], 1, max)
-patmed = apply(ycurrpatsample[,index], 1, median)
-ventmin = apply(ycurrventsample[,index], 1, min)
-ventmax = apply(ycurrventsample[,index], 1, max)
-ventmed = apply(ycurrventsample[,index], 1, median)
-
-#Something seems off about this line, at least when I check it, the browser says there's an issue at tx0
-xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
-
-```
 
 ### One Week Forecast of COVID-19 Deaths in Michigan
 
@@ -239,33 +215,6 @@ Hospital and ICU Occupancy {data-navmenu="Explorables"}
 Row {data-height=300}
 -----------------------------------------------------------------------
 
-```{r calcs3, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
-
-#Calculate bounds
-index= likesample<quantile(likesample,0.95)
-ymin = apply(yobsincsample[,index], 1, min)
-ymax = apply(yobsincsample[,index], 1, max)
-ymed = apply(yobsincsample[,index], 1, median)
-deathmin = apply(yobsdeathsample[,index], 1, min)
-deathmax = apply(yobsdeathsample[,index], 1, max)
-deathmed = apply(yobsdeathsample[,index], 1, median)
-ICUmin = apply(ycurrICUsample[,index], 1, min)
-ICUmax = apply(ycurrICUsample[,index], 1, max)
-ICUmed = apply(ycurrICUsample[,index], 1, median)
-O2min = apply(ycurrO2sample[,index], 1, min)
-O2max = apply(ycurrO2sample[,index], 1, max)
-O2med = apply(ycurrO2sample[,index], 1, median)
-patmin = apply(ycurrpatsample[,index], 1, min)
-patmax = apply(ycurrpatsample[,index], 1, max)
-patmed = apply(ycurrpatsample[,index], 1, median)
-ventmin = apply(ycurrventsample[,index], 1, min)
-ventmax = apply(ycurrventsample[,index], 1, max)
-ventmed = apply(ycurrventsample[,index], 1, median)
-
-#Something seems off about this line, at least when I check it, the browser says there's an issue at tx0
-xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
-
-```
 
 ### Three Week Forecast of COVID-19 Hospital Occupancy in Michigan
 
@@ -334,33 +283,6 @@ Ventilator and Oxygen Support {data-navmenu="Explorables"}
 Row {data-height=300}
 -----------------------------------------------------------------------
 
-```{r calcs4, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
-
-#Calculate bounds
-index= likesample<quantile(likesample,0.95)
-ymin = apply(yobsincsample[,index], 1, min)
-ymax = apply(yobsincsample[,index], 1, max)
-ymed = apply(yobsincsample[,index], 1, median)
-deathmin = apply(yobsdeathsample[,index], 1, min)
-deathmax = apply(yobsdeathsample[,index], 1, max)
-deathmed = apply(yobsdeathsample[,index], 1, median)
-ICUmin = apply(ycurrICUsample[,index], 1, min)
-ICUmax = apply(ycurrICUsample[,index], 1, max)
-ICUmed = apply(ycurrICUsample[,index], 1, median)
-O2min = apply(ycurrO2sample[,index], 1, min)
-O2max = apply(ycurrO2sample[,index], 1, max)
-O2med = apply(ycurrO2sample[,index], 1, median)
-patmin = apply(ycurrpatsample[,index], 1, min)
-patmax = apply(ycurrpatsample[,index], 1, max)
-patmed = apply(ycurrpatsample[,index], 1, median)
-ventmin = apply(ycurrventsample[,index], 1, min)
-ventmax = apply(ycurrventsample[,index], 1, max)
-ventmed = apply(ycurrventsample[,index], 1, median)
-
-#Something seems off about this line, at least when I check it, the browser says there's an issue at tx0
-xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
-
-```    
 
 ### One Week Forecast of COVID-19 Ventilator Support in Michigan
 
@@ -429,33 +351,7 @@ Social Distancing Scenarios {data-navmenu="Explorables"}
 Row {data-height=300}
 -----------------------------------------------------------------------
 
-```{r calcs5, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE}
 
-#Calculate bounds
-index= likesample<quantile(likesample,0.95)
-ymin = apply(yobsincsample[,index], 1, min)
-ymax = apply(yobsincsample[,index], 1, max)
-ymed = apply(yobsincsample[,index], 1, median)
-deathmin = apply(yobsdeathsample[,index], 1, min)
-deathmax = apply(yobsdeathsample[,index], 1, max)
-deathmed = apply(yobsdeathsample[,index], 1, median)
-ICUmin = apply(ycurrICUsample[,index], 1, min)
-ICUmax = apply(ycurrICUsample[,index], 1, max)
-ICUmed = apply(ycurrICUsample[,index], 1, median)
-O2min = apply(ycurrO2sample[,index], 1, min)
-O2max = apply(ycurrO2sample[,index], 1, max)
-O2med = apply(ycurrO2sample[,index], 1, median)
-patmin = apply(ycurrpatsample[,index], 1, min)
-patmax = apply(ycurrpatsample[,index], 1, max)
-patmed = apply(ycurrpatsample[,index], 1, median)
-ventmin = apply(ycurrventsample[,index], 1, min)
-ventmax = apply(ycurrventsample[,index], 1, max)
-ventmed = apply(ycurrventsample[,index], 1, median)
-
-#Something seems off about this line, at least when I check it, the browser says there's an issue at tx0
-xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
-
-```
 ### Social Distancing Scenarios
 
 ```{r}
