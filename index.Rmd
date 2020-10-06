@@ -7,7 +7,7 @@ output:
     theme: yeti
     # runtime: shiny
     css: styles.css
-    output: html_document
+    # output: html_document
     
 ---
 Sidebar {.sidebar}
