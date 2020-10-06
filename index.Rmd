@@ -3,7 +3,7 @@ title: "Michigan COVID-19 Mapping"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
-    vertical_layout: fill
+    # vertical_layout: fill
     theme: yeti
     # runtime: shiny
     css: styles.css
@@ -28,8 +28,6 @@ library(plotly)
 library(plyr)
 library(readr)
 library(deSolve)
-library(knitr)
-
 library(flexdashboard)
 library (shiny)
 
@@ -50,7 +48,7 @@ dt = function(dates){as.numeric(as.POSIXct(dates))*1000}
 ```
 
 
-Row {data-height=588px}
+Row {data-height=500}
 -----------------------------------------------------------------------
 
 ```{r calcs, echo=FALSE,warning=FALSE,message=FALSE,error=FALSE }
@@ -81,11 +79,11 @@ xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
 
 ```
 
-### One Week Forecast of COVID-19 Cases in Michigan 
+### One Week Forecast of COVID-19 Cases in Michigan
 
 <!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
 <!-- <iframe></iframe> -->
-```{r forecastplot1wk, fig.height = 4 }
+```{r forecastplot1wk, fig.height = 100 }
   # Detected/observed cumulative incidence
 
 end = (lastdate + 7) - startdate + 1
@@ -116,7 +114,7 @@ forecastplot = ggplot(plotdata) +
   
 # I want to use responsive widths and heights for this ggplotly, but that throws an error.
 # in fact, NOT specifying a width and height here throws an error
-ggplotly(forecastplot,
+ggplotly(forecastplot, width = 450, height = 350,
          tooltip = c("text")) %>%
   layout(legend = list(x = 0.05, y = 0.9,
       orientation = "h"),
