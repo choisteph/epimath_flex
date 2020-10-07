@@ -65,6 +65,29 @@ xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
 
 ```
 
+```{r tablefunctions}
+
+make_table <- function(){
+  forecasttable = c()
+  forecasttable = rbind(forecasttable,
+                        c(paste(format(lastdate+7, "%B %e"),'(1 week)'),
+                        format(round_any(ymin[(lastdate + 7) - startdate + 1],1), scientific=F),
+                        format(round_any(yobscumcarefun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],1), scientific=F),
+  
+                        format(round_any(ymax[(lastdate + 7) - startdate + 1],1), scientific=F) ) )
+  forecasttable = rbind(forecasttable,
+                        c(paste(format(lastdate+21, "%B %e"),'(3 weeks)'),
+                        format(round_any(ymin[(lastdate + 21) - startdate + 1],1), scientific=F),
+                        format(round_any(yobscumcarefun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],1), scientific=F),
+  
+                        format(round_any(ymax[(lastdate + 21) - startdate + 1],1), scientific=F) ) )
+  forecasttable = as.data.frame(forecasttable)
+  
+  colnames(forecasttable) = c("Date", "Uncertainty lower bound", "Best-fit", "Uncertainty upper bound")
+  knitr::kable(forecasttable)
+}
+
+```
 
 
 Cumulative Cases {data-navmenu="Explorables" data-orientation=rows} 
@@ -103,24 +126,10 @@ Row
 
 Model forecast for cumulative lab-confirmed cases:
 
-```{r forecasttable}
-forecasttable = c()
-forecasttable = rbind(forecasttable,
-                      c(paste(format(lastdate+7, "%B %e"),'(1 week)'),
-                      format(round_any(ymin[(lastdate + 7) - startdate + 1],1), scientific=F),
-                      format(round_any(yobscumcarefun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],1), scientific=F),
+```{r}
 
-                      format(round_any(ymax[(lastdate + 7) - startdate + 1],1), scientific=F) ) )
-forecasttable = rbind(forecasttable,
-                      c(paste(format(lastdate+21, "%B %e"),'(3 weeks)'),
-                      format(round_any(ymin[(lastdate + 21) - startdate + 1],1), scientific=F),
-                      format(round_any(yobscumcarefun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],1), scientific=F),
+make_table()
 
-                      format(round_any(ymax[(lastdate + 21) - startdate + 1],1), scientific=F) ) )
-forecasttable = as.data.frame(forecasttable)
-
-colnames(forecasttable) = c("Date", "Uncertainty lower bound", "Best-fit", "Uncertainty upper bound")
-knitr::kable(forecasttable)
 ```
 
 Additionally, the current best fit across model simulations projects (for uncertainty ranges, please see plots):
@@ -174,24 +183,9 @@ Row
 
 Model forecast for cumulative lab-confirmed cases:
 
-```{r forecasttable2}
-forecasttable = c()
-forecasttable = rbind(forecasttable,
-                      c(paste(format(lastdate+7, "%B %e"),'(1 week)'),
-                      format(round_any(ymin[(lastdate + 7) - startdate + 1],1), scientific=F),
-                      format(round_any(yobscumcarefun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],1), scientific=F),
+```{r}
+make_table()
 
-                      format(round_any(ymax[(lastdate + 7) - startdate + 1],1), scientific=F) ) )
-forecasttable = rbind(forecasttable,
-                      c(paste(format(lastdate+21, "%B %e"),'(3 weeks)'),
-                      format(round_any(ymin[(lastdate + 21) - startdate + 1],1), scientific=F),
-                      format(round_any(yobscumcarefun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],1), scientific=F),
-
-                      format(round_any(ymax[(lastdate + 21) - startdate + 1],1), scientific=F) ) )
-forecasttable = as.data.frame(forecasttable)
-
-colnames(forecasttable) = c("Date", "Uncertainty lower bound", "Best-fit", "Uncertainty upper bound")
-knitr::kable(forecasttable)
 ```
 
 Additionally, the current best fit across model simulations projects (for uncertainty ranges, please see plots):
@@ -247,24 +241,10 @@ Row
 
 Model forecast for cumulative lab-confirmed cases:
 
-```{r forecasttable3}
-forecasttable = c()
-forecasttable = rbind(forecasttable,
-                      c(paste(format(lastdate+7, "%B %e"),'(1 week)'),
-                      format(round_any(ymin[(lastdate + 7) - startdate + 1],1), scientific=F),
-                      format(round_any(yobscumcarefun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],1), scientific=F),
+```{r}
 
-                      format(round_any(ymax[(lastdate + 7) - startdate + 1],1), scientific=F) ) )
-forecasttable = rbind(forecasttable,
-                      c(paste(format(lastdate+21, "%B %e"),'(3 weeks)'),
-                      format(round_any(ymin[(lastdate + 21) - startdate + 1],1), scientific=F),
-                      format(round_any(yobscumcarefun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],1), scientific=F),
+make_table()
 
-                      format(round_any(ymax[(lastdate + 21) - startdate + 1],1), scientific=F) ) )
-forecasttable = as.data.frame(forecasttable)
-
-colnames(forecasttable) = c("Date", "Uncertainty lower bound", "Best-fit", "Uncertainty upper bound")
-knitr::kable(forecasttable)
 ```
 
 Additionally, the current best fit across model simulations projects (for uncertainty ranges, please see plots):
@@ -319,24 +299,10 @@ Row
 
 Model forecast for cumulative lab-confirmed cases:
 
-```{r forecasttable4}
-forecasttable = c()
-forecasttable = rbind(forecasttable,
-                      c(paste(format(lastdate+7, "%B %e"),'(1 week)'),
-                      format(round_any(ymin[(lastdate + 7) - startdate + 1],1), scientific=F),
-                      format(round_any(yobscumcarefun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],1), scientific=F),
+```{r}
 
-                      format(round_any(ymax[(lastdate + 7) - startdate + 1],1), scientific=F) ) )
-forecasttable = rbind(forecasttable,
-                      c(paste(format(lastdate+21, "%B %e"),'(3 weeks)'),
-                      format(round_any(ymin[(lastdate + 21) - startdate + 1],1), scientific=F),
-                      format(round_any(yobscumcarefun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],1), scientific=F),
+make_table()
 
-                      format(round_any(ymax[(lastdate + 21) - startdate + 1],1), scientific=F) ) )
-forecasttable = as.data.frame(forecasttable)
-
-colnames(forecasttable) = c("Date", "Uncertainty lower bound", "Best-fit", "Uncertainty upper bound")
-knitr::kable(forecasttable)
 ```
 
 Additionally, the current best fit across model simulations projects (for uncertainty ranges, please see plots):
