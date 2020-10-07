@@ -371,6 +371,30 @@ Row { data-height = 850 }
 <iframe id="socialdistancing" src="https://sph-umich.shinyapps.io/covid-19-scenarios/" style="border: none; width: 100%; height: 700px" frameborder="0"></iframe>
 
 
+Row
+-----------------------------------------------------------------------
+
+### Summary
+
+- Early in the growth phase, social distancing efforts tend to delay the epidemic peak further, while efforts later in the growth phase nearer the peak tend to reduce the epidemic peak more. 
+
+- *Start efforts before the peak of the epidemic*: social distancing is generally more effective when it is started during the growth phase of the epidemic---once the peak has already occurred the impact of social distancing is often much less.
+
+- *Continue efforts until after the peak of the epidemic*: to avoid a rebound in cases after social distancing efforts stop, social distancing efforts tend to work best if they continue past the peak of the epidemic. This means it will be important to consider how to make social distancing efforts sustainable.
+
+<!-- - A marathon not a sprint: for the same total contact reduction (i.e. amount reduced $\times$ duration of social distancing), longer social distancing efforts can sometimes reduce the peak more effectively than shorter, harder-hitting social distancing efforts. This one's harder to explain and requires some fiddling, plus depending on the timing of the short term effort it can be not true... make an example and put that in there instead. -->
+
+
+### Limitations
+
+
+- While in the growth phase of the epidemic, projecting the height and timing of the peak or overall duration of the epidemic is highly uncertain. Thus, these simulations should be used to explore potential scenarios and general patterns regarding the impact of social distancing, rather than for prediction of specific numbers.
+
+- This model represents just one simulation from the range of realistic parameter values used for forecasting (given in the 'About' tab). 
+
+- This model does not account for stochasticity, i.e. the effects of randomness in contact patterns and the disease transmission process. This means that the model will not be able to capture the potential for random extinction of the epidemic during long periods with very few cases.
+
+
 About 
 ===================================== 
 
