@@ -20,7 +20,7 @@ Development version by [Stephanie Choi](https://github.com/choisteph)
 - model_diagram_3_29.jpeg
     - This is an image of the model diagram that is used in the About page.
 - styles.css
-    - This is a legacy file with custom, external css. Un-commenting-out `css: styles.css` on line 9 of `index.Rmd` will allow the site render to use this custom style.
+    - This is a legacy file with custom, external css. Un-commenting-out `css: styles.css` on line 11 of `index.Rmd` will allow the site render to use this custom style.
     - This file is currently not used because there are no plot/models being generated in `index.Rmd`.
 - Workspace2020-04-25-1587832621.RData
     - All of the data that is used to create models, as well as other useful functions and data are stored here.
