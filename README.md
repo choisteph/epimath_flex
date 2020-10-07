@@ -10,9 +10,13 @@ Development version by [Stephanie Choi](https://github.com/choisteph)
 - **_site.yml**
     - This file "turns" RMarkdown files into HTML.
         - The most important line is `output_dir` because it sets which directory the HTML/CSS/JS files are created in. Here, it's the `doc` directory.
+- favicon.png
+    - A favicon for the web browser to load.
 - **index.Rmd**
     - This file contains all of the RMarkdown that is used to generate the HTML/CSS/JS.
         - All pages are created in this one .Rmd document.
+- logo.png
+    - A logo used in the navbar.
 - model_diagram_3_29.jpeg
     - This is an image of the model diagram that is used in the About page.
 - styles.css
