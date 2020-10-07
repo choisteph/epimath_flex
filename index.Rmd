@@ -5,11 +5,22 @@ output:
     orientation: columns
     vertical_layout: scroll
     theme: yeti
+    favicon: favicon.png
+    logo: logo.png
     # runtime: shiny
     # css: styles.css
     # output: html_document
     
 ---
+```{js navlink}
+  $(document).ready( function(){
+      $(".navbar-brand").replaceWith("<a class='navbar-brand' href= 'index.html'>Michigan COVID-19 Mapping</a>")
+              $(".navbar-logo").replaceWith("<a href='index.html'><img class='navbar-logo pull-left' style='vertical-align: center; padding-right: 15px;'src='logo.png'></a>")
+
+    }
+  )
+```
+
 ```{r setup, include=FALSE}
 
 library(ggplot2)

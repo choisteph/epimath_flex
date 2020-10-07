@@ -14,7 +14,7 @@
 
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
 
-<link rel="icon" href="data:image/x-icon;" type="image/x-icon">
+<link rel="icon" href="favicon.png">
 
 
 <script type="text/javascript">
@@ -769,7 +769,7 @@ body {
 </button>
 
 <span class="navbar-logo pull-left">
-  
+  <img src="logo.png" class="navbar-logo"/>
 </span>
 <span class="navbar-brand">
   Michigan COVID-19 Mapping
@@ -2582,6 +2582,17 @@ window.FlexDashboardComponents.push({
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
+<script type="text/javascript">
+  $(document).ready( function(){
+      $(".navbar-brand").replaceWith("<a class='navbar-brand' href= 'index.html'>Michigan COVID-19 Mapping</a>")
+              $(".navbar-logo").replaceWith("<a href='index.html'><img class='navbar-logo pull-left' style='vertical-align: center; padding-right: 15px;'src='logo.png'></a>")
+
+    }
+  )
+</script>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
@@ -2656,7 +2667,7 @@ For more information about the transmission model and methods, please see the â€
 <p style="font-size: 10pt">
 Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.
 </p>
-<p><em>Updated October 7, 2020 at 15:28 EDT</em></p>
+<p><em>Updated October 7, 2020 at 16:01 EDT</em></p>
 </div>
 </div>
 </div>
@@ -2732,7 +2743,7 @@ For more information about the transmission model and methods, please see the â€
 <p style="font-size: 10pt">
 Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.
 </p>
-<p><em>Updated October 7, 2020 at 15:28 EDT</em></p>
+<p><em>Updated October 7, 2020 at 16:01 EDT</em></p>
 </div>
 </div>
 </div>
@@ -2808,7 +2819,7 @@ For more information about the transmission model and methods, please see the â€
 <p style="font-size: 10pt">
 Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.
 </p>
-<p><em>Updated October 7, 2020 at 15:28 EDT</em></p>
+<p><em>Updated October 7, 2020 at 16:01 EDT</em></p>
 </div>
 </div>
 </div>
@@ -2884,7 +2895,7 @@ For more information about the transmission model and methods, please see the â€
 <p style="font-size: 10pt">
 Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.
 </p>
-<p><em>Updated October 7, 2020 at 15:28 EDT</em></p>
+<p><em>Updated October 7, 2020 at 16:01 EDT</em></p>
 </div>
 </div>
 </div>
