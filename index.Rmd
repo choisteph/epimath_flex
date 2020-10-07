@@ -358,7 +358,7 @@ Social Distancing Scenarios {data-navmenu="Explorables" data-orientation=rows}
 ===================================== 
 
 
-Row {data-height=780}
+Row {data-height=700}
 -----------------------------------------------------------------------
 
 
