@@ -13,12 +13,25 @@ output:
     
 ---
 ```{js navlink}
-  $(document).ready( function(){
-      $(".navbar-brand").replaceWith("<a class='navbar-brand' href= 'index.html'>Michigan COVID-19 Mapping</a>")
-              $(".navbar-logo").replaceWith("<a href='index.html'><img class='navbar-logo pull-left' style='vertical-align: center; padding-right: 15px;'src='logo.png'></a>")
+//This code is the JQuery that adds quality-of-life-improvement navigation links (click the title or logo to be redirected to the homepage) to the nav bar. The original elements that RMarkdown creates are basic <span> elements and they don't process hrefs (links) as well as <a> (anchor) elements do.
 
-    }
-  )
+  $(document).ready( function(){
+    //When the document is ready (aka it has finished loading), do the following:
+      
+      // Make the navbar-header a flex element whose child elements will be vertically centered and horizontally aligned to the start of the div//
+      
+      $(".navbar-header").attr("style", "display: flex; align-items: center; justify-content: center; vertical-align: middle;")
+      
+      // Replace the existing "navbar-brand" element with an anchor element that allows users to click on the title, "Michigan COVID-19 Mapping" and be redirected to the homepage//
+      
+      $(".navbar-brand").replaceWith("<a class='navbar-brand' href= 'index.html'>Michigan COVID-19 Mapping</a>")
+      
+      //Replace the existing "navbar-logo" element with an image that has been styled to be vertically centered as well as padded, then wrap that image in an anchor element that allows users to click on the image to be redirected to the homepage//
+      
+      $(".navbar-logo").replaceWith("<div class='navbar-logo pull-left' style='padding-right: 15px; display: flex; align-items: center; justify-content: center; vertical-align: middle;'><a href='index.html'><img src='logo.png' style='margin: 0; padding: 0; vertical-align: middle'></a></div>")
+
+    } // close the function that is run when the document is ready
+  ) //close the document on ready function
 ```
 
 ```{r setup, include=FALSE}
@@ -77,6 +90,8 @@ xestlh = ode(x0(paramestslh), ftimes, CoVode, paramestslh)
 ```
 
 ```{r tablefunctions}
+
+# Calling this function at the end of each Explorables page (minus social distancing) brings up the forecast table displayed under "Current Summary"
 
 make_table <- function(){
   forecasttable = c()
@@ -370,6 +385,32 @@ Row {data-height=350}
 - This model represents just one simulation from the range of realistic parameter values used for forecasting (given in the 'About' tab). 
 
 - This model does not account for stochasticity, i.e. the effects of randomness in contact patterns and the disease transmission process. This means that the model will not be able to capture the potential for random extinction of the epidemic during long periods with very few cases.
+
+Reports {data-orientation=rows}
+=====================================
+Row
+-----------------------------------------------------------------------
+### Available Reports
+- One
+- Two
+- Three
+- Etc.
+
+*This is a placeholder page*
+
+
+Publications {data-orientation=rows}
+=====================================
+Row
+-----------------------------------------------------------------------
+### Publications
+
+- One
+- Two
+- Three
+- Etc.
+
+*This is a placeholder page*
 
 
 About 

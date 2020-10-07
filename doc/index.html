@@ -2583,12 +2583,25 @@ window.FlexDashboardComponents.push({
 
 </div>
 <script type="text/javascript">
-  $(document).ready( function(){
-      $(".navbar-brand").replaceWith("<a class='navbar-brand' href= 'index.html'>Michigan COVID-19 Mapping</a>")
-              $(".navbar-logo").replaceWith("<a href='index.html'><img class='navbar-logo pull-left' style='vertical-align: center; padding-right: 15px;'src='logo.png'></a>")
+//This code is the JQuery that adds quality-of-life-improvement navigation links (click the title or logo to be redirected to the homepage) to the nav bar. The original elements that RMarkdown creates are basic <span> elements and they don't process hrefs (links) as well as <a> (anchor) elements do.
 
-    }
-  )
+  $(document).ready( function(){
+    //When the document is ready (aka it has finished loading), do the following:
+      
+      // Make the navbar-header a flex element whose child elements will be vertically centered and horizontally aligned to the start of the div//
+      
+      $(".navbar-header").attr("style", "display: flex; align-items: center; justify-content: center; vertical-align: middle;")
+      
+      // Replace the existing "navbar-brand" element with an anchor element that allows users to click on the title, "Michigan COVID-19 Mapping" and be redirected to the homepage//
+      
+      $(".navbar-brand").replaceWith("<a class='navbar-brand' href= 'index.html'>Michigan COVID-19 Mapping</a>")
+      
+      //Replace the existing "navbar-logo" element with an image that has been styled to be vertically centered as well as padded, then wrap that image in an anchor element that allows users to click on the image to be redirected to the homepage//
+      
+      $(".navbar-logo").replaceWith("<div class='navbar-logo pull-left' style='padding-right: 15px; display: flex; align-items: center; justify-content: center; vertical-align: middle;'><a href='index.html'><img src='logo.png' style='margin: 0; padding: 0; vertical-align: middle'></a></div>")
+
+    } // close the function that is run when the document is ready
+  ) //close the document on ready function
 </script>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
@@ -2667,7 +2680,7 @@ For more information about the transmission model and methods, please see the â€
 <p style="font-size: 10pt">
 Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.
 </p>
-<p><em>Updated October 7, 2020 at 16:02 EDT</em></p>
+<p><em>Updated October 7, 2020 at 16:42 EDT</em></p>
 </div>
 </div>
 </div>
@@ -2743,7 +2756,7 @@ For more information about the transmission model and methods, please see the â€
 <p style="font-size: 10pt">
 Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.
 </p>
-<p><em>Updated October 7, 2020 at 16:02 EDT</em></p>
+<p><em>Updated October 7, 2020 at 16:42 EDT</em></p>
 </div>
 </div>
 </div>
@@ -2819,7 +2832,7 @@ For more information about the transmission model and methods, please see the â€
 <p style="font-size: 10pt">
 Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.
 </p>
-<p><em>Updated October 7, 2020 at 16:02 EDT</em></p>
+<p><em>Updated October 7, 2020 at 16:42 EDT</em></p>
 </div>
 </div>
 </div>
@@ -2895,7 +2908,7 @@ For more information about the transmission model and methods, please see the â€
 <p style="font-size: 10pt">
 Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.
 </p>
-<p><em>Updated October 7, 2020 at 16:02 EDT</em></p>
+<p><em>Updated October 7, 2020 at 16:42 EDT</em></p>
 </div>
 </div>
 </div>
@@ -2930,6 +2943,38 @@ Data is shown as circles and grey shaded regions indicate uncertainty bounds for
 <li><p>This model represents just one simulation from the range of realistic parameter values used for forecasting (given in the â€˜Aboutâ€™ tab).</p></li>
 <li><p>This model does not account for stochasticity, i.e.Â the effects of randomness in contact patterns and the disease transmission process. This means that the model will not be able to capture the potential for random extinction of the epidemic during long periods with very few cases.</p></li>
 </ul>
+</div>
+</div>
+</div>
+<div id="reports" class="section level1" data-orientation="rows">
+<h1>Reports</h1>
+<div id="row-10" class="section level2">
+<h2>Row</h2>
+<div id="available-reports" class="section level3">
+<h3>Available Reports</h3>
+<ul>
+<li>One</li>
+<li>Two</li>
+<li>Three</li>
+<li>Etc.</li>
+</ul>
+<p><em>This is a placeholder page</em></p>
+</div>
+</div>
+</div>
+<div id="publications" class="section level1" data-orientation="rows">
+<h1>Publications</h1>
+<div id="row-11" class="section level2">
+<h2>Row</h2>
+<div id="publications-1" class="section level3">
+<h3>Publications</h3>
+<ul>
+<li>One</li>
+<li>Two</li>
+<li>Three</li>
+<li>Etc.</li>
+</ul>
+<p><em>This is a placeholder page</em></p>
 </div>
 </div>
 </div>
