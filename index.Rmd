@@ -354,13 +354,13 @@ Row {data-height=700}
 -----------------------------------------------------------------------
 
 
-### Social Distancing Scenarios 
+### Social Distancing Scenarios
 
 ```{r}
 # I really want to do something like below for the rest of the models
 ```
 
-<iframe id="socialdistancing" src="https://sph-umich.shinyapps.io/covid-19-scenarios/" style="border: none; width: 100%; height: 700px" frameborder="0"></iframe>
+<iframe id="socialdistancing" src="https://sph-umich.shinyapps.io/covid-19-scenarios/" style="border: none; width: 100%; height: 100%" frameborder="0"></iframe>
 
 
 Row {data-height=350}
