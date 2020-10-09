@@ -137,13 +137,6 @@ Row
 
 ```
 
-### Three Week Forecast of COVID-19 Cases in Michigan 
-<!-- <iframe></iframe> -->
-```{r forecastplot3wk}
-
-```
-
-
 Row
 -----------------------------------------------------------------------
 
@@ -192,13 +185,7 @@ Row
   
 ```
 
-### Three Week Forecast of COVID-19 Deaths in Michigan
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-```{r}
-
-```
-
+<iframe id="socialdistancing" src="https://sph-umich.shinyapps.io/covid-19-scenarios/" style="border: none; width: 100%; height: 100%" frameborder="0"></iframe>
 
 
 Row
@@ -249,15 +236,7 @@ Row
 ```{r}
   
 ```
-
-### Three Week Forecast of COVID-19 ICU Occupancy in Michigan
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-```{r}
-  
-```
-
-
+<iframe id="socialdistancing" src="https://sph-umich.shinyapps.io/covid-19-scenarios/" style="border: none; width: 100%; height: 100%" frameborder="0"></iframe>
 
 Row
 -----------------------------------------------------------------------
@@ -307,14 +286,7 @@ Row
 ```{r}
   
 ```
-
-### Three Week Forecast of COVID-19 Oxygen Support in Michigan
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-```{r}
-  
-```
-
+<iframe id="socialdistancing" src="https://sph-umich.shinyapps.io/covid-19-scenarios/" style="border: none; width: 100%; height: 100%" frameborder="0"></iframe>
 
 
 Row
