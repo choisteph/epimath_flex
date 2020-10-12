@@ -153,6 +153,15 @@ A short description about this scenario
 *This is a placeholder page*
 
 
+Data Analysis and Infographics {data-orientation=rows data-navmenu="Modeling Reports"}
+=====================================
+Row
+-----------------------------------------------------------------------
+### About
+
+*This is a placeholder page*
+
+
 Social Distancing Scenarios {data-navmenu="Explorables" data-orientation=rows} 
 ===================================== 
 
