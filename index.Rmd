@@ -11,7 +11,7 @@ output:
     css: styles.css
     # output: html_document
     navbar:
-        - {title: "Forecasts (Archived)", href = "https://epimath.github.io/covid-19-modeling"}
+        - {title: "Forecasts (Archived)", href: "https://epimath.github.io/covid-19-modeling", align: right}
     
 ---
 ```{js navlink}
