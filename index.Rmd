@@ -193,6 +193,12 @@ Row {data-height=350}
 
 - This model does not account for stochasticity, i.e. the effects of randomness in contact patterns and the disease transmission process. This means that the model will not be able to capture the potential for random extinction of the epidemic during long periods with very few cases.
 
+Ensemble Modeling {data-orientation=rows}
+=====================================
+Row
+-----------------------------------------------------------------------
+This is a placeholder page.
+
 
 Publications {data-orientation=rows}
 =====================================
@@ -207,67 +213,57 @@ Row
 
 *This is a placeholder page*
 
-
-About 
+About this Site {data-navmenu="About"} 
 ===================================== 
-
 Column
 -----------------------------------------------------------------------
-
-Model description is in-progress, to be updated soon!
-
-### Overview
-
-This transmission model has been developed to assist in understanding and forecasting epidemic spread and hospital resource needs, and to explore and examine alternative scenarios (see scenarios tab). The model is calibrated based on Michigan data on COVID-19 testing and demographics, as well as Michigan and other literature data on disease progression, severity, mortality, etc. 
-<br>
-
-### Model description
-
-<div style="float: right; padding: 15px; width: 450px; font-size:10pt;"><img src="model_diagram_3_29.jpeg" width=100%><br>Figure 1. Diagram for the basic transmission model used in this analysis.</div>
-<!-- ![Model diagram](model_diagram_3_24.jpg){#id .class width=50% height=50%} -->
-
-The spread of infectious disease in a population can be modeled as a dynamical system, where the number of infections changes over time accordingly to a host of complex and interrelated processes.  The two fundamental disease processes are transmission and recovery, but sociobehavioral processes or other aspects of the natural history of infection can also be included to model a specific disease outbreak.
-
-We have tested several different models based on more complex versions of what is known as an SIR model, or susceptible (S), infectious (I), recovered (R) model. This class of models tracks the fraction of the population in different disease stages. 
-
-A diagram of the simplest form of our model is shown in Figure 1. In this model of COVID19 disease, we track people who are susceptible ($S$), have mild disease but have not sought care ($I_1$), have mild disease and have sought care ($I_{1,c}$), have recovered ($R$), have severe disease ($I_2$), have been hospitalized ($H$), and have died ($D$). We have also tested similar models accounting for superspreading, alternative distributions of the latent and infectious period, and asymptomatic transmission, with similar results, so we opted for the simplest version of the model in this analysis. From the model, we estimated the number of people who need intensive care, ventilators, or oxygen support as a fraction of hospitalized patients. 
-
-### Uncertainty and limitations
-
-(In progress---more details to be added soon.)
-
-Current Model Limitations
-
-- **Tested fraction of cases**: For any disease, most surveillence data detects only a fraction of the true total cases. For this outbreak, this fraction is changing over time as testing capacity ramps up. For now, we are estimating an average fraction of cases reported. Our predictions will be highly uncertain early in the outbreak before testing capacity and the reporting fraction stabilize.
-
-- **Prediction during the exponential growth phase of an epidemic**: It is notoriously difficult to predict important quantities such as the time or size of the peak number of cases while early on in an outbreak---or even just to forecast more than a couple weeks ahead with any accuracy. For example, we won't know how much social distancing is impacting transmission rates until we start to see a change in the trajectory of cases (which, given the ramp up in testing and relatively long incubation period for this disease, may take days up to a couple of weeks after social distancing changes happen). 
-
-<!-- Additional model assumptions and limitations discussion to add -->
-
-<!-- - Current limitations that will be addressed by coming changes to the model (e.g. fitting to daily incidence rather than cumulative, etc.) -->
-<!-- - Limitations that will improve with more data  -->
-<!-- - General limitations that (at least for now...) are sort of built in -->
-<!-- - Data sources -->
-<!-- - Model validation - figures for testing our forecasts against previous data here -->
+### About the Site
+This site is updated and maintained by the [EpiMath team](#team).
 
 
-### Parameter estimation
+About the Models { data-orientation=rows data-navmenu="About"} 
+===================================== 
 
-COVID19 disease is caused by the novel coronavirus SARS-Cov-2. Because it is so new, there is a lot of uncertainty about the natural history of the virus---how long the incubation period is, what the mortality rate is for different age groups, etc. This uncertainty surrounds almost every parameter in our model, and these parameters cannot be estimated from the epidemic curve alone (particularly early in the epidemic when few parameters are needed to replicate the epidemic growth rate).
+Row {.tabset .tabset-fade}
+-----------------------------------------------------------------------
+#### State, Regional, and County Level Models
+### Model Variants
+The state/regional/county level models are..
 
-Because we can make reasonable guesses as to sensible bounds for each parameter, we can take hundreds and thousands of combinations of reasonable values of the model parameters (currently, we use [Sobol sampling](https://arxiv.org/abs/1505.02350)). For each of these combination of parameters, we estimate the value of the reporting rates for cases and deaths that best explain the trajectory of the data. Altogether, these thousands of trajectories represent our best guess as to what the true epidemic curve has been---and what it will be shortly. 
+### Uncast Mobility
+The state/regional/county level models are..
 
 
-### Parameter values and ranges for sampling
-(To be updated with sources)
-```{r table}
-paramtable = P[c(1,4:23,25),c(1:4,6,7)]
-# paramtable[1,5] = "Total population of Michigan"
-# paramtable[2,5] = "Fraction of symptomatic individuals who are laboratory-confirmed"
-# paramtable[7,5] = "Mortality fraction among infected individuals"
-knitr::kable(paramtable)
+
+Row  {.tabset .tabset-fade}
+-----------------------------------------------------------------------
+#### University of Michigan Models
+### Compartmental Models
+All about compartmental models
+
+### Individual-based Network Models
+All about individual-based network models
+
+Code { data-orientation=rows data-navmenu="About"} 
+===================================== 
+Row
+-----------------------------------------------------------------------
+### Code block 1
+Description
+```{r echo=TRUE}
+
+hello <- "hello world"
+
 ```
 
+Row
+-----------------------------------------------------------------------
+### Code block 2
+Description
+```{r echo=TRUE}
+
+hello <- "hello world"
+```
 
 Team
 ========================================================================================
