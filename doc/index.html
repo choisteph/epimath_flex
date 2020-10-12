@@ -86,9 +86,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 window.FlexDashboardComponents = [];
 </script>
 
-<script id="flexdashboard-navbar" type="application/json">
-[{"title":"Forecasts (Archived)","href":"https://epimath.github.io/covid-19-modeling","align":"right"}]
-</script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
@@ -2668,9 +2665,24 @@ window.FlexDashboardComponents.push({
       //Replace the existing "navbar-logo" element with an image that has been styled to be vertically centered as well as padded, then wrap that image in an anchor element that allows users to click on the image to be redirected to the homepage//
       
       $(".navbar-logo").replaceWith("<div class='navbar-logo pull-left' ><a href='index.html'><img class='navbrand-img' src='logo.png'></a></div>")
-
+    
     } // close the function that is run when the document is ready
   ) //close the document on ready function
+</script>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<script type="text/javascript">
+//This code adds in a target="_blank" property to the Forecasts link, allowing the external URL to be opened in a new tab
+
+$(document).ready( function(){
+
+// when the window is fully loaded, add the forecast navigation link to the navigation menu
+  $(window).load(function(){
+     $(".nav.navbar-nav.navbar-left").append("<li><a href='https://epimath.github.io/covid-19-modeling/' target='_blank' >Forecasts (archived)</a></li>")
+  })
+}
+)
 </script>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 

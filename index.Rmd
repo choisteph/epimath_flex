@@ -10,8 +10,6 @@ output:
     # runtime: shiny
     css: styles.css
     # output: html_document
-    navbar:
-        - {title: "Forecasts (Archived)", href: "https://epimath.github.io/covid-19-modeling", align: right}
     
 ---
 ```{js navlink}
@@ -31,9 +29,23 @@ output:
       //Replace the existing "navbar-logo" element with an image that has been styled to be vertically centered as well as padded, then wrap that image in an anchor element that allows users to click on the image to be redirected to the homepage//
       
       $(".navbar-logo").replaceWith("<div class='navbar-logo pull-left' ><a href='index.html'><img class='navbrand-img' src='logo.png'></a></div>")
-
+    
     } // close the function that is run when the document is ready
   ) //close the document on ready function
+```
+
+
+```{js addforecast}
+//This code adds in a target="_blank" property to the Forecasts link, allowing the external URL to be opened in a new tab
+
+$(document).ready( function(){
+
+// when the window is fully loaded, add the forecast navigation link to the navigation menu
+  $(window).load(function(){
+     $(".nav.navbar-nav.navbar-left").append("<li><a href='https://epimath.github.io/covid-19-modeling/' target='_blank' >Forecasts (archived)</a></li>")
+  })
+}
+)
 ```
 
 ```{r setup, include=FALSE}
