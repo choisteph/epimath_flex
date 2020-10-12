@@ -21,6 +21,9 @@
 window.FlexDashboardComponents = [];
 </script>
 
+<script id="flexdashboard-navbar" type="application/json">
+[{"title":"Forecasts (Archived)","href = \"https://epimath.github.io/covid-19-modeling\"":{}}]
+</script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
@@ -2610,312 +2613,48 @@ window.FlexDashboardComponents.push({
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
-<div id="cumulative-cases" class="section level1" data-navmenu="Explorables" data-orientation="rows">
-<h1>Cumulative Cases</h1>
-<div id="sidebar" class="section level2 sidebar">
-<h2>Sidebar</h2>
-<p><a href="#"> Michigan Data </a></p>
-<p><a href="#"> University of Michigan Data </a></p>
-</div>
+<div id="recent-updates" class="section level1" data-orientation="rows" data-navmenu="Modeling Reports">
+<h1>Recent Updates</h1>
 <div id="row" class="section level2">
 <h2>Row</h2>
-<div id="one-week-forecast-of-covid-19-cases-in-michigan" class="section level3">
-<h3>One Week Forecast of COVID-19 Cases in Michigan</h3>
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-</div>
-<div id="three-week-forecast-of-covid-19-cases-in-michigan" class="section level3">
-<h3>Three Week Forecast of COVID-19 Cases in Michigan</h3>
-<!-- <iframe></iframe> -->
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
+<div id="model-1" class="section level3">
+<h3><a href="#scenario-1">Model 1</a></h3>
+<p><em>an image preview here</em> and a description here</p>
 </div>
 </div>
 <div id="row-1" class="section level2">
 <h2>Row</h2>
-<div id="current-summary" class="section level3">
-<h3>Current Summary</h3>
-<p>Model forecast for cumulative lab-confirmed cases:</p>
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Date</th>
-<th align="left">Uncertainty lower bound</th>
-<th align="left">Best-fit</th>
-<th align="left">Uncertainty upper bound</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">April 30 (1 week)</td>
-<td align="left">34166</td>
-<td align="left">37723</td>
-<td align="left">57682</td>
-</tr>
-<tr class="even">
-<td align="left">May 14 (3 weeks)</td>
-<td align="left">34382</td>
-<td align="left">39933</td>
-<td align="left">108889</td>
-</tr>
-</tbody>
-</table>
-<p>Additionally, the current best fit across model simulations projects (for uncertainty ranges, please see plots):</p>
-<ul>
-<li>April 30, 2020 (1 week): roughly 2500 COVID+ hospitalized patients (beds needed) with roughly 340 in ICU</li>
-<li>May 14, 2020 (3 weeks): roughly 1300 COVID+ hospitalized patients (beds needed) with roughly 180 in ICU</li>
-</ul>
-<p style="font-size: 10pt; font-style: oblique">
-Note that the model is a work in progress and being updated as the epidemic progresses. Because we are still making improvements and including new data in the model, these results are highly preliminary and uncertain. The forecasts shown here also do not account for the ongoing changes in social distancing occurring over the coming weeks. For more on social distancing, see the ‘Scenarios’ tab.
-</p>
-<p style="font-size: 10pt">
-For more information about the transmission model and methods, please see the ‘About’ tab.
-</p>
-<p style="font-size: 10pt">
-Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.
-</p>
-<p><em>Updated October 8, 2020 at 10:08 EDT</em></p>
+<div id="model-2" class="section level3">
+<h3><a href="#scenario-2">Model 2</a></h3>
+<p><em>an image preview here</em> and a description here</p>
 </div>
 </div>
 </div>
-<div id="cumulative-deaths" class="section level1" data-navmenu="Explorables" data-orientation="rows">
-<h1>Cumulative Deaths</h1>
-<div id="sidebar-1" class="section level2 sidebar">
-<h2>Sidebar</h2>
-<p><a href="#"> Michigan Data </a></p>
-<p><a href="#"> University of Michigan Data </a></p>
-</div>
+<div id="scenario-1" class="section level1" data-orientation="rows" data-navmenu="Modeling Reports">
+<h1>Scenario 1</h1>
 <div id="row-2" class="section level2">
 <h2>Row</h2>
-<div id="one-week-forecast-of-covid-19-deaths-in-michigan" class="section level3">
-<h3>One Week Forecast of COVID-19 Deaths in Michigan</h3>
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-</div>
-<div id="three-week-forecast-of-covid-19-deaths-in-michigan" class="section level3">
-<h3>Three Week Forecast of COVID-19 Deaths in Michigan</h3>
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
+<div id="about" class="section level3">
+<h3>About</h3>
+<p>A short description about this scenario</p>
+<p><em>This is a placeholder page</em></p>
 </div>
 </div>
 </div>
+<div id="scenario-2" class="section level1" data-orientation="rows" data-navmenu="Modeling Reports">
+<h1>Scenario 2</h1>
 <div id="row-3" class="section level2">
 <h2>Row</h2>
-<div id="current-summary-1" class="section level3">
-<h3>Current Summary</h3>
-<p>Model forecast for cumulative lab-confirmed cases:</p>
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Date</th>
-<th align="left">Uncertainty lower bound</th>
-<th align="left">Best-fit</th>
-<th align="left">Uncertainty upper bound</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">April 30 (1 week)</td>
-<td align="left">34166</td>
-<td align="left">37723</td>
-<td align="left">57682</td>
-</tr>
-<tr class="even">
-<td align="left">May 14 (3 weeks)</td>
-<td align="left">34382</td>
-<td align="left">39933</td>
-<td align="left">108889</td>
-</tr>
-</tbody>
-</table>
-<p>Additionally, the current best fit across model simulations projects (for uncertainty ranges, please see plots):</p>
-<ul>
-<li>April 30, 2020 (1 week): roughly 2500 COVID+ hospitalized patients (beds needed) with roughly 340 in ICU</li>
-<li>May 14, 2020 (3 weeks): roughly 1300 COVID+ hospitalized patients (beds needed) with roughly 180 in ICU</li>
-</ul>
-<p style="font-size: 10pt; font-style: oblique">
-Note that the model is a work in progress and being updated as the epidemic progresses. Because we are still making improvements and including new data in the model, these results are highly preliminary and uncertain. The forecasts shown here also do not account for the ongoing changes in social distancing occurring over the coming weeks. For more on social distancing, see the ‘Scenarios’ tab.
-</p>
-<p style="font-size: 10pt">
-For more information about the transmission model and methods, please see the ‘About’ tab.
-</p>
-<p style="font-size: 10pt">
-Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.
-</p>
-<p><em>Updated October 8, 2020 at 10:08 EDT</em></p>
-</div>
-</div>
-</div>
-<div id="hospital-and-icu-occupancy" class="section level1" data-navmenu="Explorables" data-orientation="rows">
-<h1>Hospital and ICU Occupancy</h1>
-<div id="sidebar-2" class="section level2 sidebar">
-<h2>Sidebar</h2>
-<p><a href="#"> Michigan Data </a></p>
-<p><a href="#"> University of Michigan Data </a></p>
-</div>
-<div id="row-4" class="section level2">
-<h2>Row</h2>
-<div id="three-week-forecast-of-covid-19-hospital-occupancy-in-michigan" class="section level3">
-<h3>Three Week Forecast of COVID-19 Hospital Occupancy in Michigan</h3>
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-</div>
-<div id="three-week-forecast-of-covid-19-icu-occupancy-in-michigan" class="section level3">
-<h3>Three Week Forecast of COVID-19 ICU Occupancy in Michigan</h3>
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-</div>
-</div>
-<div id="row-5" class="section level2">
-<h2>Row</h2>
-<div id="current-summary-2" class="section level3">
-<h3>Current Summary</h3>
-<p>Model forecast for cumulative lab-confirmed cases:</p>
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Date</th>
-<th align="left">Uncertainty lower bound</th>
-<th align="left">Best-fit</th>
-<th align="left">Uncertainty upper bound</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">April 30 (1 week)</td>
-<td align="left">34166</td>
-<td align="left">37723</td>
-<td align="left">57682</td>
-</tr>
-<tr class="even">
-<td align="left">May 14 (3 weeks)</td>
-<td align="left">34382</td>
-<td align="left">39933</td>
-<td align="left">108889</td>
-</tr>
-</tbody>
-</table>
-<p>Additionally, the current best fit across model simulations projects (for uncertainty ranges, please see plots):</p>
-<ul>
-<li>April 30, 2020 (1 week): roughly 2500 COVID+ hospitalized patients (beds needed) with roughly 340 in ICU</li>
-<li>May 14, 2020 (3 weeks): roughly 1300 COVID+ hospitalized patients (beds needed) with roughly 180 in ICU</li>
-</ul>
-<p style="font-size: 10pt; font-style: oblique">
-Note that the model is a work in progress and being updated as the epidemic progresses. Because we are still making improvements and including new data in the model, these results are highly preliminary and uncertain. The forecasts shown here also do not account for the ongoing changes in social distancing occurring over the coming weeks. For more on social distancing, see the ‘Scenarios’ tab.
-</p>
-<p style="font-size: 10pt">
-For more information about the transmission model and methods, please see the ‘About’ tab.
-</p>
-<p style="font-size: 10pt">
-Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.
-</p>
-<p><em>Updated October 8, 2020 at 10:08 EDT</em></p>
-</div>
-</div>
-</div>
-<div id="ventilator-and-oxygen-support" class="section level1" data-navmenu="Explorables" data-orientation="rows">
-<h1>Ventilator and Oxygen Support</h1>
-<div id="sidebar-3" class="section level2 sidebar">
-<h2>Sidebar</h2>
-<p><a href="#"> Michigan Data </a></p>
-<p><a href="#"> University of Michigan Data </a></p>
-</div>
-<div id="row-6" class="section level2">
-<h2>Row</h2>
-<div id="one-week-forecast-of-covid-19-ventilator-support-in-michigan" class="section level3">
-<h3>One Week Forecast of COVID-19 Ventilator Support in Michigan</h3>
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-</div>
-<div id="three-week-forecast-of-covid-19-oxygen-support-in-michigan" class="section level3">
-<h3>Three Week Forecast of COVID-19 Oxygen Support in Michigan</h3>
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-</div>
-</div>
-<div id="row-7" class="section level2">
-<h2>Row</h2>
-<div id="current-summary-3" class="section level3">
-<h3>Current Summary</h3>
-<p>Model forecast for cumulative lab-confirmed cases:</p>
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Date</th>
-<th align="left">Uncertainty lower bound</th>
-<th align="left">Best-fit</th>
-<th align="left">Uncertainty upper bound</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">April 30 (1 week)</td>
-<td align="left">34166</td>
-<td align="left">37723</td>
-<td align="left">57682</td>
-</tr>
-<tr class="even">
-<td align="left">May 14 (3 weeks)</td>
-<td align="left">34382</td>
-<td align="left">39933</td>
-<td align="left">108889</td>
-</tr>
-</tbody>
-</table>
-<p>Additionally, the current best fit across model simulations projects (for uncertainty ranges, please see plots):</p>
-<ul>
-<li>April 30, 2020 (1 week): roughly 2500 COVID+ hospitalized patients (beds needed) with roughly 340 in ICU</li>
-<li>May 14, 2020 (3 weeks): roughly 1300 COVID+ hospitalized patients (beds needed) with roughly 180 in ICU</li>
-</ul>
-<p style="font-size: 10pt; font-style: oblique">
-Note that the model is a work in progress and being updated as the epidemic progresses. Because we are still making improvements and including new data in the model, these results are highly preliminary and uncertain. The forecasts shown here also do not account for the ongoing changes in social distancing occurring over the coming weeks. For more on social distancing, see the ‘Scenarios’ tab.
-</p>
-<p style="font-size: 10pt">
-For more information about the transmission model and methods, please see the ‘About’ tab.
-</p>
-<p style="font-size: 10pt">
-Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.
-</p>
-<p><em>Updated October 8, 2020 at 10:08 EDT</em></p>
+<div id="about-1" class="section level3">
+<h3>About</h3>
+<p>A short description about this scenario</p>
+<p><em>This is a placeholder page</em></p>
 </div>
 </div>
 </div>
 <div id="social-distancing-scenarios" class="section level1" data-navmenu="Explorables" data-orientation="rows">
 <h1>Social Distancing Scenarios</h1>
-<div id="row-8" class="section level2" data-height="700">
+<div id="row-4" class="section level2" data-height="700">
 <h2>Row</h2>
 <div id="social-distancing-scenarios-1" class="section level3">
 <h3>Social Distancing Scenarios</h3>
@@ -2926,7 +2665,7 @@ Data is shown as circles and grey shaded regions indicate uncertainty bounds for
 </iframe>
 </div>
 </div>
-<div id="row-9" class="section level2" data-height="350">
+<div id="row-5" class="section level2" data-height="350">
 <h2>Row</h2>
 <div id="summary" class="section level3">
 <h3>Summary</h3>
@@ -2947,25 +2686,9 @@ Data is shown as circles and grey shaded regions indicate uncertainty bounds for
 </div>
 </div>
 </div>
-<div id="reports" class="section level1" data-orientation="rows">
-<h1>Reports</h1>
-<div id="row-10" class="section level2">
-<h2>Row</h2>
-<div id="available-reports" class="section level3">
-<h3>Available Reports</h3>
-<ul>
-<li>One</li>
-<li>Two</li>
-<li>Three</li>
-<li>Etc.</li>
-</ul>
-<p><em>This is a placeholder page</em></p>
-</div>
-</div>
-</div>
 <div id="publications" class="section level1" data-orientation="rows">
 <h1>Publications</h1>
-<div id="row-11" class="section level2">
+<div id="row-6" class="section level2">
 <h2>Row</h2>
 <div id="publications-1" class="section level3">
 <h3>Publications</h3>
@@ -2979,7 +2702,7 @@ Data is shown as circles and grey shaded regions indicate uncertainty bounds for
 </div>
 </div>
 </div>
-<div id="about" class="section level1">
+<div id="about-2" class="section level1">
 <h1>About</h1>
 <div id="column" class="section level2">
 <h2>Column</h2>

@@ -10,6 +10,8 @@ output:
     # runtime: shiny
     css: styles.css
     # output: html_document
+    navbar:
+        - {title: "Forecasts (Archived)", href = "https://epimath.github.io/covid-19-modeling"}
     
 ---
 ```{js navlink}
@@ -45,7 +47,6 @@ library(flexdashboard)
 library (shiny)
 
 load('Workspace2020-04-25-1587832621.RData')
-
 
 # Convert times to date format for convenience
 dates = startdate + ftimes
@@ -115,235 +116,41 @@ make_table <- function(){
 
 ```
 
-
-Cumulative Cases {data-navmenu="Explorables" data-orientation=rows} 
-===================================== 
-
-Sidebar {.sidebar}
+Recent Updates {data-orientation=rows data-navmenu="Modeling Reports"}
+=====================================
+Row
 -----------------------------------------------------------------------
-<a href="#"> Michigan Data </a>
+### [Model 1](#scenario-1)
 
-<a href="#"> University of Michigan Data </a>
-    
+*an image preview here*
+and a description here
 
 Row
 -----------------------------------------------------------------------
-
-### One Week Forecast of COVID-19 Cases in Michigan
-
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-```{r forecastplot1wk }
-
-```
-
-### Three Week Forecast of COVID-19 Cases in Michigan 
-<!-- <iframe></iframe> -->
-```{r forecastplot3wk}
-
-```
+### [Model 2](#scenario-2)
+*an image preview here*
+and a description here
 
 
+
+Scenario 1 {data-orientation=rows data-navmenu="Modeling Reports"}
+=====================================
 Row
 -----------------------------------------------------------------------
+### About
+A short description about this scenario
 
 
-### Current Summary
+*This is a placeholder page*
 
-Model forecast for cumulative lab-confirmed cases:
-
-```{r}
-
-make_table()
-
-```
-
-Additionally, the current best fit across model simulations projects (for uncertainty ranges, please see plots):
-
-- `r format(lastdate+7, "%B %e, %Y")` (1 week): roughly `r round_any(ycurrpatfun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],100)` COVID+ hospitalized patients (beds needed) with roughly `r round_any(ycurrICUfun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],10)` in ICU
-- `r format(lastdate+21, "%B %e, %Y")` (3 weeks): roughly `r round_any(ycurrpatfun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],100)` COVID+ hospitalized patients (beds needed) with roughly `r round_any(ycurrICUfun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],10)` in ICU
-
-<p style="font-size: 10pt; font-style: oblique"> Note that the model is a work in progress and being updated as the epidemic progresses. Because we are still making improvements and including new data in the model, these results are highly preliminary and uncertain. The forecasts shown here also do not account for the ongoing changes in social distancing occurring over the coming weeks. For more on social distancing, see the 'Scenarios' tab.</p>
-
-<p style="font-size: 10pt"> For more information about the transmission model and methods, please see the 'About' tab.</p>
-
-
-<p style="font-size: 10pt">Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.</p>
-
-*Updated `r format(Sys.time(), "%B %e, %Y at %H:%M %Z")`*
-
-Cumulative Deaths {data-navmenu="Explorables" data-orientation=rows}  
-===================================== 
-Sidebar {.sidebar}
------------------------------------------------------------------------
-<a href="#"> Michigan Data </a>
-
-<a href="#"> University of Michigan Data </a>
-
+Scenario 2 {data-orientation=rows data-navmenu="Modeling Reports"}
+=====================================
 Row
 -----------------------------------------------------------------------
+### About
+A short description about this scenario
 
-
-### One Week Forecast of COVID-19 Deaths in Michigan
-
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-```{r}
-  
-```
-
-### Three Week Forecast of COVID-19 Deaths in Michigan
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-```{r}
-
-```
-
-
-
-Row
------------------------------------------------------------------------
-
-
-### Current Summary
-
-Model forecast for cumulative lab-confirmed cases:
-
-```{r}
-make_table()
-
-```
-
-Additionally, the current best fit across model simulations projects (for uncertainty ranges, please see plots):
-
-- `r format(lastdate+7, "%B %e, %Y")` (1 week): roughly `r round_any(ycurrpatfun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],100)` COVID+ hospitalized patients (beds needed) with roughly `r round_any(ycurrICUfun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],10)` in ICU
-- `r format(lastdate+21, "%B %e, %Y")` (3 weeks): roughly `r round_any(ycurrpatfun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],100)` COVID+ hospitalized patients (beds needed) with roughly `r round_any(ycurrICUfun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],10)` in ICU
-
-<p style="font-size: 10pt; font-style: oblique"> Note that the model is a work in progress and being updated as the epidemic progresses. Because we are still making improvements and including new data in the model, these results are highly preliminary and uncertain. The forecasts shown here also do not account for the ongoing changes in social distancing occurring over the coming weeks. For more on social distancing, see the 'Scenarios' tab.</p>
-
-<p style="font-size: 10pt"> For more information about the transmission model and methods, please see the 'About' tab.</p>
-
-
-<p style="font-size: 10pt">Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.</p>
-
-*Updated `r format(Sys.time(), "%B %e, %Y at %H:%M %Z")`*
-
-
-    
-Hospital and ICU Occupancy {data-navmenu="Explorables" data-orientation=rows} 
-===================================== 
-Sidebar {.sidebar}
------------------------------------------------------------------------
-<a href="#"> Michigan Data </a>
-
-<a href="#"> University of Michigan Data </a>
-
-Row
------------------------------------------------------------------------
-
-
-### Three Week Forecast of COVID-19 Hospital Occupancy in Michigan
-
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-```{r}
-  
-```
-
-### Three Week Forecast of COVID-19 ICU Occupancy in Michigan
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-```{r}
-  
-```
-
-
-
-Row
------------------------------------------------------------------------
-
-
-### Current Summary
-
-Model forecast for cumulative lab-confirmed cases:
-
-```{r}
-
-make_table()
-
-```
-
-Additionally, the current best fit across model simulations projects (for uncertainty ranges, please see plots):
-
-- `r format(lastdate+7, "%B %e, %Y")` (1 week): roughly `r round_any(ycurrpatfun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],100)` COVID+ hospitalized patients (beds needed) with roughly `r round_any(ycurrICUfun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],10)` in ICU
-- `r format(lastdate+21, "%B %e, %Y")` (3 weeks): roughly `r round_any(ycurrpatfun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],100)` COVID+ hospitalized patients (beds needed) with roughly `r round_any(ycurrICUfun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],10)` in ICU
-
-<p style="font-size: 10pt; font-style: oblique"> Note that the model is a work in progress and being updated as the epidemic progresses. Because we are still making improvements and including new data in the model, these results are highly preliminary and uncertain. The forecasts shown here also do not account for the ongoing changes in social distancing occurring over the coming weeks. For more on social distancing, see the 'Scenarios' tab.</p>
-
-<p style="font-size: 10pt"> For more information about the transmission model and methods, please see the 'About' tab.</p>
-
-
-<p style="font-size: 10pt">Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.</p>
-
-*Updated `r format(Sys.time(), "%B %e, %Y at %H:%M %Z")`*
-
-    
-Ventilator and Oxygen Support {data-navmenu="Explorables" data-orientation=rows} 
-===================================== 
-Sidebar {.sidebar}
------------------------------------------------------------------------
-<a href="#"> Michigan Data </a>
-
-<a href="#"> University of Michigan Data </a>
-
-Row
------------------------------------------------------------------------
-
-
-### One Week Forecast of COVID-19 Ventilator Support in Michigan
-
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-```{r}
-  
-```
-
-### Three Week Forecast of COVID-19 Oxygen Support in Michigan
-<!-- i added an iframe element here just in case i can get this graphic on shiny instead -->
-<!-- <iframe></iframe> -->
-```{r}
-  
-```
-
-
-
-Row
------------------------------------------------------------------------
-
-
-### Current Summary
-
-Model forecast for cumulative lab-confirmed cases:
-
-```{r}
-
-make_table()
-
-```
-
-Additionally, the current best fit across model simulations projects (for uncertainty ranges, please see plots):
-
-- `r format(lastdate+7, "%B %e, %Y")` (1 week): roughly `r round_any(ycurrpatfun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],100)` COVID+ hospitalized patients (beds needed) with roughly `r round_any(ycurrICUfun(xestlh,paramestslh)[(lastdate + 7) - startdate + 1],10)` in ICU
-- `r format(lastdate+21, "%B %e, %Y")` (3 weeks): roughly `r round_any(ycurrpatfun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],100)` COVID+ hospitalized patients (beds needed) with roughly `r round_any(ycurrICUfun(xestlh,paramestslh)[(lastdate + 21) - startdate + 1],10)` in ICU
-
-<p style="font-size: 10pt; font-style: oblique"> Note that the model is a work in progress and being updated as the epidemic progresses. Because we are still making improvements and including new data in the model, these results are highly preliminary and uncertain. The forecasts shown here also do not account for the ongoing changes in social distancing occurring over the coming weeks. For more on social distancing, see the 'Scenarios' tab.</p>
-
-<p style="font-size: 10pt"> For more information about the transmission model and methods, please see the 'About' tab.</p>
-
-
-<p style="font-size: 10pt">Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.</p>
-
-*Updated `r format(Sys.time(), "%B %e, %Y at %H:%M %Z")`*
+*This is a placeholder page*
 
 
 Social Distancing Scenarios {data-navmenu="Explorables" data-orientation=rows} 
@@ -385,18 +192,6 @@ Row {data-height=350}
 - This model represents just one simulation from the range of realistic parameter values used for forecasting (given in the 'About' tab). 
 
 - This model does not account for stochasticity, i.e. the effects of randomness in contact patterns and the disease transmission process. This means that the model will not be able to capture the potential for random extinction of the epidemic during long periods with very few cases.
-
-Reports {data-orientation=rows}
-=====================================
-Row
------------------------------------------------------------------------
-### Available Reports
-- One
-- Two
-- Three
-- Etc.
-
-*This is a placeholder page*
 
 
 Publications {data-orientation=rows}
