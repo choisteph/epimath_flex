@@ -93,6 +93,8 @@ window.FlexDashboardComponents = [];
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/stickytableheaders-0.1.19/jquery.stickytableheaders.min.js"></script>
+<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <style type="text/css">
 
 /*
@@ -2675,14 +2677,14 @@ window.FlexDashboardComponents.push({
 <script type="text/javascript">
 //This code adds in a target="_blank" property to the Forecasts link, allowing the external URL to be opened in a new tab
 
-$(document).ready( function(){
+//$(document).ready( function(){
 
 // when the window is fully loaded, add the forecast navigation link to the navigation menu
-  $(window).load(function(){
-     $(".nav.navbar-nav.navbar-left").append("<li><a href='https://epimath.github.io/covid-19-modeling/' target='_blank' >Forecasts (archived)</a></li>")
-  })
-}
-)
+//  $(window).load(function(){
+//     $(".nav.navbar-nav.navbar-left").append("<li><a href='https://epimath.github.io/covid-19-modeling/' target='_blank' >Forecasts (archived)</a></li>")
+//  })
+// }
+// )
 </script>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
@@ -2707,8 +2709,8 @@ $(document).ready( function(){
 </div>
 </div>
 </div>
-<div id="scenario-1" class="section level1" data-orientation="rows" data-navmenu="Modeling Reports">
-<h1>Scenario 1</h1>
+<div id="model-1-1" class="section level1" data-orientation="rows" data-navmenu="Modeling Reports">
+<h1>Model 1</h1>
 <div id="row-2" class="section level2">
 <h2>Row</h2>
 <div id="about" class="section level3">
@@ -2718,8 +2720,8 @@ $(document).ready( function(){
 </div>
 </div>
 </div>
-<div id="scenario-2" class="section level1" data-orientation="rows" data-navmenu="Modeling Reports">
-<h1>Scenario 2</h1>
+<div id="model-2-1" class="section level1" data-orientation="rows" data-navmenu="Modeling Reports">
+<h1>Model 2</h1>
 <div id="row-3" class="section level2">
 <h2>Row</h2>
 <div id="about-1" class="section level3">
@@ -2739,9 +2741,121 @@ $(document).ready( function(){
 </div>
 </div>
 </div>
+<div id="forecasts-archived" class="section level1" data-orientation="rows" data-navmenu="Modeling Reports">
+<h1>Forecasts (Archived)</h1>
+<div id="row-5" class="section level2">
+<h2>Row</h2>
+<div id="about-forecasts" class="section level3">
+<h3>About Forecasts</h3>
+<p>Forecasts are not currently being updated. They were conducted until April 25, 2020.</p>
+<p>Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.</p>
+</div>
+</div>
+<div id="row-6" class="section level2">
+<h2>Row</h2>
+<div id="summary" class="section level3">
+<h3>Summary</h3>
+<p>Model forecast for cumulative lab-confirmed cases:</p>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Date</th>
+<th align="left">Uncertainty lower bound</th>
+<th align="left">Best-fit</th>
+<th align="left">Uncertainty upper bound</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">April 30 (1 week)</td>
+<td align="left">34166</td>
+<td align="left">37723</td>
+<td align="left">57682</td>
+</tr>
+<tr class="even">
+<td align="left">May 14 (3 weeks)</td>
+<td align="left">34382</td>
+<td align="left">39933</td>
+<td align="left">108889</td>
+</tr>
+</tbody>
+</table>
+<p>Additionally, the current best fit across model simulations projects (for uncertainty ranges, please see plots):</p>
+<ul>
+<li>April 30, 2020 (1 week): roughly 2500 COVID+ hospitalized patients (beds needed) with roughly 340 in ICU</li>
+<li>May 14, 2020 (3 weeks): roughly 1300 COVID+ hospitalized patients (beds needed) with roughly 180 in ICU</li>
+</ul>
+<p><em>Note that the model is a work in progress and being updated as the epidemic progresses. Because we are still making improvements and including new data in the model, these results are highly preliminary and uncertain. The forecasts shown here also do not account for the ongoing changes in social distancing occurring over the coming weeks.</em></p>
+</div>
+</div>
+<div id="row-7" class="section level2">
+<h2>Row</h2>
+<div id="week-forecast-of-cumulative-covid-19-cases-in-michigan" class="section level3">
+<h3>1-Week forecast of <strong>Cumulative COVID-19 Cases</strong> in Michigan</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div id="outd0636e38ca44527b" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size"></div>
+</div>
+<div id="week-forecast-of-cumulative-covid-19-cases-in-michigan-1" class="section level3">
+<h3>3-Week forecast of <strong>Cumulative COVID-19 Cases</strong> in Michigan</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div id="out7a34780dc3e3083b" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size"></div>
+</div>
+</div>
+<div id="row-8" class="section level2">
+<h2>Row</h2>
+<div id="week-forecast-of-cumulative-covid-19-deaths-in-michigan" class="section level3">
+<h3>3-week forecast of <strong>Cumulative COVID-19 Deaths</strong> in Michigan</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div id="outb9d8e020ccc742b7" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size"></div>
+</div>
+</div>
+<div id="row-9" class="section level2">
+<h2>Row</h2>
+<div id="week-forecast-of-covid-19-hospitalized-patients-in-michigan" class="section level3">
+<h3>3-week forecast of <strong>COVID-19 Hospitalized Patients</strong> in Michigan</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div id="out0ad6929ccdd90c07" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size"></div>
+</div>
+<div id="week-forecast-of-covid-19-icu-occupancy-in-michigan" class="section level3">
+<h3>3-week forecast of <strong>COVID-19 ICU Occupancy</strong> in Michigan</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div id="out98aac6e6bea0ec5d" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size"></div>
+</div>
+</div>
+<div id="row-10" class="section level2">
+<h2>Row</h2>
+<div id="week-forecast-of-covid-19-oxygen-support-in-michigan" class="section level3">
+<h3>3-week forecast of <strong>COVID-19 Oxygen Support</strong> in Michigan</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div id="outf2c8d0f3dde32231" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size"></div>
+</div>
+<div id="week-forecast-of-covid-19-ventilator-support-in-michigan" class="section level3">
+<h3>3-week forecast of <strong>COVID-19 Ventilator Support</strong> in Michigan</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div id="outb287c241ef299362" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size"></div>
+</div>
+</div>
+</div>
 <div id="social-distancing-scenarios" class="section level1" data-navmenu="Explorables" data-orientation="rows">
 <h1>Social Distancing Scenarios</h1>
-<div id="row-5" class="section level2" data-height="700">
+<div id="row-11" class="section level2" data-height="700">
 <h2>Row</h2>
 <div id="social-distancing-scenarios-1" class="section level3">
 <h3>Social Distancing Scenarios</h3>
@@ -2752,9 +2866,9 @@ $(document).ready( function(){
 </iframe>
 </div>
 </div>
-<div id="row-6" class="section level2" data-height="350">
+<div id="row-12" class="section level2" data-height="350">
 <h2>Row</h2>
-<div id="summary" class="section level3">
+<div id="summary-1" class="section level3">
 <h3>Summary</h3>
 <ul>
 <li><p>Early in the growth phase, social distancing efforts tend to delay the epidemic peak further, while efforts later in the growth phase nearer the peak tend to reduce the epidemic peak more.</p></li>
@@ -2775,14 +2889,14 @@ $(document).ready( function(){
 </div>
 <div id="ensemble-modeling" class="section level1" data-orientation="rows">
 <h1>Ensemble Modeling</h1>
-<div id="row-7" class="section level2">
+<div id="row-13" class="section level2">
 <h2>Row</h2>
 <p>This is a placeholder page.</p>
 </div>
 </div>
 <div id="publications" class="section level1" data-orientation="rows">
 <h1>Publications</h1>
-<div id="row-8" class="section level2">
+<div id="row-14" class="section level2">
 <h2>Row</h2>
 <div id="publications-1" class="section level3">
 <h3>Publications</h3>
@@ -2808,7 +2922,7 @@ $(document).ready( function(){
 </div>
 <div id="about-the-models" class="section level1" data-orientation="rows" data-navmenu="About">
 <h1>About the Models</h1>
-<div id="row-9" class="section level2 tabset tabset-fade">
+<div id="row-15" class="section level2 tabset tabset-fade">
 <h2>Row</h2>
 <div id="state-regional-and-county-level-models" class="section level4">
 <h4>State, Regional, and County Level Models</h4>
@@ -2822,7 +2936,7 @@ $(document).ready( function(){
 <p>The state/regional/county level models are..</p>
 </div>
 </div>
-<div id="row-10" class="section level2 tabset tabset-fade">
+<div id="row-16" class="section level2 tabset tabset-fade">
 <h2>Row</h2>
 <div id="university-of-michigan-models" class="section level4">
 <h4>University of Michigan Models</h4>
@@ -2839,7 +2953,7 @@ $(document).ready( function(){
 </div>
 <div id="code" class="section level1" data-orientation="rows" data-navmenu="About">
 <h1>Code</h1>
-<div id="row-11" class="section level2">
+<div id="row-17" class="section level2">
 <h2>Row</h2>
 <div id="code-block-1" class="section level3">
 <h3>Code block 1</h3>
@@ -2850,7 +2964,7 @@ Description
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>hello &lt;-<span class="st"> &quot;hello world&quot;</span></span></code></pre></div>
 </div>
 </div>
-<div id="row-12" class="section level2">
+<div id="row-18" class="section level2">
 <h2>Row</h2>
 <div id="code-block-2" class="section level3">
 <h3>Code block 2</h3>
