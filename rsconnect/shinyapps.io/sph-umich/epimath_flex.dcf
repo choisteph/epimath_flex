@@ -1,0 +1,10 @@
+name: epimath_flex
+title:
+username:
+account: sph-umich
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3013941
+bundleId: 3740259
+url: https://sph-umich.shinyapps.io/epimath_flex/
+when: 1602689919.19919

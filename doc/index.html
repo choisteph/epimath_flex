@@ -93,8 +93,6 @@ window.FlexDashboardComponents = [];
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/stickytableheaders-0.1.19/jquery.stickytableheaders.min.js"></script>
-<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
-<script src="site_libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <style type="text/css">
 
 /*
@@ -2662,11 +2660,11 @@ window.FlexDashboardComponents.push({
       
       // Replace the existing "navbar-brand" element with an anchor element that allows users to click on the title, "Michigan COVID-19 Mapping" and be redirected to the homepage//
       
-      $(".navbar-brand").replaceWith("<a class='navbar-brand' href= 'index.html'>Michigan COVID-19 Mapping</a>")
+      $(".navbar-brand").replaceWith("<a class='navbar-brand' href= '/epimath_flex'>Michigan COVID-19 Mapping</a>")
       
       //Replace the existing "navbar-logo" element with an image that has been styled to be vertically centered as well as padded, then wrap that image in an anchor element that allows users to click on the image to be redirected to the homepage//
       
-      $(".navbar-logo").replaceWith("<div class='navbar-logo pull-left' ><a href='index.html'><img class='navbrand-img' src='logo.png'></a></div>")
+      $(".navbar-logo").replaceWith("<div class='navbar-logo pull-left' ><a href='/epimath_flex'><img class='navbrand-img' src='logo.png'></a></div>")
     
     } // close the function that is run when the document is ready
   ) //close the document on ready function
@@ -2677,14 +2675,14 @@ window.FlexDashboardComponents.push({
 <script type="text/javascript">
 //This code adds in a target="_blank" property to the Forecasts link, allowing the external URL to be opened in a new tab
 
-//$(document).ready( function(){
+$(document).ready( function(){
 
 // when the window is fully loaded, add the forecast navigation link to the navigation menu
-//  $(window).load(function(){
-//     $(".nav.navbar-nav.navbar-left").append("<li><a href='https://epimath.github.io/covid-19-modeling/' target='_blank' >Forecasts (archived)</a></li>")
-//  })
-// }
-// )
+  $(window).load(function(){
+     $(".nav.navbar-nav.navbar-left").append("<li><a href='https://epimath.github.io/covid-19-modeling/' target='_blank' >Forecasts (archived)</a></li>")
+  })
+ }
+ )
 </script>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
@@ -2738,124 +2736,248 @@ window.FlexDashboardComponents.push({
 <div id="about-2" class="section level3">
 <h3>About</h3>
 <p><em>This is a placeholder page</em></p>
-</div>
-</div>
-</div>
-<div id="forecasts-archived" class="section level1" data-orientation="rows" data-navmenu="Modeling Reports">
-<h1>Forecasts (Archived)</h1>
-<div id="row-5" class="section level2">
-<h2>Row</h2>
-<div id="about-forecasts" class="section level3">
-<h3>About Forecasts</h3>
-<p>Forecasts are not currently being updated. They were conducted until April 25, 2020.</p>
-<p>Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots.</p>
-</div>
-</div>
-<div id="row-6" class="section level2">
-<h2>Row</h2>
-<div id="summary" class="section level3">
-<h3>Summary</h3>
-<p>Model forecast for cumulative lab-confirmed cases:</p>
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Date</th>
-<th align="left">Uncertainty lower bound</th>
-<th align="left">Best-fit</th>
-<th align="left">Uncertainty upper bound</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">April 30 (1 week)</td>
-<td align="left">34166</td>
-<td align="left">37723</td>
-<td align="left">57682</td>
-</tr>
-<tr class="even">
-<td align="left">May 14 (3 weeks)</td>
-<td align="left">34382</td>
-<td align="left">39933</td>
-<td align="left">108889</td>
-</tr>
-</tbody>
-</table>
-<p>Additionally, the current best fit across model simulations projects (for uncertainty ranges, please see plots):</p>
-<ul>
-<li>April 30, 2020 (1 week): roughly 2500 COVID+ hospitalized patients (beds needed) with roughly 340 in ICU</li>
-<li>May 14, 2020 (3 weeks): roughly 1300 COVID+ hospitalized patients (beds needed) with roughly 180 in ICU</li>
-</ul>
-<p><em>Note that the model is a work in progress and being updated as the epidemic progresses. Because we are still making improvements and including new data in the model, these results are highly preliminary and uncertain. The forecasts shown here also do not account for the ongoing changes in social distancing occurring over the coming weeks.</em></p>
-</div>
-</div>
-<div id="row-7" class="section level2">
-<h2>Row</h2>
-<div id="week-forecast-of-cumulative-covid-19-cases-in-michigan" class="section level3">
-<h3>1-Week forecast of <strong>Cumulative COVID-19 Cases</strong> in Michigan</h3>
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-<div id="out7949f6a97e82130b" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size"></div>
-</div>
-<div id="week-forecast-of-cumulative-covid-19-cases-in-michigan-1" class="section level3">
-<h3>3-Week forecast of <strong>Cumulative COVID-19 Cases</strong> in Michigan</h3>
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-<div id="outb183fc72313dc02e" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size"></div>
-</div>
-</div>
-<div id="row-8" class="section level2">
-<h2>Row</h2>
-<div id="week-forecast-of-cumulative-covid-19-deaths-in-michigan" class="section level3">
-<h3>3-week forecast of <strong>Cumulative COVID-19 Deaths</strong> in Michigan</h3>
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-<div id="oute35f1b7922e92b15" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size"></div>
-</div>
-</div>
-<div id="row-9" class="section level2">
-<h2>Row</h2>
-<div id="week-forecast-of-covid-19-hospitalized-patients-in-michigan" class="section level3">
-<h3>3-week forecast of <strong>COVID-19 Hospitalized Patients</strong> in Michigan</h3>
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-<div id="out681467fae18b316e" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size"></div>
-</div>
-<div id="week-forecast-of-covid-19-icu-occupancy-in-michigan" class="section level3">
-<h3>3-week forecast of <strong>COVID-19 ICU Occupancy</strong> in Michigan</h3>
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-<div id="out499f6a9f7712db0b" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size"></div>
-</div>
-</div>
-<div id="row-10" class="section level2">
-<h2>Row</h2>
-<div id="week-forecast-of-covid-19-oxygen-support-in-michigan" class="section level3">
-<h3>3-week forecast of <strong>COVID-19 Oxygen Support</strong> in Michigan</h3>
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-<div id="out51bffa38ef207ab5" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size"></div>
-</div>
-<div id="week-forecast-of-covid-19-ventilator-support-in-michigan" class="section level3">
-<h3>3-week forecast of <strong>COVID-19 Ventilator Support</strong> in Michigan</h3>
-<div class="knitr-options" data-fig-width="576" data-fig-height="460">
-
-</div>
-<div id="outbd15ea64e39ec47f" style="width:100%; height:400px; " class="plotly html-widget html-widget-output shiny-report-size"></div>
+<!-- Forecasts (Archived) {data-orientation=rows data-navmenu="Modeling Reports"} -->
+<!-- ===================================== -->
+<!-- Row -->
+<!-- ----------------------------------------------------------------------- -->
+<!-- ### About Forecasts -->
+<!-- Forecasts are not currently being updated. They were conducted until April 25, 2020. -->
+<!-- Data is shown as circles and grey shaded regions indicate uncertainty bounds for the best fit 95% across 1000 simulations. Hover over plots to see data values and interactive menu, and scroll down to see additional plots. -->
+<!-- Row -->
+<!-- ----------------------------------------------------------------------- -->
+<!-- ### Summary -->
+<!-- Model forecast for cumulative lab-confirmed cases: -->
+<!-- ```{r echo=FALSE} -->
+<!-- make_table() -->
+<!-- ``` -->
+<!-- Additionally, the current best fit across model simulations projects (for uncertainty ranges, please see plots): -->
+<!-- - April 30, 2020 (1 week): roughly 2500 COVID+ hospitalized patients (beds needed) with roughly 340 in ICU -->
+<!-- - May 14, 2020 (3 weeks): roughly 1300 COVID+ hospitalized patients (beds needed) with roughly 180 in ICU -->
+<!-- *Note that the model is a work in progress and being updated as the epidemic progresses. Because we are still making improvements and including new data in the model, these results are highly preliminary and uncertain. The forecasts shown here also do not account for the ongoing changes in social distancing occurring over the coming weeks.* -->
+<!-- Row -->
+<!-- ----------------------------------------------------------------------- -->
+<!-- ### 1-Week forecast of **Cumulative COVID-19 Cases** in Michigan -->
+<!-- ```{r} -->
+<!-- renderPlotly({ -->
+<!--     # Detected/observed cumulative incidence -->
+<!--     end <- (lastdate + 7) - startdate + 1 -->
+<!--     ybestfit <- yobscumcarefun(xestlh,paramestslh) -->
+<!--     plotdata <- data.frame(dates[1:end],dt(dates[1:end]),ybestfit[1:end],ymed[1:end],ymin[1:end],ymax[1:end], -->
+<!--                           c(casedates, rep(NA, length(ftimes[1:end]) - length(casedates))),  -->
+<!--                           dt(c(casedates, rep(NA, length(ftimes[1:end]) - length(casedates)))),  -->
+<!--                           c(cases, rep(NA, length(ftimes[1:end]) - length(casedates))) ) -->
+<!--     colnames(plotdata) <- cbind("Date","NumericDate","BestFit","Median","Min","Max","CDates","NumericCDates","Cases") -->
+<!--     forecastplot <- ggplot(plotdata) + -->
+<!--       geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1,  -->
+<!--                     linetype = "Best fit")) + -->
+<!--       geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1,  -->
+<!--                     linetype = "Median")) + -->
+<!--       geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate, -->
+<!--                       text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1),  -->
+<!--                   alpha = 0.3) + -->
+<!--       geom_point(aes(x=NumericCDates, y=Cases, text = paste("Date:",Date,"<br>Cases:",round(Cases))  )) + -->
+<!--       guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) + -->
+<!--       labs(x="Date", y="Cumulative Lab-Confirmed Cases") #+ theme_bw() #+ theme_classic() -->
+<!--     ggplotly(forecastplot, tooltip = c("text")) %>% -->
+<!--       layout(legend = list(x = 0.05, y = 0.9, -->
+<!--                            orientation = "h"), -->
+<!--              xaxis = list( -->
+<!--                type = 'date', -->
+<!--                tickformat = "%b %d" -->
+<!--              ) -->
+<!--       ) -->
+<!--   }) #close function -->
+<!-- ``` -->
+<!-- ### 3-Week forecast of **Cumulative COVID-19 Cases** in Michigan -->
+<!-- ```{r} -->
+<!-- renderPlotly({ -->
+<!--     # three week end date -->
+<!--     end <- (lastdate + 21) - startdate + 1 -->
+<!--     ybestfit <- yobscumcarefun(xestlh,paramestslh) -->
+<!--     # Detected/observed cumulative incidence -->
+<!--     plotdata <- data.frame(dates[1:end],dt(dates[1:end]),ybestfit[1:end],ymed[1:end],ymin[1:end],ymax[1:end], -->
+<!--                            c(casedates, rep(NA, length(ftimes[1:end]) - length(casedates))),  -->
+<!--                            dt(c(casedates, rep(NA, length(ftimes[1:end]) - length(casedates)))),  -->
+<!--                            c(cases, rep(NA, length(ftimes[1:end]) - length(casedates))) ) -->
+<!--     colnames(plotdata) <- cbind("Date","NumericDate","BestFit","Median","Min","Max","CDates","NumericCDates","Cases") -->
+<!--     forecast2plot <- ggplot(plotdata) + -->
+<!--       geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1,  -->
+<!--                     linetype = "Best fit")) + -->
+<!--       geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1,  -->
+<!--                     linetype = "Median")) + -->
+<!--       geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate, -->
+<!--                       text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1),  -->
+<!--                   alpha = 0.3) + -->
+<!--       geom_point(aes(x=NumericCDates, y=Cases, text = paste("Date:",Date,"<br>Cases:",round(Cases))  )) + -->
+<!--       guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) + -->
+<!--       labs(x="Date", y="Cumulative Lab-Confirmed Cases") #+ theme_bw() #+ theme_classic() -->
+<!--     ggplotly(forecast2plot, tooltip = c("text")) %>% -->
+<!--       layout(legend = list(x = 0.05, y = 0.9, -->
+<!--                            orientation = "h"), -->
+<!--              xaxis = list( -->
+<!--                type = 'date', -->
+<!--                tickformat = "%b %d" -->
+<!--              ) -->
+<!--       ) -->
+<!--   }) #close function -->
+<!-- ``` -->
+<!-- Row -->
+<!-- ----------------------------------------------------------------------- -->
+<!-- ### 3-week forecast of **Cumulative COVID-19 Deaths** in Michigan -->
+<!-- ```{r} -->
+<!-- renderPlotly({ -->
+<!--     # three week end date -->
+<!--     end <- (lastdate + 21) - startdate + 1 -->
+<!--     deathsbestfit <- yobscumdeathfun(xestlh,paramestslh) -->
+<!--     plotdata <- data.frame(dates[1:end],dt(dates[1:end]),deathsbestfit[1:end],deathmed[1:end],deathmin[1:end],deathmax[1:end], -->
+<!--                           c(deathtimes, rep(NA, length(ftimes[1:end]) - length(deathtimes))),  -->
+<!--                           dt(c(deathtimes, rep(NA, length(ftimes[1:end]) - length(deathtimes)))),  -->
+<!--                           c(deaths, rep(NA, length(ftimes[1:end]) - length(deathtimes))) ) -->
+<!--     colnames(plotdata) <- cbind("Date","NumericDate","BestFit","Median","Min","Max","DDates","NumericDDates","Deaths") -->
+<!--     # Detected/observed deaths -->
+<!--     deathplot <- ggplot(plotdata) + -->
+<!--       geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1,  -->
+<!--                     linetype = "Best fit")) + -->
+<!--       geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1,  -->
+<!--                     linetype = "Median")) + -->
+<!--       geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate, -->
+<!--                       text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1),  -->
+<!--                   alpha = 0.3) + -->
+<!--       geom_point(aes(x=NumericDDates, y=Deaths, text = paste("Date:",Date,"<br>Deaths:",round(Deaths))  )) + -->
+<!--       guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) + -->
+<!--       labs(x="Date", y="Cumulative Lab-Confirmed Deaths") #+ theme_bw() #+ theme_classic() -->
+<!--     ggplotly(deathplot,tooltip = c("text")) %>% -->
+<!--       layout(legend = list(x = 0.05, y = 0.9, -->
+<!--                            orientation = "h"), -->
+<!--              xaxis = list( -->
+<!--                type = 'date', -->
+<!--                tickformat = "%b %d" -->
+<!--              ) -->
+<!--       ) -->
+<!--   }) #close function -->
+<!-- ``` -->
+<!-- Row -->
+<!-- ----------------------------------------------------------------------- -->
+<!-- ### 3-week forecast of **COVID-19 Hospitalized Patients** in Michigan -->
+<!-- ```{r} -->
+<!-- renderPlotly({ -->
+<!--     # three week end date -->
+<!--     end <- (lastdate + 21) - startdate + 1 -->
+<!--     patbestfit <- ycurrpatfun(xestlh,paramestslh) -->
+<!--     plotdata <- data.frame(dates[1:end],dt(dates[1:end]),patbestfit[1:end],patmed[1:end],patmin[1:end],patmax[1:end]) -->
+<!--     colnames(plotdata) <- cbind("Date","NumericDate","BestFit","Median","Min","Max") -->
+<!--     hospburden <- ggplot(plotdata) + -->
+<!--       geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1,  -->
+<!--                     linetype = "Best fit")) + -->
+<!--       geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1,  -->
+<!--                     linetype = "Median")) + -->
+<!--       geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate, -->
+<!--                       text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1, ),  -->
+<!--                   alpha = 0.3) + -->
+<!--       guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) + -->
+<!--       labs(x="Date", y="Current hospitalized patients") #+ theme_bw() #+ theme_classic() -->
+<!--     ggplotly(hospburden,tooltip = c("text")) %>% -->
+<!--       layout(legend = list(x = 0.05, y = 0.9, -->
+<!--                            orientation = "h"), -->
+<!--              xaxis = list( -->
+<!--                type = 'date', -->
+<!--                tickformat = "%b %d" -->
+<!--              ) -->
+<!--       ) -->
+<!--   }) #close function -->
+<!-- ``` -->
+<!-- ### 3-week forecast of **COVID-19 ICU Occupancy** in Michigan -->
+<!-- ```{r} -->
+<!-- renderPlotly({ -->
+<!--     # three week end date -->
+<!--     end <- (lastdate + 21) - startdate + 1 -->
+<!--     ICUbestfit <- ycurrICUfun(xestlh,paramestslh) -->
+<!--     plotdata <- data.frame(dates[1:end],dt(dates[1:end]),ICUbestfit[1:end],ICUmed[1:end],ICUmin[1:end],ICUmax[1:end]) -->
+<!--     colnames(plotdata) <- cbind("Date","NumericDate","BestFit","Median","Min","Max") -->
+<!--     ICUburden <- ggplot(plotdata) + -->
+<!--       geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1,  -->
+<!--                     linetype = "Best fit")) + -->
+<!--       geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1,  -->
+<!--                     linetype = "Median")) + -->
+<!--       geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate, -->
+<!--                       text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1, ),  -->
+<!--                   alpha = 0.3) + -->
+<!--       guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) + -->
+<!--       labs(x="Date", y="Current ICU patients") #+ theme_bw() #+ theme_classic() -->
+<!--     ggplotly(ICUburden,tooltip = c("text")) %>% -->
+<!--       layout(legend = list(x = 0.05, y = 0.9, -->
+<!--                            orientation = "h"), -->
+<!--              xaxis = list( -->
+<!--                type = 'date', -->
+<!--                tickformat = "%b %d" -->
+<!--              ) -->
+<!--       ) -->
+<!--   }) #close function -->
+<!-- ``` -->
+<!-- Row -->
+<!-- ----------------------------------------------------------------------- -->
+<!-- ### 3-week forecast of **COVID-19 Oxygen Support** in Michigan -->
+<!-- ```{r} -->
+<!-- renderPlotly({ -->
+<!--     # three week end date -->
+<!--     end <- (lastdate + 21) - startdate + 1 -->
+<!--     O2bestfit <- ycurrO2fun(xestlh,paramestslh) -->
+<!--     plotdata <- data.frame(dates[1:end],dt(dates[1:end]),O2bestfit[1:end],O2med[1:end],O2min[1:end],O2max[1:end]) -->
+<!--     colnames(plotdata) <- cbind("Date","NumericDate","BestFit","Median","Min","Max") -->
+<!--     O2burden <- ggplot(plotdata) + -->
+<!--       geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1,  -->
+<!--                     linetype = "Best fit")) + -->
+<!--       geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1,  -->
+<!--                     linetype = "Median")) + -->
+<!--       geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate, -->
+<!--                       text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1, ),  -->
+<!--                   alpha = 0.3) + -->
+<!--       guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) + -->
+<!--       labs(x="Date", y="Patients needing O2 support") #+ theme_bw() #+ theme_classic() -->
+<!--     ggplotly(O2burden,tooltip = c("text")) %>% -->
+<!--       layout(legend = list(x = 0.05, y = 0.9, -->
+<!--                            orientation = "h"), -->
+<!--              xaxis = list( -->
+<!--                type = 'date', -->
+<!--                tickformat = "%b %d" -->
+<!--              ) -->
+<!--       ) -->
+<!--   }) #close function -->
+<!-- ``` -->
+<!-- ### 3-week forecast of **COVID-19 Ventilator Support** in Michigan -->
+<!-- ```{r} -->
+<!-- renderPlotly({ -->
+<!--     # three week end date -->
+<!--     end <- (lastdate + 21) - startdate + 1 -->
+<!--     ventbestfit = ycurrventfun(xestlh,paramestslh) -->
+<!--     plotdata <- data.frame(dates[1:end],dt(dates[1:end]), ventbestfit[1:end],ventmed[1:end],ventmin[1:end],ventmax[1:end]) -->
+<!--     colnames(plotdata) <- cbind("Date","NumericDate","BestFit","Median","Min","Max") -->
+<!--     ventburden <- ggplot(plotdata) + -->
+<!--       geom_line(aes(x=NumericDate,y=BestFit, text = paste("Date:",Date,"<br>Best fit:",round(BestFit)), group=1,  -->
+<!--                     linetype = "Best fit")) + -->
+<!--       geom_line(aes(x=NumericDate,y=Median, text = paste("Date:",Date,"<br>Median:",round(Median)), group=1,  -->
+<!--                     linetype = "Median")) + -->
+<!--       geom_ribbon(aes(ymin=Min, ymax=Max, x=NumericDate, -->
+<!--                       text = paste("Date:",Date,"<br>Min:",round(Min),"<br>Max:",round(Max)), group=1, ),  -->
+<!--                   alpha = 0.3) + -->
+<!--       guides(fill = guide_legend(''), colour = guide_legend(''), linetype = guide_legend('')) + -->
+<!--       labs(x="Date", y="Patients needing ventilators") #+ theme_bw() #+ theme_classic() -->
+<!--     ggplotly(ventburden,tooltip = c("text")) %>% -->
+<!--       layout(legend = list(x = 0.05, y = 0.9, -->
+<!--                            orientation = "h"), -->
+<!--              xaxis = list( -->
+<!--                type = 'date', -->
+<!--                tickformat = "%b %d" -->
+<!--              ) -->
+<!--       ) -->
+<!--   }) #close function -->
+<!-- ``` -->
 </div>
 </div>
 </div>
 <div id="social-distancing-scenarios" class="section level1" data-navmenu="Explorables" data-orientation="rows">
 <h1>Social Distancing Scenarios</h1>
-<div id="row-11" class="section level2" data-height="700">
+<div id="row-5" class="section level2" data-height="700">
 <h2>Row</h2>
 <div id="social-distancing-scenarios-1" class="section level3">
 <h3>Social Distancing Scenarios</h3>
@@ -2866,9 +2988,9 @@ window.FlexDashboardComponents.push({
 </iframe>
 </div>
 </div>
-<div id="row-12" class="section level2" data-height="350">
+<div id="row-6" class="section level2" data-height="350">
 <h2>Row</h2>
-<div id="summary-1" class="section level3">
+<div id="summary" class="section level3">
 <h3>Summary</h3>
 <ul>
 <li><p>Early in the growth phase, social distancing efforts tend to delay the epidemic peak further, while efforts later in the growth phase nearer the peak tend to reduce the epidemic peak more.</p></li>
@@ -2889,14 +3011,14 @@ window.FlexDashboardComponents.push({
 </div>
 <div id="ensemble-modeling" class="section level1" data-orientation="rows">
 <h1>Ensemble Modeling</h1>
-<div id="row-13" class="section level2">
+<div id="row-7" class="section level2">
 <h2>Row</h2>
 <p>This is a placeholder page.</p>
 </div>
 </div>
 <div id="publications" class="section level1" data-orientation="rows">
 <h1>Publications</h1>
-<div id="row-14" class="section level2">
+<div id="row-8" class="section level2">
 <h2>Row</h2>
 <div id="publications-1" class="section level3">
 <h3>Publications</h3>
@@ -2922,7 +3044,7 @@ window.FlexDashboardComponents.push({
 </div>
 <div id="about-the-models" class="section level1" data-orientation="rows" data-navmenu="About">
 <h1>About the Models</h1>
-<div id="row-15" class="section level2 tabset tabset-fade">
+<div id="row-9" class="section level2 tabset tabset-fade">
 <h2>Row</h2>
 <div id="state-regional-and-county-level-models" class="section level4">
 <h4>State, Regional, and County Level Models</h4>
@@ -2936,7 +3058,7 @@ window.FlexDashboardComponents.push({
 <p>The state/regional/county level models are..</p>
 </div>
 </div>
-<div id="row-16" class="section level2 tabset tabset-fade">
+<div id="row-10" class="section level2 tabset tabset-fade">
 <h2>Row</h2>
 <div id="university-of-michigan-models" class="section level4">
 <h4>University of Michigan Models</h4>
@@ -2953,7 +3075,7 @@ window.FlexDashboardComponents.push({
 </div>
 <div id="code" class="section level1" data-orientation="rows" data-navmenu="About">
 <h1>Code</h1>
-<div id="row-17" class="section level2">
+<div id="row-11" class="section level2">
 <h2>Row</h2>
 <div id="code-block-1" class="section level3">
 <h3>Code block 1</h3>
@@ -2964,7 +3086,7 @@ Description
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>hello &lt;-<span class="st"> &quot;hello world&quot;</span></span></code></pre></div>
 </div>
 </div>
-<div id="row-18" class="section level2">
+<div id="row-12" class="section level2">
 <h2>Row</h2>
 <div id="code-block-2" class="section level3">
 <h3>Code block 2</h3>
