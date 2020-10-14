@@ -56,7 +56,7 @@ library(plyr)
 library(readr)
 library(deSolve)
 library(flexdashboard)
-library (shiny)
+library(shiny)
 
 load('Workspace2020-04-25-1587832621.RData')
 
