@@ -202,8 +202,8 @@ Additionally, the current best fit across model simulations projects (for uncert
 
 Row
 -----------------------------------------------------------------------
-### 1-Week forecast of **Cumulative COVID-19 Cases** in Michigan
-```{r}
+### Forecasts
+```{r fig.height=6}
 renderPlotly({
   # Detected/observed cumulative incidence
   end <- (lastdate + 7) - startdate + 1
@@ -270,7 +270,7 @@ renderPlotly({
            linetype = guide_legend('')) +
     labs(x = "Date", y = "Cumulative Lab-Confirmed Cases") #+ theme_bw() #+ theme_classic()
   
-  ggplotly(forecastplot, tooltip = c("text")) %>%
+oneweekcumcase <-  ggplotly(forecastplot, tooltip = c("text")) %>%
     layout(
       legend = list(
         x = 0.05,
@@ -280,16 +280,12 @@ renderPlotly({
       xaxis = list(type = 'date',
                    tickformat = "%b %d")
     )
-}) #close function
-```
 
-### 3-Week forecast of **Cumulative COVID-19 Cases** in Michigan
-```{r}
-renderPlotly({
   # three week end date
   end <- (lastdate + 21) - startdate + 1
   
-  ybestfit <- yobscumcarefun(xestlh, paramestslh)
+  ventbestfit = ycurrventfun(xestlh, paramestslh)
+  
   
   # Detected/observed cumulative incidence
   plotdata <-
@@ -353,7 +349,7 @@ renderPlotly({
            linetype = guide_legend('')) +
     labs(x = "Date", y = "Cumulative Lab-Confirmed Cases") #+ theme_bw() #+ theme_classic()
   
-  ggplotly(forecast2plot, tooltip = c("text")) %>%
+threeweekcumcase <-  ggplotly(forecast2plot, tooltip = c("text")) %>%
     layout(
       legend = list(
         x = 0.05,
@@ -363,6 +359,15 @@ renderPlotly({
       xaxis = list(type = 'date',
                    tickformat = "%b %d")
     )
+
+  allplots <- subplot(oneweekcumcase, threeweekcumcase, nrows=2, margin = 0.05)
+  
+}) #close function
+```
+
+<!-- ### 3-Week forecast of **Cumulative COVID-19 Cases** in Michigan -->
+```{r}
+renderPlotly({
   
 }) #close function
 ```
@@ -442,7 +447,7 @@ renderPlotly({
            linetype = guide_legend('')) +
     labs(x = "Date", y = "Cumulative Lab-Confirmed Deaths") #+ theme_bw() #+ theme_classic()
   
-  ggplotly(deathplot, tooltip = c("text")) %>%
+  threeweekdeath <- ggplotly(deathplot, tooltip = c("text")) %>%
     layout(
       legend = list(
         x = 0.05,
@@ -500,7 +505,7 @@ renderPlotly({
            linetype = guide_legend('')) +
     labs(x = "Date", y = "Current hospitalized patients") #+ theme_bw() #+ theme_classic()
   
-  ggplotly(hospburden, tooltip = c("text")) %>%
+  threeweekhosp <- ggplotly(hospburden, tooltip = c("text")) %>%
     layout(
       legend = list(
         x = 0.05,
@@ -557,7 +562,7 @@ renderPlotly({
            linetype = guide_legend('')) +
     labs(x = "Date", y = "Current ICU patients") #+ theme_bw() #+ theme_classic()
   
-  ggplotly(ICUburden, tooltip = c("text")) %>%
+  threeweekicu <- ggplotly(ICUburden, tooltip = c("text")) %>%
     layout(
       legend = list(
         x = 0.05,
@@ -616,7 +621,7 @@ renderPlotly({
            linetype = guide_legend('')) +
     labs(x = "Date", y = "Patients needing O2 support") #+ theme_bw() #+ theme_classic()
   
-  ggplotly(O2burden, tooltip = c("text")) %>%
+  threeweeko2 <- ggplotly(O2burden, tooltip = c("text")) %>%
     layout(
       legend = list(
         x = 0.05,
@@ -633,61 +638,7 @@ renderPlotly({
 ### 3-week forecast of **COVID-19 Ventilator Support** in Michigan
 ```{r}
 renderPlotly({
-  # three week end date
-  end <- (lastdate + 21) - startdate + 1
-  
-  ventbestfit = ycurrventfun(xestlh, paramestslh)
-  
-  plotdata <-
-    data.frame(dates[1:end],
-               dt(dates[1:end]),
-               ventbestfit[1:end],
-               ventmed[1:end],
-               ventmin[1:end],
-               ventmax[1:end])
-  colnames(plotdata) <-
-    cbind("Date", "NumericDate", "BestFit", "Median", "Min", "Max")
-  
-  ventburden <- ggplot(plotdata) +
-    geom_line(aes(
-      x = NumericDate,
-      y = BestFit,
-      text = paste("Date:", Date, "<br>Best fit:", round(BestFit)),
-      group = 1,
-      linetype = "Best fit"
-    )) +
-    geom_line(aes(
-      x = NumericDate,
-      y = Median,
-      text = paste("Date:", Date, "<br>Median:", round(Median)),
-      group = 1,
-      linetype = "Median"
-    )) +
-    geom_ribbon(aes(
-      ymin = Min,
-      ymax = Max,
-      x = NumericDate,
-      text = paste("Date:", Date, "<br>Min:", round(Min), "<br>Max:", round(Max)),
-      group = 1,
-      
-    ),
-    alpha = 0.3) +
-    guides(fill = guide_legend(''),
-           colour = guide_legend(''),
-           linetype = guide_legend('')) +
-    labs(x = "Date", y = "Patients needing ventilators") #+ theme_bw() #+ theme_classic()
-  
-  ggplotly(ventburden, tooltip = c("text")) %>%
-    layout(
-      legend = list(
-        x = 0.05,
-        y = 0.9,
-        orientation = "h"
-      ),
-      xaxis = list(type = 'date',
-                   tickformat = "%b %d")
-    )
-  
+
 }) #close function
 ```
 
