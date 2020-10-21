@@ -59,7 +59,13 @@ $(document).ready( function(){
 
   //add download link to um model 9-23  
   
-  $('<a class="btn dlbt" role="button" href="UM Modeling Update 9-23c-20.pdf" target= "_blank" download="UM Modeling Update 9/23/20" name="download"> Download </a>').appendTo("#um-model")
+//  $('<div class="section"><a class="btn dlbt" role="button" href="UM Modeling Update 9-23c-20.pdf" target= "_blank" download="UM Modeling Update 9/23/20" name="download"> Download </a></div>').appendTo("#um-report-for-september-23-2020")
+
+  //add download link to soc dist scen
+  
+//  $('<div class="section"><a class="btn dlbt" role="button" href="SocialDistancingScenarios5-1-20.pdf" target= "_blank" download="Social Distancing Scenarios 5/01/2020" name="download"> Download </a></div>').appendTo("#social-distancing-scenario-report-05012020")
+  
+  
 })
 ```
 
@@ -151,9 +157,8 @@ Recent Updates {data-orientation=rows data-navmenu="Modeling Reports"}
 =====================================
 Row
 -----------------------------------------------------------------------
-### [UM Modeling Update 09/23/20](#um-model)
-**Summary of Model Updates**
-
+### **[UM Modeling](#um-model)**
+**Summary Document added for 09/23/20**
 - Community population **changed** from **Washtenaw** to **Ann Arbor**
 
 - **Expansion of model** of disease progression in asymptomatic individuals and testing in asymptomatic individuals
@@ -165,13 +170,15 @@ Row
 
 Row
 -----------------------------------------------------------------------
-### [Social Distancing Scenarios](#social-distancing-scenarios-1)
-*an image preview here*
-and a description here
+### **[Social Distancing Scenarios](#social-distancing-scenarios-1)**
+**Report added for 06/03/2020**
+
+- Rampdown scenarios and Projected scenarios
+- Social Distancing scenarios versus Social Distancing patterns
 
 Row
 -----------------------------------------------------------------------
-### [Stages of COVID-19](#stages-of-covid-19-1)
+### **[Stages of COVID-19](#stages-of-covid-19-1)**
 *an image preview here*
 and a description here
 
@@ -183,17 +190,27 @@ Row {data-height=680}
 -----------------------------------------------------------------------
 ### UM Report for September 23, 2020
 
-<iframe class="pdf" title="UM Report 09/23/20" src="UM Modeling Update 9-23c-20.pdf "style="border: none; width: 100%; height: 100%" frameborder="0"></iframe>
+<iframe class="pdf" title="UM Report 09/23/20" src="UM Modeling Update 9-23c-20.pdf"></iframe>
 
 
 Social Distancing Scenarios {data-orientation=rows data-navmenu="Modeling Reports"}
 =====================================
+
+Row {data-height=680}
+-----------------------------------------------------------------------
+### Social Distancing Scenario Report 06/03/2020
+
+<iframe class="pdf" title="Social Distancing Scenarios Report 05/01/2020" src="SocialDistancingScenarios6-3-20.pdf"></iframe>
+
 Row
 -----------------------------------------------------------------------
-### About
-A short description about this scenario
+### Previous Reports
 
-*This is a placeholder page*
+[Social Distancing Scenarios 06/01/2020](SocialDistancingScenarios6-1-20.pdf)
+
+[Social Distancing Scenarios 05/01/2020](SocialDistancingScenarios5-1-20.pdf)
+
+
 
 
 Stages of COVID-19 {data-orientation=rows data-navmenu="Modeling Reports"}
@@ -523,7 +540,7 @@ Row {data-height=700}
 # I really want to do something like below for the rest of the models
 ```
 
-<iframe id="socialdistancing" src="https://sph-umich.shinyapps.io/covid-19-scenarios/" style="border: none; width: 100%; height: 100%" frameborder="0"></iframe>
+<iframe id="socialdistancing" src="https://sph-umich.shinyapps.io/covid-19-scenarios/"></iframe>
 
 
 Row {data-height=350}

@@ -23,13 +23,8 @@ h4{
   padding: 0px 10px 0px 10px;
 }
 
-.dlbt{
-  border-radius: 8px;
-  background-color: #058cba; 
-  color: white;
-  width: 100px;
-}
-.dlbt:hover{
-  color: white;
-  font-weight: 700;
+iframe{
+  border: none; 
+  width: 100%;
+  height: 100% 
 }
