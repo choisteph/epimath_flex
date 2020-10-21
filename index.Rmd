@@ -176,11 +176,19 @@ Row
 - Rampdown scenarios and Projected scenarios
 - Social Distancing scenarios versus Social Distancing patterns
 
-Row
------------------------------------------------------------------------
-### **[Stages of COVID-19](#stages-of-covid-19-1)**
-*an image preview here*
-and a description here
+<!-- Row -->
+<!-- ----------------------------------------------------------------------- -->
+<!-- ### **[Stages of COVID-19](#stages-of-covid-19-1)** -->
+<!-- **Infographic added** -->
+
+<!-- Row -->
+<!-- ----------------------------------------------------------------------- -->
+<!-- ### **[Quarantine Length](#quarantine-length-1)** -->
+<!-- **Report added for 10/10/2020** -->
+
+<!-- - Shorter quarantine lengths **lead to more cases** having onset after finishing quarantine -->
+
+<!-- - Leads to **increased total cases** in the epidemic as a whole -->
 
 
 UM Model {data-orientation=rows data-navmenu="Modeling Reports"}
@@ -188,9 +196,15 @@ UM Model {data-orientation=rows data-navmenu="Modeling Reports"}
 
 Row {data-height=680}
 -----------------------------------------------------------------------
-### UM Report for September 23, 2020
+### **UM Report for September 23, 2020**
 
 <iframe class="pdf" title="UM Report 09/23/20" src="UM Modeling Update 9-23c-20.pdf"></iframe>
+
+Row
+-----------------------------------------------------------------------
+### **Previous Reports**
+
+[UM Modeling Update 08/27/2020](UM_Modeling_Update_8_27b_20.pdf)
 
 
 Social Distancing Scenarios {data-orientation=rows data-navmenu="Modeling Reports"}
@@ -198,38 +212,49 @@ Social Distancing Scenarios {data-orientation=rows data-navmenu="Modeling Report
 
 Row {data-height=680}
 -----------------------------------------------------------------------
-### Social Distancing Scenario Report 06/03/2020
+### **Social Distancing Scenario Report 06/03/2020**
 
 <iframe class="pdf" title="Social Distancing Scenarios Report 05/01/2020" src="SocialDistancingScenarios6-3-20.pdf"></iframe>
 
+Row {data-height=680}
+-----------------------------------------------------------------------
+### **Counterfactual: What would have happened without social distancing?**
+
+<iframe class="pdf" title="Social Distancing Scenarios Report 05/01/2020" src="Countefactual slides 6-3 data updated.pdf"></iframe>
+
 Row
 -----------------------------------------------------------------------
-### Previous Reports
+### **Previous Social Distancing Scenario Reports**
 
 [Social Distancing Scenarios 06/01/2020](SocialDistancingScenarios6-1-20.pdf)
 
 [Social Distancing Scenarios 05/01/2020](SocialDistancingScenarios5-1-20.pdf)
 
 
-
-
-Stages of COVID-19 {data-orientation=rows data-navmenu="Modeling Reports"}
-=====================================
-Row
------------------------------------------------------------------------
-### About
-A short description about this scenario
-
-*This is a placeholder page*
-
-
 Data Analysis and Infographics {data-orientation=rows data-navmenu="Modeling Reports"}
 =====================================
-Row
------------------------------------------------------------------------
-### About
 
-*This is a placeholder page*
+Row {data-height=680}
+-----------------------------------------------------------------------
+### **Stages of COVID**
+
+<iframe class="pdf" title="Stages of COVID Info" src="StagesofCOVIDInfo.pdf"></iframe>
+
+
+Row {data-height=680}
+-----------------------------------------------------------------------
+### **Quarantine Length**
+
+<iframe class="pdf" title="Quarantine Length 10/20/2020" src="QuarantineLength10-20-20.pdf"></iframe>
+
+
+Row {data-height=680}
+-----------------------------------------------------------------------
+### **Herd Immunity**
+
+<iframe class="pdf" title="Herd Immunity Info" src="HerdImmunityInfo.pdf"></iframe>
+
+
 
 <!-- Forecasts (Archived) {data-orientation=rows data-navmenu="Modeling Reports"} -->
 <!-- ===================================== -->
