@@ -24,11 +24,16 @@ output:
       
       // Replace the existing "navbar-brand" element with an anchor element that allows users to click on the title, "Michigan COVID-19 Mapping" and be redirected to the homepage//
       
-      $(".navbar-brand").replaceWith("<a class='navbar-brand' href= '/epimath_flex'>Michigan COVID-19 Mapping</a>")
+//      $(".navbar-brand").replaceWith("<a class='navbar-brand' href= '/epimath_flex'>Michigan COVID-19 Mapping</a>")
+
+      $(".navbar-brand").replaceWith("<a class='navbar-brand' href= 'index.html'>Michigan COVID-19 Mapping</a>")
       
       //Replace the existing "navbar-logo" element with an image that has been styled to be vertically centered as well as padded, then wrap that image in an anchor element that allows users to click on the image to be redirected to the homepage//
       
-      $(".navbar-logo").replaceWith("<div class='navbar-logo pull-left' ><a href='/epimath_flex'><img class='navbrand-img' src='logo.png'></a></div>")
+//      $(".navbar-logo").replaceWith("<div class='navbar-logo pull-left' ><a href='/epimath_flex'><img class='navbrand-img' src='logo.png'></a></div>")
+    
+    $(".navbar-logo").replaceWith("<div class='navbar-logo pull-left' ><a href='index.html'><img class='navbrand-img' src='logo.png'></a></div>")
+    
     
     } // close the function that is run when the document is ready
   ) //close the document on ready function
@@ -47,6 +52,18 @@ $(document).ready( function(){
  }
  )
 ```
+
+``` {js adddownload}
+
+$(document).ready( function(){
+
+  //add download link to um model 9-23  
+  
+  $('<a class="btn dlbt" role="button" href="UM Modeling Update 9-23c-20.pdf" target= "_blank" download="UM Modeling Update 9/23/20" name="download"> Download </a>').appendTo("#um-model")
+})
+```
+
+
 
 ```{r global, include=FALSE}
 load('Workspace2020-04-25-1587832621.RData')
@@ -134,29 +151,52 @@ Recent Updates {data-orientation=rows data-navmenu="Modeling Reports"}
 =====================================
 Row
 -----------------------------------------------------------------------
-### [Model 1](#scenario-1)
+### [UM Modeling Update 09/23/20](#um-model)
+**Summary of Model Updates**
 
+- Community population **changed** from **Washtenaw** to **Ann Arbor**
+
+- **Expansion of model** of disease progression in asymptomatic individuals and testing in asymptomatic individuals
+
+- **Update and expansion of sampling** across wide distribution of parameter values
+
+- **Added** weekly surveillance testing of on-campus individuals
+
+
+Row
+-----------------------------------------------------------------------
+### [Social Distancing Scenarios](#social-distancing-scenarios-1)
 *an image preview here*
 and a description here
 
 Row
 -----------------------------------------------------------------------
-### [Model 2](#scenario-2)
+### [Stages of COVID-19](#stages-of-covid-19-1)
 *an image preview here*
 and a description here
 
 
-Model 1 {data-orientation=rows data-navmenu="Modeling Reports"}
+UM Model {data-orientation=rows data-navmenu="Modeling Reports"}
+=====================================
+
+Row {data-height=680}
+-----------------------------------------------------------------------
+### UM Report for September 23, 2020
+
+<iframe class="pdf" title="UM Report 09/23/20" src="UM Modeling Update 9-23c-20.pdf "style="border: none; width: 100%; height: 100%" frameborder="0"></iframe>
+
+
+Social Distancing Scenarios {data-orientation=rows data-navmenu="Modeling Reports"}
 =====================================
 Row
 -----------------------------------------------------------------------
 ### About
 A short description about this scenario
 
-
 *This is a placeholder page*
 
-Model 2 {data-orientation=rows data-navmenu="Modeling Reports"}
+
+Stages of COVID-19 {data-orientation=rows data-navmenu="Modeling Reports"}
 =====================================
 Row
 -----------------------------------------------------------------------
@@ -469,7 +509,7 @@ Row
 <!-- ``` -->
 
 
-Social Distancing Scenarios {data-navmenu="Explorables" data-orientation=rows} 
+Explore Social Distancing Scenarios {data-navmenu="Explorables" data-orientation=rows} 
 ===================================== 
 
 
@@ -477,7 +517,7 @@ Row {data-height=700}
 -----------------------------------------------------------------------
 
 
-### Social Distancing Scenarios
+### Social Distancing Scenario
 
 ```{r}
 # I really want to do something like below for the rest of the models

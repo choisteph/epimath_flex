@@ -2660,11 +2660,16 @@ window.FlexDashboardComponents.push({
       
       // Replace the existing "navbar-brand" element with an anchor element that allows users to click on the title, "Michigan COVID-19 Mapping" and be redirected to the homepage//
       
-      $(".navbar-brand").replaceWith("<a class='navbar-brand' href= '/epimath_flex'>Michigan COVID-19 Mapping</a>")
+//      $(".navbar-brand").replaceWith("<a class='navbar-brand' href= '/epimath_flex'>Michigan COVID-19 Mapping</a>")
+
+      $(".navbar-brand").replaceWith("<a class='navbar-brand' href= 'index.html'>Michigan COVID-19 Mapping</a>")
       
       //Replace the existing "navbar-logo" element with an image that has been styled to be vertically centered as well as padded, then wrap that image in an anchor element that allows users to click on the image to be redirected to the homepage//
       
-      $(".navbar-logo").replaceWith("<div class='navbar-logo pull-left' ><a href='/epimath_flex'><img class='navbrand-img' src='logo.png'></a></div>")
+//      $(".navbar-logo").replaceWith("<div class='navbar-logo pull-left' ><a href='/epimath_flex'><img class='navbrand-img' src='logo.png'></a></div>")
+    
+    $(".navbar-logo").replaceWith("<div class='navbar-logo pull-left' ><a href='index.html'><img class='navbrand-img' src='logo.png'></a></div>")
+    
     
     } // close the function that is run when the document is ready
   ) //close the document on ready function
@@ -2687,6 +2692,18 @@ $(document).ready( function(){
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
+<script type="text/javascript">
+
+$(document).ready( function(){
+
+  //add download link to um model 9-23  
+  
+  $('<a class="btn dlbt" role="button" href="UM Modeling Update 9-23c-20.pdf" target= "_blank" download="UM Modeling Update 9/23/20" name="download"> Download </a>').appendTo("#um-model")
+})
+</script>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
@@ -2694,22 +2711,46 @@ $(document).ready( function(){
 <h1>Recent Updates</h1>
 <div id="row" class="section level2">
 <h2>Row</h2>
-<div id="model-1" class="section level3">
-<h3><a href="#scenario-1">Model 1</a></h3>
-<p><em>an image preview here</em> and a description here</p>
+<div id="um-modeling-update-092320" class="section level3">
+<h3><a href="#um-model">UM Modeling Update 09/23/20</a></h3>
+<p><strong>Summary of Model Updates</strong></p>
+<ul>
+<li><p>Community population <strong>changed</strong> from <strong>Washtenaw</strong> to <strong>Ann Arbor</strong></p></li>
+<li><p><strong>Expansion of model</strong> of disease progression in asymptomatic individuals and testing in asymptomatic individuals</p></li>
+<li><p><strong>Update and expansion of sampling</strong> across wide distribution of parameter values</p></li>
+<li><p><strong>Added</strong> weekly surveillance testing of on-campus individuals</p></li>
+</ul>
 </div>
 </div>
 <div id="row-1" class="section level2">
 <h2>Row</h2>
-<div id="model-2" class="section level3">
-<h3><a href="#scenario-2">Model 2</a></h3>
+<div id="social-distancing-scenarios" class="section level3">
+<h3><a href="#social-distancing-scenarios-1">Social Distancing Scenarios</a></h3>
+<p><em>an image preview here</em> and a description here</p>
+</div>
+</div>
+<div id="row-2" class="section level2">
+<h2>Row</h2>
+<div id="stages-of-covid-19" class="section level3">
+<h3><a href="#stages-of-covid-19-1">Stages of COVID-19</a></h3>
 <p><em>an image preview here</em> and a description here</p>
 </div>
 </div>
 </div>
-<div id="model-1-1" class="section level1" data-orientation="rows" data-navmenu="Modeling Reports">
-<h1>Model 1</h1>
-<div id="row-2" class="section level2">
+<div id="um-model" class="section level1" data-orientation="rows" data-navmenu="Modeling Reports">
+<h1>UM Model</h1>
+<div id="row-3" class="section level2" data-height="680">
+<h2>Row</h2>
+<div id="um-report-for-september-23-2020" class="section level3">
+<h3>UM Report for September 23, 2020</h3>
+<iframe class="pdf" title="UM Report 09/23/20" src="UM Modeling Update 9-23c-20.pdf " style="border: none; width: 100%; height: 100%" frameborder="0">
+</iframe>
+</div>
+</div>
+</div>
+<div id="social-distancing-scenarios-1" class="section level1" data-orientation="rows" data-navmenu="Modeling Reports">
+<h1>Social Distancing Scenarios</h1>
+<div id="row-4" class="section level2">
 <h2>Row</h2>
 <div id="about" class="section level3">
 <h3>About</h3>
@@ -2718,9 +2759,9 @@ $(document).ready( function(){
 </div>
 </div>
 </div>
-<div id="model-2-1" class="section level1" data-orientation="rows" data-navmenu="Modeling Reports">
-<h1>Model 2</h1>
-<div id="row-3" class="section level2">
+<div id="stages-of-covid-19-1" class="section level1" data-orientation="rows" data-navmenu="Modeling Reports">
+<h1>Stages of COVID-19</h1>
+<div id="row-5" class="section level2">
 <h2>Row</h2>
 <div id="about-1" class="section level3">
 <h3>About</h3>
@@ -2731,7 +2772,7 @@ $(document).ready( function(){
 </div>
 <div id="data-analysis-and-infographics" class="section level1" data-orientation="rows" data-navmenu="Modeling Reports">
 <h1>Data Analysis and Infographics</h1>
-<div id="row-4" class="section level2">
+<div id="row-6" class="section level2">
 <h2>Row</h2>
 <div id="about-2" class="section level3">
 <h3>About</h3>
@@ -2975,12 +3016,12 @@ $(document).ready( function(){
 </div>
 </div>
 </div>
-<div id="social-distancing-scenarios" class="section level1" data-navmenu="Explorables" data-orientation="rows">
-<h1>Social Distancing Scenarios</h1>
-<div id="row-5" class="section level2" data-height="700">
+<div id="explore-social-distancing-scenarios" class="section level1" data-navmenu="Explorables" data-orientation="rows">
+<h1>Explore Social Distancing Scenarios</h1>
+<div id="row-7" class="section level2" data-height="700">
 <h2>Row</h2>
-<div id="social-distancing-scenarios-1" class="section level3">
-<h3>Social Distancing Scenarios</h3>
+<div id="social-distancing-scenario" class="section level3">
+<h3>Social Distancing Scenario</h3>
 <div class="knitr-options" data-fig-width="576" data-fig-height="460">
 
 </div>
@@ -2988,7 +3029,7 @@ $(document).ready( function(){
 </iframe>
 </div>
 </div>
-<div id="row-6" class="section level2" data-height="350">
+<div id="row-8" class="section level2" data-height="350">
 <h2>Row</h2>
 <div id="summary" class="section level3">
 <h3>Summary</h3>
@@ -3011,14 +3052,14 @@ $(document).ready( function(){
 </div>
 <div id="ensemble-modeling" class="section level1" data-orientation="rows">
 <h1>Ensemble Modeling</h1>
-<div id="row-7" class="section level2">
+<div id="row-9" class="section level2">
 <h2>Row</h2>
 <p>This is a placeholder page.</p>
 </div>
 </div>
 <div id="publications" class="section level1" data-orientation="rows">
 <h1>Publications</h1>
-<div id="row-8" class="section level2">
+<div id="row-10" class="section level2">
 <h2>Row</h2>
 <div id="publications-1" class="section level3">
 <h3>Publications</h3>
@@ -3044,7 +3085,7 @@ $(document).ready( function(){
 </div>
 <div id="about-the-models" class="section level1" data-orientation="rows" data-navmenu="About">
 <h1>About the Models</h1>
-<div id="row-9" class="section level2 tabset tabset-fade">
+<div id="row-11" class="section level2 tabset tabset-fade">
 <h2>Row</h2>
 <div id="state-regional-and-county-level-models" class="section level4">
 <h4>State, Regional, and County Level Models</h4>
@@ -3058,7 +3099,7 @@ $(document).ready( function(){
 <p>The state/regional/county level models are..</p>
 </div>
 </div>
-<div id="row-10" class="section level2 tabset tabset-fade">
+<div id="row-12" class="section level2 tabset tabset-fade">
 <h2>Row</h2>
 <div id="university-of-michigan-models" class="section level4">
 <h4>University of Michigan Models</h4>
@@ -3075,7 +3116,7 @@ $(document).ready( function(){
 </div>
 <div id="code" class="section level1" data-orientation="rows" data-navmenu="About">
 <h1>Code</h1>
-<div id="row-11" class="section level2">
+<div id="row-13" class="section level2">
 <h2>Row</h2>
 <div id="code-block-1" class="section level3">
 <h3>Code block 1</h3>
@@ -3086,7 +3127,7 @@ Description
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>hello &lt;-<span class="st"> &quot;hello world&quot;</span></span></code></pre></div>
 </div>
 </div>
-<div id="row-12" class="section level2">
+<div id="row-14" class="section level2">
 <h2>Row</h2>
 <div id="code-block-2" class="section level3">
 <h3>Code block 2</h3>
