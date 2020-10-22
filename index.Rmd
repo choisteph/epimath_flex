@@ -205,7 +205,7 @@ Row
 ### **Previous Reports**
 
 
-<a class="dlbt" href="UM_Modeling_Update_8_27b_20.pdf" target= "_blank" download="UM Modeling Update 08/27/2020" name="download"> UM Modeling Update 08/27/2020 </a>
+<a href="UM_Modeling_Update_8_27b_20.pdf" target= "_blank" download="UM Modeling Update 08_27_2020" name="download"> UM Modeling Update 08/27/2020 </a>
 <!-- [UM Modeling Update 08/27/2020](UM_Modeling_Update_8_27b_20.pdf) -->
 
 
@@ -229,12 +229,12 @@ Row
 ### **Previous Social Distancing Scenario Reports**
 
 
-<a class="dlbt" href="SocialDistancingScenarios6-1-20.pdf" target= "_blank" download="Social Distancing Scenarios 06/01/2020" name="download"> Social Distancing Scenarios 06/01/2020 </a>
+<a href="SocialDistancingScenarios6-1-20.pdf" target= "_blank" download="Social Distancing Scenarios 06_01_/_2020" name="download"> Social Distancing Scenarios 06/01/2020 </a>
 
 <!-- [Social Distancing Scenarios 06/01/2020](SocialDistancingScenarios6-1-20.pdf) -->
 
 
-<a class="dlbt" href="SocialDistancingScenarios5-1-20.pdf" target= "_blank" download="Social Distancing Scenarios 05/01/2020" name="download"> Social Distancing Scenarios 05/01/2020 </a>
+<a href="SocialDistancingScenarios5-1-20.pdf" target= "_blank" download="Social Distancing Scenarios 05_01_/_2020" name="download"> Social Distancing Scenarios 05/01/2020 </a>
 
 <!-- [Social Distancing Scenarios 05/01/2020](SocialDistancingScenarios5-1-20.pdf) -->
 
