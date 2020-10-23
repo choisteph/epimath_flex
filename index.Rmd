@@ -1,5 +1,5 @@
 ---
-title: "Michigan COVID-19 Mapping"
+title: "Michigan COVID-19 Modeling Dashboard"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -155,6 +155,13 @@ make_table <- function(){
 
 Recent Updates {data-orientation=rows data-navmenu="Modeling Reports"}
 =====================================
+Row
+-----------------------------------------------------------------------
+### {.no-title}
+<center><h4> Welcome to the Michigan COVID-19 Modeling Dashboard </h4></center>
+
+<center> ![epimath logo](logo.png) </center>
+
 Row
 -----------------------------------------------------------------------
 ### **[UM Modeling](#um-model)**

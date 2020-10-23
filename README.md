@@ -15,8 +15,10 @@ Development version by [Stephanie Choi](https://github.com/choisteph)
 - **index.Rmd**
     - This file contains all of the RMarkdown that is used to generate the HTML/CSS/JS.
         - All pages are created in this one .Rmd document.
+        - There are JS blocks in the code that use JQuery
+        - CSS is external (available in `styles.css`) whenever possibles
 - logo.png
-    - A logo used in the navbar.
+    - A logo used in the navbar and in the main "welcome" module on the homepage
 - model_diagram_3_29.jpeg
     - This is an image of the model diagram that is used in the About page.
 - styles.css
@@ -25,12 +27,15 @@ Development version by [Stephanie Choi](https://github.com/choisteph)
     - All of the data that is used to create models, as well as other useful functions and data are stored here.
         - In the original repository, each time new data was pulled, a new version of the .RData file was created. Older versions of the workspace were then stored in a directory called `archive`.
     - Noted to be an inefficient way to call the necessary data.
+- Various `.pdf` files
+    - Thesea are the reports used in the Modeling Reports section.
 
 
 ### You need the following to run
 #### RStudio and R
 - RStudio - I'm using the latest version (1.3.1093)
 - R - I'm using the latest version (4.0.2)
+
 #### R Libraries
 - Check `packrat.lock` in the `packrat` directory for the full list and their versions. The versions for each library will most likely be the latest versions.
 
