@@ -44,3 +44,4 @@ Development version by [Stephanie Choi](https://github.com/choisteph)
 1. Open `index.Rmd` in RStudio and make the changes you'd like to make
 2. Save `index.Rmd`
 3. In the RStudio Console (lower lefthand corner of the window), run `rmarkdown::render_site()` 
+    - You can also "Knit" the document by pressing CTRL + SHIFT + K on Windows or SHIFT + COMMAND + K on Mac
