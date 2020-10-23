@@ -158,9 +158,10 @@ Recent Updates {data-orientation=rows data-navmenu="Modeling Reports"}
 Row
 -----------------------------------------------------------------------
 ### {.no-title}
+<center><img class="banner" src="23311.png" alt="image of the coronavirus provided by the CDC"></center>
 <center><h4> Welcome to the Michigan COVID-19 Modeling Dashboard </h4></center>
+<center> <p class="about"> A resource for COVID-19 modeling built and maintained by the University of Michigan EpiMath team. </p> <center>
 
-<center> ![epimath logo](logo.png) </center>
 
 Row
 -----------------------------------------------------------------------
