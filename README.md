@@ -18,7 +18,7 @@ Development version by [Stephanie Choi](https://github.com/choisteph)
         - There are JS blocks in the code that use JQuery
         - CSS is external (available in `styles.css`) whenever possibles
 - logo.png
-    - A logo used in the navbar and in the main "welcome" module on the homepage
+    - A logo used in the navbar
 - model_diagram_3_29.jpeg
     - This is an image of the model diagram that is used in the About page.
 - styles.css
