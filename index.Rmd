@@ -163,6 +163,10 @@ Row
 <center> <p class="about"> A resource for COVID-19 modeling built and maintained by the University of Michigan EpiMath team. </p> <center>
 
 
+Row {data-height=40}
+-----------------------------------------------------------------------
+<h4 class="homepageheading">Modeling Report Updates</h4>
+
 Row
 -----------------------------------------------------------------------
 ### **[UM Modeling](#um-model)**
@@ -174,7 +178,6 @@ Row
 - **Update and expansion of sampling** across wide distribution of parameter values
 
 - **Added** weekly surveillance testing of on-campus individuals
-
 
 Row
 -----------------------------------------------------------------------
