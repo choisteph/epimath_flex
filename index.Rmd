@@ -614,7 +614,12 @@ Ensemble Modeling {data-orientation=rows}
 =====================================
 Row
 -----------------------------------------------------------------------
-This is a placeholder page.
+### About Ensemble Modeling
+
+
+We are working on collecting models and reports built by multiple groups across the UM campus and greater Michigan community. 
+
+This page will be updated as we do so!
 
 
 Publications {data-orientation=rows}
@@ -623,12 +628,10 @@ Row
 -----------------------------------------------------------------------
 ### Publications
 
-- One
-- Two
-- Three
-- Etc.
-
 *This is a placeholder page*
+
+Featuring publications by the EpiMath team.
+
 
 About this Site {data-navmenu="About"} 
 ===================================== 
@@ -645,24 +648,29 @@ Row {.tabset .tabset-fade}
 -----------------------------------------------------------------------
 #### State, Regional, and County Level Models
 ### Model Variants
-The state/regional/county level models are..
+Blurb about model variants.
 
 ### Uncast Mobility
-The state/regional/county level models are..
-
+Blurb about uncast mobility.
 
 
 Row  {.tabset .tabset-fade}
 -----------------------------------------------------------------------
 #### University of Michigan Models
 ### Compartmental Models
-All about compartmental models
+Blurb about compartmental models
 
 ### Individual-based Network Models
-All about individual-based network models
+Blurb about individual-based network models
 
 Code { data-orientation=rows data-navmenu="About"} 
 ===================================== 
+Row
+-----------------------------------------------------------------------
+### About the Code
+The below code was used to generate the different models used by the Michigan COVID-19 Modeling Dashboard.
+
+
 Row
 -----------------------------------------------------------------------
 ### Code block 1
