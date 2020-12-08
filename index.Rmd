@@ -70,7 +70,6 @@ $(document).ready( function(){
 ```
 
 
-
 ```{r global, include=FALSE}
 load('Workspace2020-04-25-1587832621.RData')
 ```
@@ -179,13 +178,13 @@ Row
 
 - **Added** weekly surveillance testing of on-campus individuals
 
-Row
------------------------------------------------------------------------
-### **[Social Distancing Scenarios](#social-distancing-scenarios-1)**
-**Report added for 06/03/2020**
+<!-- Row -->
+<!-- ----------------------------------------------------------------------- -->
+<!-- ### **[Social Distancing Scenarios](#social-distancing-scenarios-1)** -->
+<!-- **Report added for 06/03/2020** -->
 
-- Rampdown scenarios and Projected scenarios
-- Social Distancing scenarios versus Social Distancing patterns
+<!-- - Rampdown scenarios and Projected scenarios -->
+<!-- - Social Distancing scenarios versus Social Distancing patterns -->
 
 <!-- Row -->
 <!-- ----------------------------------------------------------------------- -->
@@ -700,19 +699,22 @@ This page will be updated as we do so!
 
 UM Models {data-orientation=rows data-navmenu="Modeling"}
 =====================================
-
-Row {data-height=680}
+Row
 -----------------------------------------------------------------------
-### **UM Report for September 23, 2020**
-
-<iframe class="pdf" title="UM Report 09/23/20" src="UM Modeling Update 9-23c-20.pdf"></iframe>
+### {.no-title}
+**UM Models**
 
 Row
 -----------------------------------------------------------------------
-### **Previous Reports**
+### **UM Report for September 23, 2020**
+<iframe class="pdf" title="UM Report 09/23/20" src="UM Modeling Update 9-23c-20.pdf"></iframe>
 
+Blurb explaining this report.
 
+### **UM Modeling Update for August 27, 2020**
 <a href="UM_Modeling_Update_8-27b-20.pdf" target= "_blank" download="UM Modeling Update 08_27_2020" name="download"> UM Modeling Update 08/27/2020 </a>
+
+Blurb explaining this report.
 <!-- [UM Modeling Update 08/27/2020](UM_Modeling_Update_8-27b-20.pdf) -->
 
 State and Regional Models {data-orientation=rows data-navmenu="Modeling"}
@@ -779,8 +781,6 @@ Explore Social Distancing Scenarios {data-navmenu="Explorables" data-orientation
 ===================================== 
 Row {data-height=700}
 -----------------------------------------------------------------------
-
-
 ### Social Distancing Scenario
 
 ```{r}
