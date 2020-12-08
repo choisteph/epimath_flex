@@ -28,7 +28,9 @@ Development version by [Stephanie Choi](https://github.com/choisteph)
         - In the original repository, each time new data was pulled, a new version of the .RData file was created. Older versions of the workspace were then stored in a directory called `archive`.
     - Noted to be an inefficient way to call the necessary data.
 - Various `.pdf` files
-    - Thesea are the reports used in the Modeling Reports section.
+    - These are the reports used in the Modeling section.
+- Various img files
+    - These are images used in the cards that link to reports
 
 
 ### You need the following to run

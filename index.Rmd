@@ -699,22 +699,26 @@ This page will be updated as we do so!
 
 UM Models {data-orientation=rows data-navmenu="Modeling"}
 =====================================
-Row
+Row {data-height=40}
 -----------------------------------------------------------------------
 ### {.no-title}
-**UM Models**
+<center>**UM Models**</center>
 
 Row
 -----------------------------------------------------------------------
 ### **UM Report for September 23, 2020**
-<iframe class="pdf" title="UM Report 09/23/20" src="UM Modeling Update 9-23c-20.pdf"></iframe>
-
+<!-- <iframe class="pdf" title="UM Report 09/23/20" src="UM Modeling Update 9-23c-20.pdf"></iframe> -->
+<center><a href="UM Modeling Update 9-23c-20.pdf" target="_blank" download="UM Modeling Update 9-23-2020" name="download">
+<img class="report-card" src="um-09-23.png" alt="image of rapid testing model results">
+</a></center>
 Blurb explaining this report.
 
 ### **UM Modeling Update for August 27, 2020**
-<a href="UM_Modeling_Update_8-27b-20.pdf" target= "_blank" download="UM Modeling Update 08_27_2020" name="download"> UM Modeling Update 08/27/2020 </a>
-
+<center><a href="UM_Modeling_Update_8-27b-20.pdf" target= "_blank" download="UM Modeling Update 08_27_2020" name="download">
+<img class="report-card" src="um-08-27.png" alt="image of contact patterns in model">
+</a></center>
 Blurb explaining this report.
+
 <!-- [UM Modeling Update 08/27/2020](UM_Modeling_Update_8-27b-20.pdf) -->
 
 State and Regional Models {data-orientation=rows data-navmenu="Modeling"}

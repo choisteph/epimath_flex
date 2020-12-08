@@ -41,3 +41,8 @@ iframe{
 .homepageheading{
   font-weight: 700;
 }
+
+.report-card{
+  width: 300px;
+  padding-bottom: 10px;
+}
