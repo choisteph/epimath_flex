@@ -729,6 +729,17 @@ Row
 -----------------------------------------------------------------------
 Content to be added soon.
 
+Reports & Analyses {data-orientation=rows data-navmenu="Reports & Analyses"}
+=====================================
+Row
+-----------------------------------------------------------------------
+Reports and Analyses go here
+
+Infographics {data-orientation=rows data-navmenu="Reports & Analyses"}
+=====================================
+Row
+-----------------------------------------------------------------------
+Infographics go here
 <!-- Social Distancing Scenarios {data-orientation=rows data-navmenu="Modeling"} -->
 <!-- ===================================== -->
 
